@@ -1,0 +1,8 @@
+{
+  "name": "app-ionic-corporativo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "c05ddc31"
+}
