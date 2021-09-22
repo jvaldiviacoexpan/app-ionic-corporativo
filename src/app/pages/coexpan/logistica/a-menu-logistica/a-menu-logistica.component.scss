@@ -1,0 +1,43 @@
+
+.background-image{
+    --background: url('../../../../../assets/img/login/background-login.png') 0 0/100% 100% no-repeat;
+    // -webkit-filter: blur(5px);
+    // -moz-filter: blur(5px);
+    // -o-filter: blur(5px);
+    // -ms-filter: blur(5px);
+    // filter: blur(5px);
+}
+
+.ion-header-row {
+  padding-left: 0px;
+}
+
+.btn-text {
+  font-size: 0.6em;
+  font-weight: bold;
+  color: rgb(85, 85, 85);
+}
+
+.btn-prop {
+  --background: #D5D95D;
+}
+
+.row {
+  margin-top: 2em;
+}
+
+// .btn-cxp {
+//   --border-radius: 5px;
+//   margin: 5em 0 4em 0;
+//   font-size: x-large;
+//   --background: #3c84fc;
+//   color: white;
+// }
+
+// .btn-cmb {
+//   --border-radius: 5px;
+//   font-size: x-large;
+// }
+
+
+

@@ -1,0 +1,32 @@
+.background-image{
+    --background: url('../../../../assets/img/login/background-login.png') 0 0/100% 100% no-repeat;
+}
+
+.col-header {
+  margin: 3em 0 0 0;
+  .label-header {
+    font-size: x-large;
+  }
+}
+
+.col-label {
+  margin: 3em 0 2em 0;
+  .label-1{
+    font-size: large;
+  }
+}
+
+.btn-cxp {
+  --border-radius: 5px;
+  margin: 0 0 4em 0;
+  font-size: x-large;
+  --background: #3c84fc;
+  color: white;
+}
+
+.btn-cmb {
+  --border-radius: 5px;
+  font-size: x-large;
+}
+
+

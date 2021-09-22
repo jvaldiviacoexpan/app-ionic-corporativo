@@ -24,3 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+/* Ion-Alert - ent-materias-primas.component.ts */
+.btnAlertDanger {
+  color: #d9534f !important;
+  background-color: rgba(119, 119, 119, 0.053) !important;
+}
+.btnAlertSuccess {
+  color: #5cb85c !important;
+  background-color: rgba(119, 119, 119, 0.053) !important;
+}
