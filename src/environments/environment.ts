@@ -11,7 +11,7 @@ export const environment = {
   urlBase:      'https://192.168.11.15/app-corporativo',
   urlAuth0:     'https://coexpanchile.us.auth0.com',
   urlcxp:       'http://192.168.11.15:9094/logistica/ionic-materias-primas/api',
-  urlCxpAuth0:  'http://192.168.33.140:9095/main/auth0/api',
+  urlCxpAuth0:  'http://192.168.11.15:9094/gateway/apigtw/api',
 };
 
 /*
