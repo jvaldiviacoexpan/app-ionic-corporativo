@@ -33,15 +33,23 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
 
 
   public buscarNumeroCarpeta(ncarpeta: string) {
+    if (!localStorage.getItem('sapusr')) {
+      this.presentToast('Inicie sesión en Sap Business One para Continuar.', 5000, 'warning');
+      return;
+    }
+
     this.ocRows = [];
     this.loadSkeleton = true;
+
     const info = {
-      codigoOrden: ncarpeta.trim(),
+      login: localStorage.getItem('sapusr'),
+      doc: ncarpeta.trim()
     };
 
     this.cxpService.obtenerInformacionOc(info).then((data: any) => {
       // console.log(data);
       if (data.Status.Status !== 'T') {
+        console.log(data);
         this.presentToast(data.Status.Message, 5000, 'primary');
       } else {
         this.ocRows = data.Objeto;
@@ -114,7 +122,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: () => {
-            console.log('Confirm Cancel.');
+            // console.log('Confirm Cancel.');
           }
         }, {
           text: 'Si, confirmar',

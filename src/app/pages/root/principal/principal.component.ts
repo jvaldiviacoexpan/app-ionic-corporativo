@@ -1,37 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import { CameraSource, Camera, CameraResultType } from '@capacitor/camera';
 import { AuthService } from '@auth0/auth0-angular';
-import { Auth0Service } from '../../../../providers/internal/auth0.service';
-import { SecurityService } from '../../../../providers/external/security.service';
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.scss'],
 })
-export class PrincipalComponent implements OnInit {
+export class PrincipalComponent implements OnInit, AfterViewInit {
 
   tiempoDia = '';
+  loading = true;
 
   constructor(
     public auth: AuthService,
     private route: Router,
-    private auth0Service: Auth0Service,
-    private securityService: SecurityService,
   ) { }
 
   ngOnInit() {
     this.tiempoDia = this.obtenertiempoDia();
+    this.auth.user$.subscribe((data) => {
+        this.loading = false;
+    });
   }
 
-  irMenuLogistica() {
-    this.route.navigateByUrl('/pages/logistica/menu-logistica');
+  ngAfterViewInit() {
+  }
+
+
+  irMenusCoexpan() {
+    localStorage.removeItem('sapdb');
+    localStorage.setItem('sapdb', 'Z_SBO_COEXPAN_TEST2');
+    this.route.navigateByUrl('/pages/root/main');
+  }
+
+
+  irMenusCoembal() {
+    localStorage.removeItem('sapdb');
+    localStorage.setItem('sapdb', 'Z_SBO_COEXPAN_TEST');
+    console.log('Navegar a menus Coembal');
+    // this.route.navigateByUrl('/pages/root/main');
   }
 
   obtenertiempoDia(): string {
     const TIEMPO = new Date();
-    // console.log(TIEMPO);
     if (TIEMPO.getHours() >= 5 && TIEMPO.getHours() <= 11) {
       return 'Buenos Días';
     } else if (TIEMPO.getHours() >= 12 && TIEMPO.getHours() <= 22) {
@@ -41,25 +54,7 @@ export class PrincipalComponent implements OnInit {
     }
   }
 
-  obtenerRoles(token: string) {
-    this.auth.user$.subscribe((user) => {
-      this.auth0Service.getAuth().then((resp: any) => {
-      console.log(resp);
-      const userdata = {
-        idToken: resp.access_token,
-        email: user.email,
-      };
-      const datarest = this.securityService.encrypt(JSON.stringify(userdata));
-        this.auth0Service.getDataUser(datarest).then((restuser: any) => {
-          console.log(restuser);
-        }, (err) => {
-          console.log(err);
-        });
-      }, (err) => {
-        console.log(err);
-      });
-    });
-  }
+
 
   // takeFoto() {
   //   Camera.getPhoto({

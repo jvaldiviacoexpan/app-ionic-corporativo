@@ -18,9 +18,9 @@ export class Auth0Service {
 
   public getAuth() {
     const sub: GetTokenModel = new GetTokenModel();
-    sub.client_id     = 'DjFs7NIPsRDvuah3BsdnPh0JulZ2nm5R';
-    sub.client_secret = 's87DbpYgAXDqoySBMSCHg_o0hiJW1NgmS0mpP2hay9qzJ420Wee1wiwIpA1Q99-b';
-    sub.audience      = 'https://coexpanchile.us.auth0.com/api/v2/';
+    sub.client_id     = '86ax2fXgHEHW1LhKwVI8FIPN8GzZUiYu';
+    sub.client_secret = 'PbLQ2PcVI-fJDPgb_ha2aNxC2sOLN4CM0Pw0f8AhiwEoGGn_UD-OMFZyYJRidgy9';
+    sub.audience      = 'https://coexpancl.us.auth0.com/api/v2/';
     sub.grant_type    = 'client_credentials';
     return new Promise((resolve, reject) => {
       this.http.post(`${env.urlCxpAuth0}/get-token`, JSON.stringify(sub))
@@ -35,6 +35,17 @@ export class Auth0Service {
   public getDataUser(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.urlCxpAuth0}/find-email`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public getUserRoles(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlCxpAuth0}/get-roles`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {

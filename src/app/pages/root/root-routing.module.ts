@@ -3,6 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RootComponent } from './root.component';
+import { MainMenuCxpComponent } from './main-menu-cxp/main-menu-cxp.component';
 
 const routes: Routes = [{
   path: '',
@@ -15,6 +16,10 @@ const routes: Routes = [{
     {
       path: 'login',
       component: LoginComponent,
+    },
+    {
+      path: 'main',
+      component: MainMenuCxpComponent
     },
     {
       path: '',
@@ -33,6 +38,7 @@ export class RootRoutingModule { }
 export const rootRouterComponents = [
   RootComponent,
   LoginComponent,
+  MainMenuCxpComponent,
   PrincipalComponent
 ];
 

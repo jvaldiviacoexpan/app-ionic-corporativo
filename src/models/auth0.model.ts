@@ -5,3 +5,7 @@ export class GetTokenModel {
     audience:      string;
     grant_type:    string;
 }
+
+export interface AppMetadata {
+    roles: string[];
+}

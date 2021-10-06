@@ -1,3 +1,7 @@
+import { Time } from '@angular/common';
+import { MaquinaModel } from './maquina.model';
+import { MotivoModel } from './motivo.model';
+
 export class EmisionEtiquetaMpModel {
     paramZebra: ParamZebra;
     tstUser:    TstUser;
@@ -42,11 +46,22 @@ export class ParamZebra {
 }
 
 export class TstUser {
-    usuario:   string;
-    cantEtq:   number;
-    fecha:     string;
-    numAtCard: string;
-    docEntry:  number;
+  usuario:   string;
+  cantEtq:   number;
+  fecha:     string;
+  numAtCard: string;
+  docEntry:  number;
+}
+
+export class RegistroParadaModel {
+  supervisor: string;
+  turno: string;
+  maquina: MaquinaModel;
+  motivo: MotivoModel;
+  fecha: Date;
+  horaInicio: Date;
+  horaTermino: Date;
+  observacion: string;
 }
 
 

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '@auth0/auth0-angular';
-import { Browser } from '@capacitor/browser';
-import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',

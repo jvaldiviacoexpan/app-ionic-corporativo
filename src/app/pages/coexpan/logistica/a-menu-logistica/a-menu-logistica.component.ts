@@ -19,8 +19,6 @@ export class AMenuLogisticaComponent implements OnInit {
     private menu: MenuController,
     private route: Router,
     private auth: AuthService,
-    private auth0Service: Auth0Service,
-    private securityServ: SecurityService
   ) { }
 
   ngOnInit() {

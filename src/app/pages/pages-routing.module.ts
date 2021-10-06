@@ -18,6 +18,11 @@ const routes: Routes = [{
         .then(m => m.LogisticaModule)
     },
     {
+      path: 'extrusion',
+      loadChildren: () => import('./coexpan/extrusion/extrusion.module')
+        .then(m => m.ExtrusionModule)
+    },
+    {
       path: '',
       redirectTo: 'root',
       pathMatch: 'full',

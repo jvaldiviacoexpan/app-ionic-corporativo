@@ -1,0 +1,91 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="primary" expand="block" fill="clear" (click)="dismiss()">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="medium"><strong>Registro Parada</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-divider class="ion-padding-top">
+  </ion-item-divider>
+  <ion-item>
+    <ion-label color="medium"><strong>Supervisor</strong></ion-label>
+    <ion-select  [(ngModel)]="registro.supervisor" itemValueField="id" placeholder="Selecciona Uno" required>
+      <ion-select-option value="LV">Luis Vasquez</ion-select-option>
+      <ion-select-option value="AR">Alvaro Reyes</ion-select-option>
+      <ion-select-option value="DZ">Damian Zavala</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Turno</strong></ion-label>
+    <ion-select [(ngModel)]="registro.turno" placeholder="Seleccione Uno" required>
+      <ion-select-option value="T1">Turno 1</ion-select-option>
+      <ion-select-option value="T2">Turno 2</ion-select-option>
+      <ion-select-option value="T3">Turno 3</ion-select-option>
+      <ion-select-option value="T20">Turno 20</ion-select-option>
+      <ion-select-option value="T21">Turno 21</ion-select-option>
+      <ion-select-option value="T24">Turno 24</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Máquina</strong></ion-label>
+    <ionic-selectable item-content [(ngModel)]="registro.maquina" itemValueField="id" itemTextField="nombre"
+    [items]="maquinas" [canSearch]="true" placeholder="Seleccione Uno" required>
+    </ionic-selectable>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Motivo</strong></ion-label>
+    <ionic-selectable item-content [(ngModel)]="registro.motivo" itemValueField="id" itemTextField="descripcion" [items]="motivos"
+      [canSearch]="true" placeholder="Seleccione Uno" required>
+    </ionic-selectable>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Fecha</strong></ion-label>
+    <ion-datetime [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Hora Inicio</strong></ion-label>
+    <ion-datetime [(ngModel)]="registro.horaInicio" displayFormat="D MMM YYYY H:mm" required></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Hora Término</strong></ion-label>
+    <ion-datetime [(ngModel)]="registro.horaTermino" displayFormat="D MMM YYYY H:mm" required></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium" position="floating"><strong>Observación</strong></ion-label>
+    <ion-textarea [(ngModel)]="registro.observacion" required></ion-textarea>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="8">
+          <ion-button color="success" [disabled]="validacionDatos" expand="block" fill="outline" (click)="dismissData()">
+            Registrar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+

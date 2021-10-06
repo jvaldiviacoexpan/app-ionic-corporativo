@@ -13,7 +13,7 @@ export class CxpService {
 
   constructor(
     private http: HttpClient,
-  ) {}
+  ) { }
 
 
   public obtenerInformacionOc(idCarpeta: any) {
@@ -75,6 +75,18 @@ export class CxpService {
   public estadoImpresora(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.urlcxp}/estado-impresora`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+
+  public enviarRegistrosParadas(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlcxp}/ingresar-parada`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
