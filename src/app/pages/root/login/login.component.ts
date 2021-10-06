@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment as env } from 'src/environments/environment';
 
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth.loginWithRedirect({
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      redirect_uri: 'http://localhost:8100/#/pages/root/inicio',
+      redirect_uri: `${env.urlBase}/#/pages/root/inicio`,
     });
   }
 
