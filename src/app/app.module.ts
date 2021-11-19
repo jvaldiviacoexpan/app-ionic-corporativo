@@ -16,7 +16,7 @@ import { HttpErrorInterceptor } from '../providers/interceptors/httperror.interc
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IonicSelectableModule } from 'ionic-selectable';
 
-const redirectUri = `http://localhost:8100/#/pages/root/inicio`;
+// const redirectUri = `http://localhost:8100/#/pages/root/inicio`;
 
 @NgModule({
   declarations: [AppComponent],

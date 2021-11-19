@@ -6,6 +6,7 @@ import { SecurityService } from '../providers/external/security.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { ToolService } from 'src/providers/external/tools.service';
 import { CxpService } from '../providers/internal/cxp.service';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -124,7 +125,8 @@ export class AppComponent implements OnInit {
 
   logoutAuth() {
     this.auth.logout({
-      returnTo: 'http://localhost:8100/#/pages/root/login'
+      returnTo: `${env.urlBase}/#/pages/root/login`
+      // returnTo: 'http://localhost:8100/#/pages/root/login'
     });
     localStorage.removeItem('sapusr');
     this.toolServices.simpleLoader('Cargando...');
