@@ -9,8 +9,6 @@ import { environment as env } from 'src/environments/environment';
 
 export class CxpService {
 
-  // private urlBase = 'https://localhost:44356/api';
-
   constructor(
     private http: HttpClient,
   ) { }

@@ -10,10 +10,19 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
 
   <ion-item-divider class="ion-padding-top">
   </ion-item-divider>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Máquina</strong></ion-label>
+    <ionic-selectable item-content [(ngModel)]="registro.maquina" itemValueField="id" itemTextField="nombre"
+      [items]="maquinas" [canSearch]="true" placeholder="Seleccione Uno" required>
+    </ionic-selectable>
+  </ion-item>
+
   <ion-item>
     <ion-label color="medium"><strong>Supervisor</strong></ion-label>
     <ion-select  [(ngModel)]="registro.supervisor" itemValueField="id" placeholder="Selecciona Uno" required>
@@ -21,6 +30,12 @@
       <ion-select-option value="AR">Alvaro Reyes</ion-select-option>
       <ion-select-option value="DZ">Damian Zavala</ion-select-option>
     </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Fecha</strong></ion-label>
+    <ion-datetime [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
+    </ion-datetime>
   </ion-item>
 
   <ion-item>
@@ -35,34 +50,9 @@
     </ion-select>
   </ion-item>
 
-  <ion-item>
-    <ion-label color="medium"><strong>Máquina</strong></ion-label>
-    <ionic-selectable item-content [(ngModel)]="registro.maquina" itemValueField="id" itemTextField="nombre"
-    [items]="maquinas" [canSearch]="true" placeholder="Seleccione Uno" required>
-    </ionic-selectable>
-  </ion-item>
-
-  <ion-item>
-    <ion-label color="medium"><strong>Motivo</strong></ion-label>
-    <ionic-selectable item-content [(ngModel)]="registro.motivo" itemValueField="id" itemTextField="descripcion" [items]="motivos"
-      [canSearch]="true" placeholder="Seleccione Uno" required>
-    </ionic-selectable>
-  </ion-item>
-
-  <ion-item>
-    <ion-label color="medium"><strong>Fecha</strong></ion-label>
-    <ion-datetime [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
-    </ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label color="medium"><strong>Hora Inicio</strong></ion-label>
-    <ion-datetime [(ngModel)]="registro.horaInicio" displayFormat="D MMM YYYY H:mm" required></ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label color="medium"><strong>Hora Término</strong></ion-label>
-    <ion-datetime [(ngModel)]="registro.horaTermino" displayFormat="D MMM YYYY H:mm" required></ion-datetime>
+  <ion-item button (click)="presentModal()">
+    <ion-label color="medium"><strong>Motivos</strong></ion-label>
+    <ion-label color="medium" slot="end"><strong>{{registro.motivos?.length}}</strong></ion-label>
   </ion-item>
 
   <ion-item>
@@ -72,13 +62,20 @@
 
 </ion-content>
 
+
 <ion-footer>
   <ion-toolbar>
     <ion-grid fixed>
       <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
-          <ion-button color="success" [disabled]="validacionDatos" expand="block" fill="outline" (click)="dismissData()">
+        <ion-col size="8" *ngIf="!registro.uid">
+          <ion-button color="success" [disabled]="validacionDatos" expand="block" fill="outline"
+          (click)="dismissData()">
             Registrar
+          </ion-button>
+        </ion-col>
+        <ion-col size="8" *ngIf="registro.uid">
+          <ion-button color="success" [disabled]="validacionDatos" expand="block" fill="outline" (click)="dismissData()" >
+            Modificar
           </ion-button>
         </ion-col>
       </ion-row>

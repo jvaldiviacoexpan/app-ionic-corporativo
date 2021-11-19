@@ -3,15 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  // urlBase:     'http://localhost:8100',
   // urlcxp:      'https://localhost:44356/api',
   // urlCxpAuth0: 'https://localhost:44360/api',
-  // urlcxp:      'http://192.168.33.140:9095/logistica/ionic-materias-primas/api', Error Distancia SAP BO
-  // urlBase:     'http://localhost:8100',
   production: false,
-  urlBase:      'https://192.168.11.15/app-corporativo',
+  urlBase:      'https://movil.coexpan.cl/app-corporativo',
+  urlcxp:       'https://api.coexpan.cl/api/v1/bodega/materias-primas/',
   urlAuth0:     'https://coexpanchile.us.auth0.com',
-  urlcxp:       'http://192.168.11.15:9094/logistica/ionic-materias-primas/api',
-  urlCxpAuth0:  'http://192.168.11.15:9094/gateway/apigtw/api',
+  urlCxpAuth0:  'https://api.coexpan.cl/api/v1/auth0',
 };
 
 /*

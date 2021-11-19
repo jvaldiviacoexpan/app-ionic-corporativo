@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalRegistroCausaComponent } from './modal-registro-causa/modal-registro-causa.component';
+import { Component, OnInit } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 import { MaquinaModel } from 'src/models/maquina.model';
+import { v4 as uuidv4 } from 'uuid';
 import { MaquinasService } from '../../../../../../providers/internal/maquinas.service';
 import { MotivoModel } from '../../../../../../models/motivo.model';
 import { MotivosService } from '../../../../../../providers/internal/motivos.service';
@@ -22,20 +24,23 @@ export class ModalRegistroParadaComponent implements OnInit {
 
 
   constructor(
+    private navParams: NavParams,
     private modalController: ModalController,
     private maquinasService: MaquinasService,
     private motivosService: MotivosService,
-  ) { }
+  ) {
+    if (navParams.get('parada') !== undefined) {
+      this.registro = navParams.get('parada');
+    }
+  }
 
   get validacionDatos(): boolean {
     if (
-      this.registro.supervisor  === undefined ||
-      this.registro.turno       === undefined ||
       this.registro.maquina     === undefined ||
-      this.registro.motivo      === undefined ||
+      this.registro.supervisor  === undefined ||
       this.registro.fecha       === undefined ||
-      this.registro.horaInicio  === undefined ||
-      this.registro.horaTermino === undefined ||
+      this.registro.turno       === undefined ||
+      this.registro.motivos?.length < 0        ||
       this.registro.observacion === undefined
     ) {
       return true;
@@ -44,10 +49,30 @@ export class ModalRegistroParadaComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
     this.maquinas = this.maquinasService.getMaquinas();
     this.motivos = this.motivosService.getMotivos();
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalRegistroCausaComponent,
+      componentProps: {
+        motivos: this.registro.motivos,
+      }
+    });
+    modal.onDidDismiss().then((data) => {
+      // console.log(data);
+      if (data.data === undefined) {
+        // console.log('Sin Datos');
+      } else {
+        this.registro.motivos = data.data;
+        this.registro.nroMotivos = this.registro.motivos?.length;
+        // console.log(data.data);
+        // console.log(this.registro.motivos);
+      }
+    });
+    await modal.present();
   }
 
   dismiss() {
@@ -55,6 +80,9 @@ export class ModalRegistroParadaComponent implements OnInit {
   }
 
   dismissData() {
+    if (this.registro.uid === undefined) {
+      this.registro.uid = uuidv4();
+    }
     this.modalController.dismiss(this.registro);
   }
 

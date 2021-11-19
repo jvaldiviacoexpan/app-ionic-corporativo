@@ -35,9 +35,7 @@ export class RegistroParadasComponent implements OnInit {
       if (data.data === undefined) {
         // console.log('Sin Datos');
       } else {
-        // console.log('Con datos');
         this.registros.push(data.data);
-        // console.log(this.registros);
       }
     });
     await modal.present();
@@ -52,10 +50,8 @@ export class RegistroParadasComponent implements OnInit {
       <strong>Supervisor</strong>: ${r.supervisor}<hr>
       <strong>Turno:</strong> ${r.turno}<hr>
       <strong>Máquina:</strong> ${r.maquina.nombre}<hr>
-      <strong>Motivo:</strong> ${r.motivo.descripcion}<hr>
+      <strong>Motivos:</strong> ${r.nroMotivos}<hr>
       <strong>Fecha:</strong> ${r.fecha}<hr>
-      <strong>Inicio:</strong> ${r.horaInicio}<hr>
-      <strong>Termino:</strong> ${r.horaTermino}<hr>
       <strong>Observación:</strong> ${r.observacion}<hr>
       `,
       buttons: [
@@ -78,6 +74,7 @@ export class RegistroParadasComponent implements OnInit {
       return;
     }
     this.toolService.simpleLoader('Enviando...');
+    // console.log(this.registros);
     this.cxpService.enviarRegistrosParadas(this.registros).then((data: any) => {
       // console.log(data);
       if (data.Status === 'T') {
@@ -91,6 +88,35 @@ export class RegistroParadasComponent implements OnInit {
         this.toolService.dismissLoader();
       }, 200);
     });
+  }
+
+
+  async modificarDatos(rp: RegistroParadaModel) {
+    const modal = await this.modalController.create({
+      component: ModalRegistroParadaComponent,
+      componentProps: {
+        parada: rp,
+      }
+    });
+    modal.onDidDismiss().then((data) => {
+      // console.log(data);
+      if (data.data !== undefined) {
+        if (this.registros.length <= 0) {
+          this.registros.push(data.data);
+          console.log('se agrego!');
+        } else {
+          // console.log(data.data.uid);
+          this.registros.forEach(el => {
+          if (data.data.uid === el.uid) {
+            el = data.data;
+          } else {
+            this.registros.push(data.data);
+          }
+          });
+        }
+      }
+    });
+    await modal.present();
   }
 
 

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AMenuExtrusionComponent } from './a-menu-extrusion/a-menu-extrusion.component';
 import { RegistroParadasComponent } from './registro-paradas/registro-paradas.component';
 import { ModalRegistroParadaComponent } from './registro-paradas/modal-registro-parada/modal-registro-parada.component';
+import { ModalRegistroCausaComponent } from './registro-paradas/modal-registro-parada/modal-registro-causa/modal-registro-causa.component';
 
 
 
@@ -34,5 +35,6 @@ export const extrusionRouterComponents = [
   ExtrusionComponent,
   AMenuExtrusionComponent,
   RegistroParadasComponent,
-  ModalRegistroParadaComponent
+  ModalRegistroParadaComponent,
+  ModalRegistroCausaComponent
 ];

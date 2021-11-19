@@ -1,4 +1,3 @@
-import { Time } from '@angular/common';
 import { MaquinaModel } from './maquina.model';
 import { MotivoModel } from './motivo.model';
 
@@ -54,14 +53,35 @@ export class TstUser {
 }
 
 export class RegistroParadaModel {
-  supervisor: string;
-  turno: string;
+  uid: string;
   maquina: MaquinaModel;
-  motivo: MotivoModel;
+  supervisor: string;
   fecha: Date;
-  horaInicio: Date;
-  horaTermino: Date;
+  turno: string;
+  motivos: RegistroMotivosModel[];
+  nroMotivos: number;
   observacion: string;
+
+  // constructor(rp: RegistroParadaModel) {
+  //   this.maquina = rp.maquina;
+  //   this.supervisor = rp.supervisor;
+  //   this.turno = rp.turno;
+  //   this.motivo = rp.motivo;
+  //   this.nroMotivos = rp.motivo.length;
+  //   this.fecha = rp.fecha;
+  //   this.horaInicio = rp.horaInicio;
+  //   this.horaTermino = rp.horaTermino;
+  //   this.observacion = rp.observacion;
+  // }
+}
+
+export class RegistroMotivosModel {
+  motivo: MotivoModel;
+  minutos: number;
+  constructor(mot: RegistroMotivosModel) {
+    this.motivo = mot.motivo;
+    this.minutos = mot.minutos;
+  }
 }
 
 

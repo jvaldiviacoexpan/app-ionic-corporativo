@@ -26,9 +26,9 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let r of registros" >
-      <ion-item>
+      <ion-item (click)="modificarDatos(r)">
         <ion-label color="medium"><strong>
-          {{r.maquina.nombre}} - {{r.motivo.descripcion}}
+          {{r.maquina.nombre}} - Motivos: {{r.motivos?.length}}
         </strong></ion-label>
         <ion-button slot="end" color ="medium" expand="block" shape="round"
         (click)="alertaInformacionParada(r)">

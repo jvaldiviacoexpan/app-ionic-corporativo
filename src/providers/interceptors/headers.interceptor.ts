@@ -38,7 +38,7 @@ export class HeadersInterceptor implements HttpInterceptor {
           request = request.clone({
             setHeaders: {
               'Content-Type': 'application/json; charset=UTF-8',
-              Accept: 'application/json',
+              Accept: '*/*',
             },
           });
         }
