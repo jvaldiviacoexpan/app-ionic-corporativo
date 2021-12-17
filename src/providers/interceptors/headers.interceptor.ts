@@ -19,7 +19,7 @@ export class HeadersInterceptor implements HttpInterceptor {
     // console.log(request.url.substring(24, 33)); // Auth0
     switch (request.method) {
       case 'GET': {
-        if (request.url.indexOf('coexpanchile.us.auth0.com') !== -1) {
+        if (request.url.indexOf('coexpancl.us.auth0.com') !== -1) {
           // this.authService.
           this.authService.idTokenClaims$.subscribe((data) => {
             // eslint-disable-next-line no-underscore-dangle
