@@ -142,8 +142,6 @@ export class AppComponent implements OnInit {
     this.toolServices.simpleLoader('Cargando...');
     let impresoras: RestImpresoraModel = new RestImpresoraModel();
     this.cxpService.obtenerImpresoras().then((data: any) => {
-      console.log(data);
-
       impresoras = data;
       this.seleccionarImpresora(impresoras);
       console.log(impresoras);
