@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { MaquinaModel } from './maquina.model';
 import { MotivoModel } from './motivo.model';
 
@@ -83,5 +84,35 @@ export class RegistroMotivosModel {
     this.minutos = mot.minutos;
   }
 }
+
+export class CxpRegistroInventarioModel {
+  codBarra: string;
+  padUser: string;
+  cantidad: number;
+}
+
+export class CxpDatosBobinas {
+  CANTIDAD: number;
+  CODBARRA: string;
+  CODSAP: string;
+  DESCRIPCION: string;
+}
+
+export class CmbRegistroInventarioModel {
+  codBarra: string;
+  padUser: string;
+  cantxCaja: number;
+  cantidad: number;
+}
+
+export class CmbGetRegistro {
+  ORDEN: number;
+  PRODUCTO: string;
+  UNIDXCAJA: number;
+}
+
+
+
+
 
 

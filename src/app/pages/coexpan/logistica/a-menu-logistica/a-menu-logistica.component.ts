@@ -13,8 +13,6 @@ import { Auth0Service } from '../../../../../providers/internal/auth0.service';
 })
 export class AMenuLogisticaComponent implements OnInit {
 
-
-
   constructor(
     private menu: MenuController,
     private route: Router,
@@ -23,7 +21,7 @@ export class AMenuLogisticaComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user$.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
     });
   }
 
@@ -35,8 +33,14 @@ export class AMenuLogisticaComponent implements OnInit {
     this.route.navigateByUrl('/pages/logistica/etqem/etq-entr-materias-primas');
   }
 
+  navRegInventario() {
+    this.route.navigateByUrl('/pages/logistica/inv/reg-inventario');
+  }
+
   menuToogle() {
     this.menu.toggle();
   }
+
+
 
 }

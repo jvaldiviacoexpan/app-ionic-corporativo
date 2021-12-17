@@ -22,6 +22,11 @@ const routes: Routes = [{
       loadChildren: () => import('./entrada-mercancia/entrada-mercancia.module')
         .then(m => m.EntradamercanciaModule)
     },
+    {
+      path: 'inv',
+      loadChildren: () => import('./cxp-inventario/cxp-inventario.module')
+        .then(m => m.CxpInventarioModule)
+    }
   ]
 }];
 

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RootComponent } from './root.component';
 import { MainMenuCxpComponent } from './main-menu-cxp/main-menu-cxp.component';
+import { MainMenuCmbComponent } from './main-menu-cmb/main-menu-cmb.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +21,10 @@ const routes: Routes = [{
     {
       path: 'main',
       component: MainMenuCxpComponent
+    },
+    {
+      path: 'cmb-main',
+      component: MainMenuCmbComponent
     },
     {
       path: '',
@@ -39,6 +44,7 @@ export const rootRouterComponents = [
   RootComponent,
   LoginComponent,
   MainMenuCxpComponent,
+  MainMenuCmbComponent,
   PrincipalComponent
 ];
 

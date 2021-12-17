@@ -33,6 +33,7 @@
     "animate.css": "^4.1.1",
     "crypto-js": "^4.1.1",
     "ionic-selectable": "^4.9.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "uuid": "^8.3.2",

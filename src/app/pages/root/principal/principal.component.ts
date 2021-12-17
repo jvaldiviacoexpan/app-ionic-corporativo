@@ -38,9 +38,10 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
 
   irMenusCoembal() {
     localStorage.removeItem('sapdb');
-    localStorage.setItem('sapdb', 'Z_SBO_COEXPAN_TEST');
-    console.log('Navegar a menus Coembal');
+    localStorage.setItem('sapdb', 'Z_SBO_COEMBAL_TEST');
+    // console.log('Navegar a menus Coembal');
     // this.route.navigateByUrl('/pages/root/main');
+    this.route.navigateByUrl('pages/root/cmb-main');
   }
 
   obtenertiempoDia(): string {

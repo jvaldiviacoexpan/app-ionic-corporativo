@@ -2,7 +2,6 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Auth0Service } from '../internal/auth0.service';
 import { AuthService } from '@auth0/auth0-angular';
 
 

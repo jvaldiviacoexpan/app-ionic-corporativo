@@ -208,5 +208,4 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
   }
 
 
-
 }

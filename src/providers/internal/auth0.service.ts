@@ -13,7 +13,6 @@ export class Auth0Service {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
   ) { }
 
   public getAuth() {
@@ -53,7 +52,5 @@ export class Auth0Service {
         });
     });
   }
-
-
 
 }

@@ -23,6 +23,11 @@ const routes: Routes = [{
         .then(m => m.ExtrusionModule)
     },
     {
+      path: 'cmb/extrusion',
+      loadChildren: () => import('./coembal/cmb-logistica/cmb-logistica.module')
+        .then(m => m.CmbLogisticaModule)
+    },
+    {
       path: '',
       redirectTo: 'root',
       pathMatch: 'full',
