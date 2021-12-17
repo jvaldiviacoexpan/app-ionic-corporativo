@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as moment from 'moment';
 import { InventarioService } from '../../../../../providers/internal/inventario.service';
-import { AlertController, MenuController, IonInput, IonButton } from '@ionic/angular';
+import { AlertController, MenuController, IonInput, IonButton, ToastController } from '@ionic/angular';
 import { CmbRegistroInventarioModel, CmbGetRegistro } from '../../../../../models/anymodels.model';
 
 
@@ -34,6 +34,7 @@ export class CmbInventarioComponent implements OnInit {
     private menu: MenuController,
     private alertCtrl: AlertController,
     private inventarioServ: InventarioService,
+    private toastCtrl: ToastController
   ) { }
 
   menuToogle() {
@@ -57,6 +58,7 @@ export class CmbInventarioComponent implements OnInit {
       } else {
         console.log('no encontrado');
         this.stsInventario = new CmbGetRegistro();
+        this.txtUnixcaja.value = 0;
         this.stsInventario.ORDEN = 0;
         this.stsInventario.PRODUCTO = 'N/A';
       }
@@ -68,7 +70,7 @@ export class CmbInventarioComponent implements OnInit {
   btnRegistrar() {
     // console.log(this.txtBobina.value?.toString());
     if (this.txtCodabarra.value?.toString().length <= 3 ||
-        this.txtCantidad.value <= 0 || this.txtUnixcaja.value <= 0) {
+        this.txtCantidad.value <= 0) {
       this.btnenviar.disabled = true;
     } else {
       this.btnenviar.disabled = false;
@@ -92,6 +94,7 @@ export class CmbInventarioComponent implements OnInit {
         this.obtenerListaInventario();
       } else {
         console.log(data);
+        this.presentToast(data.Status.Message_Exception_Descr, 4000, 'warning');
       }
     }, (err) => {
       console.log(err);
@@ -159,7 +162,6 @@ export class CmbInventarioComponent implements OnInit {
     return alert.present();
   }
 
-
   async confirmarEliminar(id: number, codigo: string, cantidad: string) {
     const alert = await this.alertCtrl.create({
       header: 'Confirmar Eliminación',
@@ -208,6 +210,15 @@ export class CmbInventarioComponent implements OnInit {
     setTimeout(() => {
       this.txtCantidad.setFocus();
     }, 200);
+  }
+
+  async presentToast(msj: string, tiempo: number, estado: string) {
+    const toast = await this.toastCtrl.create({
+      message: msj,
+      duration: tiempo,
+      color: estado
+    });
+    toast.present();
   }
 
 }

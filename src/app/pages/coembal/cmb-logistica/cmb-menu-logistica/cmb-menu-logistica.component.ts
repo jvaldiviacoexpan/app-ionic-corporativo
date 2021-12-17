@@ -17,6 +17,10 @@ export class CmbMenuLogisticaComponent {
     private router: Router,
   ) { }
 
+  menuToogle() {
+    this.menu.toggle();
+  }
+
   navCmbInventario() {
     this.router.navigateByUrl('/pages/cmb/extrusion/inventario');
   }
