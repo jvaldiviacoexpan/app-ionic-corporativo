@@ -28,6 +28,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
       // aquí podrías agregar código que muestre el error en alguna parte fija de la pantalla.
         switch (error.status) {
+          case 200:
+                this.presentToast(`Sin Conexión a internet.`, 5000); break;
           case 401:
                 this.presentToast(`Error de token.`, 5000); break;
           case 404:

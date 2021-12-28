@@ -125,7 +125,8 @@ export class AppComponent implements OnInit {
 
   logoutAuth() {
     this.auth.logout({
-      returnTo: `${env.urlBase}/#/pages/root/login`
+      returnTo: `${env.urlBase}/#/pages/root/login`,
+      federated: true,
       // returnTo: 'http://localhost:8100/#/pages/root/login'
     });
     localStorage.removeItem('sapusr');
