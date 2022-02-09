@@ -24,6 +24,10 @@ export class AMenuExtrusionComponent implements OnInit {
     this.route.navigateByUrl('/pages/extrusion/reg-paradas');
   }
 
+  irEmisionPallet() {
+    this.route.navigateByUrl('/pages/extrusion/emision-pallet');
+  }
+
   menuToogle() {
     this.menu.toggle();
   }

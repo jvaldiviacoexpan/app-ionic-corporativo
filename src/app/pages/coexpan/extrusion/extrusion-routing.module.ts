@@ -5,6 +5,7 @@ import { AMenuExtrusionComponent } from './a-menu-extrusion/a-menu-extrusion.com
 import { RegistroParadasComponent } from './registro-paradas/registro-paradas.component';
 import { ModalRegistroParadaComponent } from './registro-paradas/modal-registro-parada/modal-registro-parada.component';
 import { ModalRegistroCausaComponent } from './registro-paradas/modal-registro-parada/modal-registro-causa/modal-registro-causa.component';
+import { CxpEmisionPalletComponent } from './cxp-emision-pallet/cxp-emision-pallet.component';
 
 
 
@@ -20,6 +21,10 @@ const routes: Routes = [{
     {
       path: 'reg-paradas',
       component: RegistroParadasComponent
+    },
+    {
+      path: 'emision-pallet',
+      component: CxpEmisionPalletComponent
     }
   ]
 }];
@@ -36,5 +41,6 @@ export const extrusionRouterComponents = [
   AMenuExtrusionComponent,
   RegistroParadasComponent,
   ModalRegistroParadaComponent,
-  ModalRegistroCausaComponent
+  ModalRegistroCausaComponent,
+  CxpEmisionPalletComponent
 ];
