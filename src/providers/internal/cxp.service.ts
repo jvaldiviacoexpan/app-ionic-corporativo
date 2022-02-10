@@ -93,6 +93,28 @@ export class CxpService {
     });
   }
 
+  // Emision de Etiquetas Bobinas
+  public postBuscarDatosBobina(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/info-bobina`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postEmisionPalletBobina(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/emision-pallet`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
 
 
 }
