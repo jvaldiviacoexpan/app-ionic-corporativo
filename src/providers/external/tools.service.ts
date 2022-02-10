@@ -8,7 +8,7 @@ import { mergeScan } from 'rxjs/operators';
 
 export class ToolService {
 
-  constructor(public loadingController: LoadingController) { }
+  constructor(private loadingController: LoadingController) { }
 
 
   // Simple loader

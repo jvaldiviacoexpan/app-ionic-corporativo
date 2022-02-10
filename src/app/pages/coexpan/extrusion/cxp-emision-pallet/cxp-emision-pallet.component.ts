@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { IonText, MenuController, IonInput, ToastController, IonButton } from '@ionic/angular';
+import { IonText, MenuController, IonInput, ToastController, IonButton, LoadingController } from '@ionic/angular';
 import { CxpService } from '../../../../../providers/internal/cxp.service';
+import { DtoImpresora, BobinaModel } from '../../../../../models/etiquetas.model';
+import { ToolService } from '../../../../../providers/external/tools.service';
 
 @Component({
   selector: 'app-cxp-emision-pallet',
@@ -26,6 +28,7 @@ export class CxpEmisionPalletComponent implements OnInit, AfterViewInit {
     private menu: MenuController,
     private cxpService: CxpService,
     private toastController: ToastController,
+    private toolServise: ToolService,
   ) { }
 
   ngOnInit(): void { }
@@ -114,7 +117,32 @@ export class CxpEmisionPalletComponent implements OnInit, AfterViewInit {
   }
 
   emitirEtiquetaMultiple() {
-    console.log(this.registroBobinas);
+    const dtoEtiqueta: DtoImpresora<BobinaModel> = new DtoImpresora<BobinaModel>();
+    dtoEtiqueta.data = this.registroBobinas;
+    dtoEtiqueta.ipPrint = localStorage.getItem('ipimp');
+    dtoEtiqueta.login = localStorage.getItem('sapusr');
+    if (!dtoEtiqueta.ipPrint) {
+      this.presentToast('Seleccione una impresora antes de emitir la etiqueta.', 2000, 'warning');
+      return;
+    }
+    if (!dtoEtiqueta.login) {
+      this.presentToast('Inicie sesión en Sap Business One para Continuar.', 5000, 'warning');
+      return;
+    }
+    // console.log(dtoEtiqueta);
+    this.toolServise.simpleLoader('Generando etiqueta...');
+    this.cxpService.postEmisionPalletBobina(dtoEtiqueta).then((data: any) => {
+      if (data.Status === 'T') {
+        this.presentToast('Imprimiendo etiqueta...', 2000, 'success');
+        this.registroBobinas = [];
+      } else {
+        this.presentToast(data.Message, 5000, 'warning');
+      }
+    }, err => {
+      console.error(err);
+    }).finally(() => this.toolServise.dismissLoader());
+
+    // console.log(this.registroBobinas);
   }
 
 
