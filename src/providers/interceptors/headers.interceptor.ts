@@ -23,7 +23,7 @@ export class HeadersInterceptor implements HttpInterceptor {
           // this.authService.
           this.authService.idTokenClaims$.subscribe((data) => {
             // eslint-disable-next-line no-underscore-dangle
-            console.log(data);
+            // console.log(data);
             request = request.clone({
               setHeaders: {
                 'Content-Type': 'application/json; charset=UTF-8',

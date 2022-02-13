@@ -116,5 +116,28 @@ export class CxpService {
     });
   }
 
+  // Emision de Etiqueta Caja Pallet Coembal
+  public postBuscarDatosCaja(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/info-caja-pallet`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postEmisionPalletCaja(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/emision-caja-pallet`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
 
 }

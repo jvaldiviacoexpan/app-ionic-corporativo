@@ -87,7 +87,7 @@ export class ModalRegistroParadaComponent implements OnInit {
   }
 
   onClick() {
-    console.log(this.registro);
+    // console.log(this.registro);
   }
 
 

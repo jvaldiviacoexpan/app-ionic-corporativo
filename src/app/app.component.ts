@@ -42,6 +42,11 @@ export class AppComponent implements OnInit {
   }
 
   async alertaLoginSap() {
+    const db: string = localStorage.getItem('sapdb');
+    if (db === null) {
+      this.presentToast('Seleccione una empresa antes de continuar.', 5000, 'warning');
+      return;
+    }
     const alert = await this.alertController.create({
       header: 'Login Sap Business One',
       message: 'Ingrese Usuario y Password',
@@ -63,13 +68,13 @@ export class AppComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: () => {
-            console.log('Confirm Cancel.');
+            // console.log('Confirm Cancel.');
           }
         }, {
           text: 'Enviar',
           cssClass: 'btnAlertSuccess',
           handler: (data) => {
-            this.loginSap(data.psw, data.usr);
+            this.loginSap(data.psw, data.usr, db);
           }
         }
       ]
@@ -78,14 +83,14 @@ export class AppComponent implements OnInit {
   }
 
 
-  loginSap(si: string, se: string) {
+  loginSap(si: string, se: string, so: string) {
     this.toolServices.simpleLoader('Cargando...');
     const login = new Login();
     login.resu = se;
     login.psws = si;
-    login.npmc = 'Z_SBO_COEXPAN_TEST2';
+    login.npmc = so;
     const sapusr = this.securityServ.encrypt(JSON.stringify(login));
-    console.log(sapusr);
+    // console.log(sapusr);
     this.securityServ.sapIniciarSesion(sapusr).then((data: any) => {
       this.toolServices.dismissLoader();
       if (data.Status === 'T') {
@@ -96,7 +101,7 @@ export class AppComponent implements OnInit {
         this.presentToast(ltr, 5000, 'warning');
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => this.toolServices.dismissLoader());
   }
 
@@ -145,9 +150,9 @@ export class AppComponent implements OnInit {
     this.cxpService.obtenerImpresoras().then((data: any) => {
       impresoras = data;
       this.seleccionarImpresora(impresoras);
-      console.log(impresoras);
+      // console.log(impresoras);
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally();
   }
 
@@ -166,7 +171,7 @@ export class AppComponent implements OnInit {
           text: 'Seleccionar',
           cssClass: 'btnAlertSuccess',
           handler: (data: any) => {
-            console.log(data);
+            // console.log(data);
             if (data === undefined) {
               this.toolServices.simpleLoader('Cargando...');
               this.seleccionarImpresora(impresoras);
@@ -175,7 +180,7 @@ export class AppComponent implements OnInit {
               this.toolServices.simpleLoader('Cargando...');
               const imp = { ip: data };
               this.cxpService.estadoImpresora(imp).then((rest: any) => {
-                console.log(rest);
+                // console.log(rest);
                 if (rest.Status === 'T') {
                   impresoras.Objeto.forEach(i => {
                     if (data === i.IP) {
@@ -188,7 +193,7 @@ export class AppComponent implements OnInit {
                   this.presentToast(rest.Message, 3000, 'danger');
                 }
               }, (err) => {
-                console.log(err);
+                console.warn(err);
               }).finally(()=>this.toolServices.dismissLoader());
             }
           }

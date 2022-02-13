@@ -49,16 +49,16 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     this.cxpService.obtenerInformacionOc(info).then((data: any) => {
       // console.log(data);
       if (data.Status.Status !== 'T') {
-        console.log(data);
+        // console.log(data);
         this.presentToast(data.Status.Message, 5000, 'primary');
       } else {
         this.ocRows = data.Objeto;
         this.proveedor = data.Objeto[0].H_CardName;
         this.area = data.Objeto[0].H_U_AREA;
-        console.log(this.ocRows);
+        // console.log(this.ocRows);
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     })
     .finally(() => {
       this.loadSkeleton = false;
@@ -90,7 +90,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: () => {
-            console.log('Confirm Cancel.');
+            // console.log('Confirm Cancel.');
           }
         }, {
           text: 'Enviar',
@@ -146,14 +146,14 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     emision.paramZebra = imp;
 
     this.cxpService.emisionEtiquetasMateriasPrimas(emision).then((data: any) => {
-      console.log(data);
+      // console.log(data);
       if (data.Status === 'T') {
         this.presentToast(data.Message, 5000, 'success');
       } else {
         this.presentToast(data.Message, 5000, 'danger');
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     });
   }
 

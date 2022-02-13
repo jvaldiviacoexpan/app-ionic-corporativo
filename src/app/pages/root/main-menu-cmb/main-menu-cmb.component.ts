@@ -42,10 +42,10 @@ export class MainMenuCmbComponent implements AfterViewInit {
         this.auth0Serv.getDataUser(datarest).then((restuser: any) => {
           this.showThisContent$.next({ datauser: restuser[0].app_metadata.roles });
         }, (err) => {
-          console.log(err);
+          console.warn(err);
         });
       }, (err) => {
-        console.log(err);
+        console.warn(err);
       }).finally(()=>this.loadMenu = false);
     });
   }
@@ -55,7 +55,11 @@ export class MainMenuCmbComponent implements AfterViewInit {
   }
 
   navMenuLogistica() {
-    this.router.navigateByUrl('/pages/cmb/extrusion/menu-logistica');
+    this.router.navigateByUrl('/pages/cmb/logistica/menu-logistica');
+  }
+
+  navMenuExtrusion() {
+    this.router.navigateByUrl('/pages/cmb/extrusion/menu-extrusion');
   }
 
 
