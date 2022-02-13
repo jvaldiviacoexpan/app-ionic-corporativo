@@ -1,6 +1,7 @@
 import { PagesComponent } from './pages.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 
 const routes: Routes = [{
@@ -10,7 +11,7 @@ const routes: Routes = [{
     {
       path: 'root',
       loadChildren: () => import('./root/root.module')
-        .then(m => m.RootModule)
+        .then(m => m.RootModule),
     },
     {
       path: 'logistica',
@@ -23,9 +24,14 @@ const routes: Routes = [{
         .then(m => m.ExtrusionModule)
     },
     {
-      path: 'cmb/extrusion',
+      path: 'cmb/logistica',
       loadChildren: () => import('./coembal/cmb-logistica/cmb-logistica.module')
         .then(m => m.CmbLogisticaModule)
+    },
+    {
+      path: 'cmb/extrusion',
+      loadChildren: () => import('./coembal/cmb-extrusion/cmb-extrusion.module')
+        .then(m => m.CmbExtrusionModule)
     },
     {
       path: '',

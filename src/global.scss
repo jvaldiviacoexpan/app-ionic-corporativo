@@ -35,3 +35,25 @@
   color: #5cb85c !important;
   background-color: rgba(119, 119, 119, 0.053) !important;
 }
+
+.ion-no-padding-x {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.btn-color-cxp {
+  --background: #ecf0ff;
+  span {
+    font-size: 0.6em;
+    font-weight: 700;
+    color: rgb(2, 0, 146) !important;
+  }
+}
+.btn-color-cmb {
+  --background: #ffcdcd;
+  span {
+    font-size: 0.6em;
+    font-weight: 700;
+    color: rgb(111, 0, 0);
+  }
+}

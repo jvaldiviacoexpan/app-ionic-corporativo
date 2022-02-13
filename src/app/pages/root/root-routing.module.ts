@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RootComponent } from './root.component';
 import { MainMenuCxpComponent } from './main-menu-cxp/main-menu-cxp.component';
 import { MainMenuCmbComponent } from './main-menu-cmb/main-menu-cmb.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [{
   path: '',
@@ -15,16 +16,18 @@ const routes: Routes = [{
       component: PrincipalComponent,
     },
     {
-      path: 'login',
-      component: LoginComponent,
-    },
-    {
       path: 'main',
-      component: MainMenuCxpComponent
+      component: MainMenuCxpComponent,
+      canActivate: [AuthGuard],
     },
     {
       path: 'cmb-main',
-      component: MainMenuCmbComponent
+      component: MainMenuCmbComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'login',
+      component: LoginComponent,
     },
     {
       path: '',

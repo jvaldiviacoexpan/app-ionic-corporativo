@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { IonText, MenuController, IonInput, ToastController, IonButton, LoadingController } from '@ionic/angular';
+import { MenuController, IonInput, ToastController, IonButton, LoadingController } from '@ionic/angular';
 import { CxpService } from '../../../../../providers/internal/cxp.service';
 import { DtoImpresora, BobinaModel } from '../../../../../models/etiquetas.model';
 import { ToolService } from '../../../../../providers/external/tools.service';
@@ -74,7 +74,7 @@ export class CxpEmisionPalletComponent implements OnInit, AfterViewInit {
     }
 
     data.login = localStorage.getItem('sapusr');
-    data.data = codBobina;
+    data.data = codBobina.trim();
 
     this.accionBusqueda(true);
     this.cxpService.postBuscarDatosBobina(data).then((resp: any) => {
@@ -84,7 +84,7 @@ export class CxpEmisionPalletComponent implements OnInit, AfterViewInit {
       } else {
         this.presentToast(resp.Status.Message, 2000, 'warning');
       }
-      console.log(resp);
+      // console.log(resp);
     }, (err) => {
       console.warn(err);
     }).finally(() => {

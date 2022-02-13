@@ -24,9 +24,9 @@ export class ToolService {
   // Dismiss loader
   dismissLoader() {
     this.loadingController.dismiss().then((response) => {
-      console.log('Loader closed!', response);
+      // console.log('Loader closed!', response);
     }).catch((err) => {
-      console.log('Error occured : ', err);
+      // console.log('Error occured : ', err);
     });
   }
 
@@ -38,7 +38,7 @@ export class ToolService {
     }).then((response) => {
       response.present();
       response.onDidDismiss().then((resp) => {
-        console.log('Loader dismissed', resp);
+        // console.log('Loader dismissed', resp);
       });
     });
   }

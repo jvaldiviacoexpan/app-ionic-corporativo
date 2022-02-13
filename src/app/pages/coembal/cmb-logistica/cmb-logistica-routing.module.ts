@@ -3,6 +3,7 @@ import { CmbLogisticaComponent } from './cmb-logistica.component';
 import { CmbMenuLogisticaComponent } from './cmb-menu-logistica/cmb-menu-logistica.component';
 import { NgModule } from '@angular/core';
 import { CmbInventarioComponent } from './cmb-inventario/cmb-inventario.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 
 const routes: Routes = [{
@@ -12,10 +13,12 @@ const routes: Routes = [{
     {
       path: 'menu-logistica',
       component: CmbMenuLogisticaComponent,
+      canActivate: [AuthGuard],
     },
     {
       path: 'inventario',
       component: CmbInventarioComponent,
+      canActivate: [AuthGuard],
     }
   ]
 }];

@@ -43,7 +43,7 @@ export class EmMateriasPrimasComponent implements OnInit {
     this.codBarra.disabled = true;
     this.loadCodbar = true;
     this.cxpService.obtenerPalletCodigoBarra(cod).then((data: any) => {
-      console.log(data);
+      // console.log(data);
       if (data.Status.Status === 'T') {
         if (data.Objeto[0]) {
           if (this.arrayPallet.find(m => m.CodBarra === data.Objeto[0].CodBarra)) {
@@ -58,7 +58,7 @@ export class EmMateriasPrimasComponent implements OnInit {
         this.presentToast(data.Status.Message, 4000, 'warning');
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => {
       this.codBarra.disabled = false;
       this.loadCodbar = false;
@@ -114,12 +114,12 @@ export class EmMateriasPrimasComponent implements OnInit {
       if (data.Status === 'T') {
         this.presentToast(data.Message, 3000, 'success');
         this.arrayPallet = [];
-        console.log(data);
+        // console.log(data);
       } else {
         this.presentToast(data.Message, 3000, 'warning');
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => this.toolService.dismissLoader());
 
   }

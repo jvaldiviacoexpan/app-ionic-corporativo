@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { CameraSource, Camera, CameraResultType } from '@capacitor/camera';
 import { AuthService } from '@auth0/auth0-angular';
+import { environment as env } from 'src/environments/environment';
+// import { CameraSource, Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-principal',
@@ -28,20 +29,24 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
-
   irMenusCoexpan() {
-    localStorage.removeItem('sapdb');
-    localStorage.setItem('sapdb', 'Z_SBO_COEXPAN_TEST2');
+    this.cambioEmpresa(env.dbCoexpan);
     this.route.navigateByUrl('/pages/root/main');
   }
 
-
   irMenusCoembal() {
-    localStorage.removeItem('sapdb');
-    localStorage.setItem('sapdb', 'Z_SBO_COEMBAL_TEST');
-    // console.log('Navegar a menus Coembal');
-    // this.route.navigateByUrl('/pages/root/main');
+    this.cambioEmpresa(env.dbCoembal);
     this.route.navigateByUrl('pages/root/cmb-main');
+  }
+
+  cambioEmpresa(dbChange: string): void {
+    const db = localStorage.getItem('sapdb');
+    // console.log(db);
+    // console.log(dbChange);
+    if (db !== dbChange) {
+      localStorage.removeItem('sapusr');
+      localStorage.setItem('sapdb', dbChange);
+    }
   }
 
   obtenertiempoDia(): string {
@@ -66,9 +71,9 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   //     // imgSrc is passed to src of img tag
   //     // imgSrc = this.domSanitizer.bypassSecurityTrustResourceUrl(image && (image.webPath));
   //     // image.path is what you will have to send to the uploadPhoto method as uripath
-  //     console.log(image);
+  //     // console.log(image);
   //   }).catch((err) => {
-  //       console.log(err);
+  //       console.warn(err);
   //   });
   // }
 

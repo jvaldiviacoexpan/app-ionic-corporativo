@@ -22,7 +22,7 @@ export class CmbMenuLogisticaComponent {
   }
 
   navCmbInventario() {
-    this.router.navigateByUrl('/pages/cmb/extrusion/inventario');
+    this.router.navigateByUrl('/pages/cmb/logistica/inventario');
   }
 
 

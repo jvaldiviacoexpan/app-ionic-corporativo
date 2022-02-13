@@ -50,20 +50,20 @@ export class CmbInventarioComponent implements OnInit {
   obtenerDatos(value: any) {
     this.loading = true;
     this.inventarioServ.cmbObtenerinformacion(value).then((data: any) => {
-      console.log(data);
+      // console.log(data);
       if (data.Objeto[0]) {
         this.stsInventario = data.Objeto[0];
         this.txtUnixcaja.value = data.Objeto[0].UNIDXCAJA;
         this.btnenviar.disabled = false;
       } else {
-        console.log('no encontrado');
+        // console.log('no encontrado');
         this.stsInventario = new CmbGetRegistro();
         this.txtUnixcaja.value = 0;
         this.stsInventario.ORDEN = 0;
         this.stsInventario.PRODUCTO = 'N/A';
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => { this.loading = false; this.apuntarCantidad(); });
   }
 
@@ -93,11 +93,11 @@ export class CmbInventarioComponent implements OnInit {
         this.stsInventario = null;
         this.obtenerListaInventario();
       } else {
-        console.log(data);
+        // console.log(data);
         this.presentToast(data.Status.Message_Exception_Descr, 4000, 'warning');
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => {
       this.loading = false; this.btnenviar.disabled = false; this.apuntarCodBarra();
     });
@@ -108,22 +108,22 @@ export class CmbInventarioComponent implements OnInit {
       const user = this.invId$.value.invid;
       const fecha = moment(new Date()).format('DD-MM-yyyy');
       this.inventarioServ.cmbObtenerListaInventario(user, fecha).then((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.listaRegistro = data.Objeto;
       }, (err) => {
-        console.log(err);
+        console.warn(err);
       });
     } else {
-      console.log('sin datos');
+      // console.log('sin datos');
     }
   }
 
   eliminarRegistro(id: number) {
     this.inventarioServ.cmbEliminarRegistroInventario(id).then((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.obtenerListaInventario();
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     });
   }
 
@@ -143,14 +143,14 @@ export class CmbInventarioComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: (blah) => {
-            console.log('Confirm Cancel:', blah);
+            // console.log('Confirm Cancel:', blah);
           },
         },
         {
           text: 'Okay',
           cssClass: 'btnAlertSuccess',
           handler: (data) => {
-            console.log(data);
+            // console.log(data);
             localStorage.setItem('inv-id', data.identificador);
             this.invId$.next({ invid: localStorage.getItem('inv-id') });
             this.asignarIdentificador();
@@ -172,7 +172,7 @@ export class CmbInventarioComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: (blah) => {
-            console.log('Confirm Cancel:', blah);
+            // console.log('Confirm Cancel:', blah);
           },
         },
         {
@@ -180,10 +180,10 @@ export class CmbInventarioComponent implements OnInit {
           cssClass: 'btnAlertSuccess',
           handler: () => {
             this.inventarioServ.cmbEliminarRegistroInventario(id).then((data: any) => {
-              console.log(data);
+              // console.log(data);
               this.obtenerListaInventario();
             }, (err) => {
-              console.log(err);
+              console.warn(err);
             });
           }
         },
@@ -196,7 +196,7 @@ export class CmbInventarioComponent implements OnInit {
     const idem = localStorage.getItem('inv-id');
     if (idem === null || idem === '') {
       this.registroDevice();
-      console.log(idem);
+      // console.log(idem);
     }
   }
 

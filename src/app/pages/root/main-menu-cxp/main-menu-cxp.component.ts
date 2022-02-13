@@ -43,10 +43,10 @@ export class MainMenuCxpComponent implements OnInit, AfterViewInit {
         this.auth0Service.getDataUser(datarest).then((restuser: any) => {
           this.showThisContent$.next({ datauser: restuser[0].app_metadata.roles });
         }, (err) => {
-          console.log(err);
+          console.warn(err);
         });
       }, (err) => {
-        console.log(err);
+        console.warn(err);
       }).finally(()=>this.loadMenu = false);
     });
   }

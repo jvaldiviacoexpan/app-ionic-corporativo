@@ -29,3 +29,5 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+android/app/src/main/AndroidManifest.xml
+android/app/src/main/assets/capacitor.config.json

@@ -8,7 +8,7 @@
           </ion-button>
         </ion-col>
         <ion-col size="10" class="ion-text-left">
-          <ion-title>Menu Logística</ion-title>
+          <ion-title>Menu Extrusión</ion-title>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -17,21 +17,25 @@
 
 
 <ion-content class="background-image">
-  <ion-grid>
 
+  <ion-grid>
     <ion-row class="row">
       <ion-col size="12">
-        <ion-label color="medium"><strong>Inventario</strong></ion-label>
+        <ion-label color="medium"><strong>Emisión Etiquetas</strong></ion-label>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-start">
       <ion-col size="6">
-        <ion-button class="btn-color-cmb" shape="" size="large" expand="block" (click)="navCmbInventario()">
-          <span class="btn-text">Reg. Inventario</span>
+        <ion-button class="btn-color-cmb" shape="" size="large" expand="block" (click)="navCmbEmisionCajaPallet()">
+          <span>Caja Pallet</span>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button class="btn-color-cmb" size="large" expand="block" disabled="true">
+          <span class="btn-text">(Deshabilitado)</span>
         </ion-button>
       </ion-col>
     </ion-row>
-
-
   </ion-grid>
+
 </ion-content>

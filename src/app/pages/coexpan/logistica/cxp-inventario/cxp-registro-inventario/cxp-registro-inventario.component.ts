@@ -43,7 +43,7 @@ export class CxpRegistroInventarioComponent implements OnInit {
   }
 
   btnRegistrar() {
-    console.log(this.txtBobina.value?.toString());
+    // console.log(this.txtBobina.value?.toString());
     if (this.txtBobina.value?.toString().length <= 3 ||
         this.txtCantidad.value <= 0) {
       this.btnenviar.disabled = true;
@@ -64,13 +64,13 @@ export class CxpRegistroInventarioComponent implements OnInit {
         // this.txtCantidad.value = data.Objeto[0].CANTIDAD;
         this.btnenviar.disabled = false;
       } else {
-        console.log('no encontrado');
+        // console.log('no encontrado');
         this.stsbobina = new CxpDatosBobinas();
         this.stsbobina.CODSAP = 'N/A';
         this.stsbobina.DESCRIPCION = 'N/A';
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => { this.loading = false; this.apuntarCantidad(); });
   }
 
@@ -82,7 +82,7 @@ export class CxpRegistroInventarioComponent implements OnInit {
     this.stsbobinaa.codBarra = this.txtBobina.value.toString();
     this.stsbobinaa.padUser = this.invId$.value.invid;
     this.stsbobinaa.cantidad = Number(this.txtCantidad.value.toString().replace(',','.'));
-    console.log(this.stsbobinaa);
+    // console.log(this.stsbobinaa);
     this.inventarioServ.cxpRegistrarInventario(this.stsbobinaa).then((data: any) => {
       if (data.Status.Status === 'T') {
         this.txtBobina.value = '';
@@ -90,10 +90,10 @@ export class CxpRegistroInventarioComponent implements OnInit {
         this.stsbobina = null;
         this.obtenerListaInventario();
       } else {
-        console.log(data);
+        // console.log(data);
       }
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     }).finally(() => {
       this.loading = false; this.btnenviar.disabled = false; this.apuntarCodBarra();
     });
@@ -104,22 +104,22 @@ export class CxpRegistroInventarioComponent implements OnInit {
       const user = this.invId$.value.invid;
       const fecha = moment(new Date()).format('DD-MM-yyyy');
       this.inventarioServ.cxpObtenerListaInventario(user, fecha).then((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.listaRegistro = data.Objeto;
       }, (err) => {
-        console.log(err);
+        console.warn(err);
       });
     } else {
-      console.log('sin datos');
+      // console.log('sin datos');
     }
   }
 
   eliminarRegistro(id: number) {
     this.inventarioServ.cxpEliminarRegistroInventario(id).then((data: any) => {
-      console.log(data);
+      // console.log(data);
       this.obtenerListaInventario();
     }, (err) => {
-      console.log(err);
+      console.warn(err);
     });
   }
 
@@ -139,14 +139,14 @@ export class CxpRegistroInventarioComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: (blah) => {
-            console.log('Confirm Cancel:', blah);
+            // console.log('Confirm Cancel:', blah);
           },
         },
         {
           text: 'Okay',
           cssClass: 'btnAlertSuccess',
           handler: (data) => {
-            console.log(data);
+            // console.log(data);
             localStorage.setItem('inv-id', data.identificador);
             this.invId$.next({ invid: localStorage.getItem('inv-id') });
             this.asignarIdentificador();
@@ -169,7 +169,7 @@ export class CxpRegistroInventarioComponent implements OnInit {
           role: 'cancel',
           cssClass: 'btnAlertDanger',
           handler: (blah) => {
-            console.log('Confirm Cancel:', blah);
+            // console.log('Confirm Cancel:', blah);
           },
         },
         {
@@ -177,10 +177,10 @@ export class CxpRegistroInventarioComponent implements OnInit {
           cssClass: 'btnAlertSuccess',
           handler: () => {
             this.inventarioServ.cxpEliminarRegistroInventario(id).then((data: any) => {
-              console.log(data);
+              // console.log(data);
               this.obtenerListaInventario();
             }, (err) => {
-              console.log(err);
+              console.warn(err);
             });
           }
         },
@@ -193,7 +193,7 @@ export class CxpRegistroInventarioComponent implements OnInit {
     const idem = localStorage.getItem('inv-id');
     if (idem === null || idem === '') {
       this.registroDevice();
-      console.log(idem);
+      // console.log(idem);
     }
   }
 

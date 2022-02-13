@@ -103,7 +103,7 @@ export class RegistroParadasComponent implements OnInit {
       if (data.data !== undefined) {
         if (this.registros.length <= 0) {
           this.registros.push(data.data);
-          console.log('se agrego!');
+          // console.log('se agrego!');
         } else {
           // console.log(data.data.uid);
           this.registros.forEach(el => {
