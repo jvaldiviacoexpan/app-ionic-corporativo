@@ -129,7 +129,7 @@ export class CxpEmisionPalletComponent implements OnInit, AfterViewInit {
       this.presentToast('Inicie sesión en Sap Business One para Continuar.', 5000, 'warning');
       return;
     }
-    // console.log(dtoEtiqueta);
+    console.log(dtoEtiqueta);
     this.toolServise.simpleLoader('Generando etiqueta...');
     this.cxpService.postEmisionPalletBobina(dtoEtiqueta).then((data: any) => {
       if (data.Status === 'T') {
@@ -138,6 +138,8 @@ export class CxpEmisionPalletComponent implements OnInit, AfterViewInit {
       } else {
         this.presentToast(data.Message, 5000, 'warning');
       }
+      console.log(data);
+
     }, err => {
       console.error(err);
     }).finally(() => this.toolServise.dismissLoader());
