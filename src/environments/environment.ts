@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  // urlBase:      'https://movil.coexpan.cl/app-corporativo',  // PRODUCCION
+  // urlBase:      'https://movil.coexpan.cl/app-corporativo',     // PRODUCCION
   urlBase: 'https://movil.coexpan.cl/app-corporativo-desa',     // DESARROLLO
-  // urlBase:     'http://localhost:8100',                      // LOCAL
+  // urlBase:     'http://localhost:8100',                        // LOCAL
 
 
   // urlcxp:      'https://localhost:44356/api',

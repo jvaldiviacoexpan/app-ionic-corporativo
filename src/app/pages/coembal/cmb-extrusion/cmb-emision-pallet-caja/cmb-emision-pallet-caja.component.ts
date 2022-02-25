@@ -61,6 +61,8 @@ export class CmbEmisionPalletCajaComponent implements OnInit, AfterViewInit {
         this.cliente = resp.Response[0].Cliente;
         this.ordenFab = resp.Response[0].Lote;
         this.producto = resp.Response[0].DescProducto;
+        console.log(this.dtoDatos);
+
         this.cantidadCajasSetFocus();
       } else {
         this.presentToast(resp.Status.Message, 2000, 'warning');
@@ -84,8 +86,12 @@ export class CmbEmisionPalletCajaComponent implements OnInit, AfterViewInit {
     dtoEtiqueta.data.codProducto = this.dtoDatos.CodProducto;
     dtoEtiqueta.data.tipoResina = this.dtoDatos.TipoResina;
     dtoEtiqueta.data.cantidadCajas = this.txtCantCajas.value.toString();
+    dtoEtiqueta.data.cantxCaja = this.dtoDatos.CantxCaja;
+    dtoEtiqueta.data.codProceso = this.dtoDatos.CodProceso;
     dtoEtiqueta.ipPrint = localStorage.getItem('ipimp');
     dtoEtiqueta.login = localStorage.getItem('sapusr');
+    console.log(dtoEtiqueta);
+
     if (!dtoEtiqueta.ipPrint) {
       this.presentToast('Seleccione una impresora antes de emitir la etiqueta.', 2000, 'warning');
       return;
