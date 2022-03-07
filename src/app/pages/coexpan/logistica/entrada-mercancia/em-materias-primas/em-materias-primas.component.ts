@@ -43,12 +43,19 @@ export class EmMateriasPrimasComponent implements OnInit {
     this.codBarra.disabled = true;
     this.loadCodbar = true;
     this.cxpService.obtenerPalletCodigoBarra(cod).then((data: any) => {
-      // console.log(data);
+      console.log(data);
       if (data.Status.Status === 'T') {
         if (data.Objeto[0]) {
           if (this.arrayPallet.find(m => m.CodBarra === data.Objeto[0].CodBarra)) {
-            this.presentToast('EL Pallet ya se encuentra en la lista.', 4000, 'warning');
-          } else {
+            this.presentToast('El Pallet ya se encuentra en la lista.', 4000, 'warning');
+          }
+          else if (this.arrayPallet.length > 0) {
+            if (this.arrayPallet[0].NumeroCarpeta !== data.Objeto[0].NumeroCarpeta) {
+              this.presentToast('El Pallet corresponde a una orden diferente.', 4000, 'warning');
+            }
+            this.arrayPallet.push(data.Objeto[0]);
+          }
+          else {
             this.arrayPallet.push(data.Objeto[0]);
           }
         } else {

@@ -24,7 +24,7 @@ export class Datos {
   hComments:   string;
   hDocCur:     string;
   hDocDate:    string;
-  hDocEntry:   number;
+  hDocNum:     number;
   hDocRate:    number;
   hDocStatus:  string;
   hDocTotal:   number;
@@ -50,7 +50,7 @@ export class TstUser {
   cantEtq:   number;
   fecha:     string;
   numAtCard: string;
-  docEntry:  number;
+  docNum:    number;
 }
 
 export class RegistroParadaModel {
