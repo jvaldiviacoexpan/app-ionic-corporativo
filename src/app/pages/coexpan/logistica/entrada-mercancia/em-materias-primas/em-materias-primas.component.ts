@@ -94,13 +94,13 @@ export class EmMateriasPrimasComponent implements OnInit {
       return;
     }
     if (!localStorage.getItem('sapusr')) {
-      this.presentToast('Inicie Sesión en SAP BUSINESS ONE para continuar.', 2000, 'warning');
+      this.presentToast('Inicie Sesión en Sap Business One para continuar.', 2000, 'warning');
       return;
     }
     this.toolService.simpleLoader('Enviando...');
     em.login = localStorage.getItem('sapusr');
     em.doc.oign_Reference1 = this.arrayPallet[0].Reference1.toString();
-    em.doc.oign_Comments = 'Entrada de Mercancia Materias Primas';
+    em.doc.oign_Comments = 'Handheld Entrada de Mercancia - Materias Primas';
     em.doc.oign_JournalMemo = `Carpeta ${this.arrayPallet[0].NumeroCarpeta}`;
     let ign1 = new Ign1EMDetalle();
     this.arrayPallet.forEach(p => {
