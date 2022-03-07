@@ -15,7 +15,7 @@ export interface RestOcModel {
   H_Comments:    string;
   H_DocCur:      string;
   H_DocDate:     string;
-  H_DocEntry:    string;
+  H_DocNum:    string;
   H_DocRate:     string;
   H_DocStatus:   string;
   H_DocTotal:    string;

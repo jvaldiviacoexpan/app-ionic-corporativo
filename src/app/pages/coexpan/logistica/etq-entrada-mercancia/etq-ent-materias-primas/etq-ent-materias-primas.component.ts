@@ -47,15 +47,12 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     };
 
     this.cxpService.obtenerInformacionOc(info).then((data: any) => {
-      // console.log(data);
       if (data.Status.Status !== 'T') {
-        // console.log(data);
         this.presentToast(data.Status.Message, 5000, 'primary');
       } else {
         this.ocRows = data.Objeto;
         this.proveedor = data.Objeto[0].H_CardName;
         this.area = data.Objeto[0].H_U_AREA;
-        // console.log(this.ocRows);
       }
     }, (err) => {
       console.warn(err);
@@ -66,8 +63,8 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
   }
 
 
-
   async alertaConfirmarEtiqueta(oc: RestOcModel) {
+    console.log(oc);
     if (!localStorage.getItem('ipimp')) {
       this.presentToast('Seleccione una impresora antes de continuar.', 2000, 'warning');
       return;
@@ -97,7 +94,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
           cssClass: 'btnAlertSuccess',
           handler: (data) => {
             const usr: TstUser = new TstUser();
-            usr.docEntry  = Number(oc.H_DocEntry);
+            usr.docNum  = Number(oc.H_DocNum);
             usr.cantEtq   = data.cantEtqs;
             usr.numAtCard = oc.H_NumAtCard;
             usr.usuario = 'jordan.valdivia@coexpan.cl';
@@ -150,7 +147,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
       if (data.Status === 'T') {
         this.presentToast(data.Message, 5000, 'success');
       } else {
-        this.presentToast(data.Message, 5000, 'danger');
+        this.presentToast(`${data.Message}: ${data.Message_Exception_Descr}`, 5000, 'danger');
       }
     }, (err) => {
       console.warn(err);
@@ -175,7 +172,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     dat.hComments     = oc.H_Comments;
     dat.hDocCur       = oc.H_DocCur;
     dat.hDocDate      = oc.H_DocDate;
-    dat.hDocEntry     = Number(oc.H_DocEntry);
+    dat.hDocNum       = Number(oc.H_DocNum);
     dat.hDocRate      = Number(oc.H_DocRate);
     dat.hDocStatus    = oc.H_DocStatus;
     dat.hDocTotal     = Number(oc.H_DocTotal);
