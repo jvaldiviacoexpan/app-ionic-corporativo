@@ -21,12 +21,14 @@ export class BobinaModel {
 }
 
 export class CajaPalletModel {
-    descProducto:  string;
-    cliente:       string;
-    proceso:       string;
-    lote:          string;
-    color:         string;
-    codProducto:   string;
-    tipoResina:    string;
-    cantidadCajas: string;
+  descProducto:  string;
+  cliente:       string;
+  proceso: string;
+  codProceso: string;
+  cantxCaja: string;
+  lote:          string;
+  color:         string;
+  codProducto:   string;
+  tipoResina:    string;
+  cantidadCajas: string;
 }
