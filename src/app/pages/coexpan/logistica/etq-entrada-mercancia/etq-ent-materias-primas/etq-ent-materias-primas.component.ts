@@ -161,10 +161,10 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     dat.bCurrency     = oc.B_Currency;
     dat.bDscription   = oc.B_Dscription;
     dat.bItemCode     = oc.B_ItemCode;
-    dat.bLineTotal    = Number(oc.B_LineTotal);
+    dat.bLineTotal    = Number(oc.B_LineTotal.replace(',','.'));
     dat.bOcrCode      = oc.B_OcrCode;
-    dat.bQuantity     = Number(oc.B_Quantity);
-    dat.bRate         = Number(oc.B_Rate);
+    dat.bQuantity     = Number(oc.B_Quantity.replace(',','.'));
+    dat.bRate         = Number(oc.B_Rate.replace(',','.'));
     dat.bUomEntry     = Number(oc.B_UomEntry);
     dat.bWhsCode      = oc.B_WhsCode;
     dat.hCardCode     = oc.H_CardCode;
@@ -173,10 +173,10 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     dat.hDocCur       = oc.H_DocCur;
     dat.hDocDate      = oc.H_DocDate;
     dat.hDocNum       = Number(oc.H_DocNum);
-    dat.hDocRate      = Number(oc.H_DocRate);
+    dat.hDocRate      = Number(oc.H_DocRate.replace(',','.'));
     dat.hDocStatus    = oc.H_DocStatus;
-    dat.hDocTotal     = Number(oc.H_DocTotal);
-    dat.hDocTotalFc   = Number(oc.H_DocTotalFC);
+    dat.hDocTotal     = Number(oc.H_DocTotal.replace(',','.'));
+    dat.hDocTotalFc   = Number(oc.H_DocTotalFC.replace(',','.'));
     dat.hJrnlMemo     = oc.H_JrnlMemo;
     dat.hNumAtCard    = oc.H_NumAtCard;
     dat.hRef1         = Number(oc.H_Ref1);
@@ -185,8 +185,8 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
     dat.hunCarpeta    = oc.H_U_N_CARPETA;
     dat.huTipo        = oc.H_U_TIPO;
     dat.bPrice        = Number(oc.B_Price.replace(',','.'));
-    dat.bTotalFrgn    = Number(oc.B_TotalFrgn.trim());
-    dat.bPesoPallet   = Number(oc.B_PesoPallet.trim());
+    dat.bTotalFrgn    = Number(oc.B_TotalFrgn.trim().replace(',','.'));
+    dat.bPesoPallet   = Number(oc.B_PesoPallet.trim().replace(',','.'));
     return dat;
   }
 
