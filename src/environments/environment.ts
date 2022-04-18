@@ -23,8 +23,8 @@ export const environment = {
   // constantes
   // dbCoexpan: 'SBO_COEXPAN_OFI',
   // dbCoembal: 'SBO_COEMBAL_OFI',
-  dbCoexpan: 'Z_SBO_COEXPAN_TEST2',
-  dbCoembal: 'Z_SBO_COEMBAL_TEST2',
+  dbCoexpan: 'Z_SBO_COEXPAN_TEST',
+  dbCoembal: 'Z_SBO_COEMBAL_TEST',
 
 };
 
