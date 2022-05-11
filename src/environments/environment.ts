@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlBase:     'http://localhost:8100',
+  // urlBase:     'http://localhost:8100',
+  urlBase:      'https://movil.coexpan.cl/app-corporativo-desa',
   // urlcxp:      'https://localhost:44356/api',
   // urlCxpAuth0: 'https://localhost:44360/api',
   // https://localhost:44333/api/v1/logistica/inventario/
