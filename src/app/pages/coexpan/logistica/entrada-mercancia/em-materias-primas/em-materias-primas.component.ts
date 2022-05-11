@@ -1,5 +1,5 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { IonInput, MenuController, ToastController, LoadingController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInput, MenuController, ToastController } from '@ionic/angular';
 import { CxpService } from '../../../../../../providers/internal/cxp.service';
 import { RestPalletModel } from '../../../../../../models/rest.model';
 import { Doc, EmMateriaPrimaModel, Ign1EMDetalle } from '../../../../../../models/sapbo.model';

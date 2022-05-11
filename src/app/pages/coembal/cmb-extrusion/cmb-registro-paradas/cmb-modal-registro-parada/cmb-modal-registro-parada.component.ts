@@ -1,4 +1,4 @@
-import { ModalRegistroCausaComponent } from './modal-registro-causa/modal-registro-causa.component';
+
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { MaquinaModel } from 'src/models/maquina.model';
@@ -8,14 +8,15 @@ import { MotivoModel } from '../../../../../../models/motivo.model';
 import { MotivosService } from '../../../../../../providers/internal/motivos.service';
 import { RegistroParadaModel, ParamRequest, ParamSupervisores } from '../../../../../../models/anymodels.model';
 import { CxpService } from '../../../../../../providers/internal/cxp.service';
+import { CmbModalRegistroCausaComponent } from './cmb-modal-registro-causa/cmb-modal-registro-causa.component';
 
 
 @Component({
   selector: 'app-modal-registro-parada',
-  templateUrl: './modal-registro-parada.component.html',
-  styleUrls: ['./modal-registro-parada.component.scss']
+  templateUrl: './cmb-modal-registro-parada.component.html',
+  styleUrls: ['./cmb-modal-registro-parada.component.scss']
 })
-export class ModalRegistroParadaComponent implements OnInit {
+export class CmbModalRegistroParadaComponent implements OnInit {
 
   maquina: MaquinaModel;
   motivo: MotivoModel;
@@ -38,7 +39,7 @@ export class ModalRegistroParadaComponent implements OnInit {
   }
 
   get validacionDatos(): boolean {
-    console.log(this.registro);
+    // console.log(this.registro);
     if (
       // this.registro.maquina     === undefined ||
       this.registro.supervisor  === undefined ||
@@ -56,15 +57,14 @@ export class ModalRegistroParadaComponent implements OnInit {
   ngOnInit(): void {
     this.maquinas = this.maquinasService.getMaquinas();
     this.motivos = this.motivosService.getMotivos();
-    this.obtenerSupervisores();
+    // this.obtenerSupervisores();
   }
-
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: ModalRegistroCausaComponent,
+      component: CmbModalRegistroCausaComponent,
       componentProps: {
-        motivos: this.registro.motivos,
+        registro: this.registro,
       }
     });
     modal.onDidDismiss().then((data) => {
@@ -95,11 +95,11 @@ export class ModalRegistroParadaComponent implements OnInit {
   }
 
   // Servicios
-  public obtenerSupervisores() {
+  public obtenerSupervisores(area: number) {
     const obj: ParamRequest<ParamSupervisores> = new  ParamRequest();
     obj.paramRequest = new ParamSupervisores();
-    obj.paramRequest.area = 1;
-    obj.paramRequest.empresa = 'CXP';
+    obj.paramRequest.area = area;
+    obj.paramRequest.empresa = 'CMB';
 
     this.cxpService.obtenerSupervisadores(obj).then((data: any) => {
       this.listaSupervisores = data.Objeto;

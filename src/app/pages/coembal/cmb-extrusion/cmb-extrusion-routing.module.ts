@@ -4,6 +4,11 @@ import { CmbMenuExtrusionComponent } from './cmb-menu-extrusion/cmb-menu-extrusi
 import { CmbEmisionPalletCajaComponent } from './cmb-emision-pallet-caja/cmb-emision-pallet-caja.component';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { CmbRegistroParadasComponent } from './cmb-registro-paradas/cmb-registro-paradas.component';
+import { CmbModalRegistroParadaComponent } from './cmb-registro-paradas/cmb-modal-registro-parada/cmb-modal-registro-parada.component';
+import { CmbModalRegistroCausaComponent } from
+  './cmb-registro-paradas/cmb-modal-registro-parada/cmb-modal-registro-causa/cmb-modal-registro-causa.component';
+
 
 
 
@@ -20,6 +25,11 @@ const routes: Routes = [{
       path: 'etq-emision-pallet',
       component: CmbEmisionPalletCajaComponent,
       canActivate: [AuthGuard],
+    },
+    {
+      path: 'reg-paradas',
+      component: CmbRegistroParadasComponent,
+      canActivate: [AuthGuard],
     }
   ]
 }];
@@ -34,4 +44,7 @@ export const cmbExtrusionRouterComponents = [
   CmbExtrusionComponent,
   CmbMenuExtrusionComponent,
   CmbEmisionPalletCajaComponent,
+  CmbRegistroParadasComponent,
+  CmbModalRegistroParadaComponent,
+  CmbModalRegistroCausaComponent,
 ];

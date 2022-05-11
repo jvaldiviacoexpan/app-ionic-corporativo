@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastController, AlertController, ModalController } from '@ionic/angular';
-import { ModalRegistroParadaComponent } from './modal-registro-parada/modal-registro-parada.component';
+
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ToastController, AlertController, ModalController, AngularDelegate } from '@ionic/angular';
 import { RegistroParadaModel } from '../../../../../models/anymodels.model';
 import { CxpService } from '../../../../../providers/internal/cxp.service';
 import { ToolService } from '../../../../../providers/external/tools.service';
+import { CmbModalRegistroParadaComponent } from './cmb-modal-registro-parada/cmb-modal-registro-parada.component';
 
 
 @Component({
   selector: 'app-registro-paradas',
-  templateUrl: './registro.paradas.component.html',
-  styleUrls: ['./registro-paradas.component.scss']
+  templateUrl: './cmb-registro.paradas.component.html',
+  styleUrls: ['./cmb-registro-paradas.component.scss']
 })
-export class RegistroParadasComponent implements OnInit {
+export class CmbRegistroParadasComponent implements OnInit {
 
   registros: RegistroParadaModel[] = [];
 
@@ -21,14 +22,14 @@ export class RegistroParadasComponent implements OnInit {
     private modalController: ModalController,
     private cxpService: CxpService,
     private toolService: ToolService,
-  ) { }
+  ) {  }
 
   ngOnInit() { }
 
 
   async presentModal() {
     const modal = await this.modalController.create({
-      component: ModalRegistroParadaComponent,
+      component: CmbModalRegistroParadaComponent,
     });
     modal.onDidDismiss().then((data) => {
       // console.log(data);
@@ -84,7 +85,7 @@ export class RegistroParadasComponent implements OnInit {
       return;
     }
     this.toolService.simpleLoader('Enviando...');
-    console.log(JSON.stringify(this.registros));
+    // console.log(JSON.stringify(this.registros));
     this.cxpService.enviarRegistrosParadas(this.registros).then((data: any) => {
       // console.log(data);
       if (data.Status === 'T') {
@@ -104,7 +105,7 @@ export class RegistroParadasComponent implements OnInit {
 
   async modificarDatos(rp: RegistroParadaModel) {
     const modal = await this.modalController.create({
-      component: ModalRegistroParadaComponent,
+      component: CmbModalRegistroParadaComponent,
       componentProps: {
         parada: rp,
       }
