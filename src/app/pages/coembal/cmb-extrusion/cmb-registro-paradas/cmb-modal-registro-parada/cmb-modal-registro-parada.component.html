@@ -18,12 +18,15 @@
 
   <ion-item>
     <ion-label color="medium"><strong>Area</strong></ion-label>
-    <ion-select [(ngModel)]="registro.area" value="1">
-      <ion-select-option value="1">Extrusión</ion-select-option>
+    <ion-select #area (ionChange)="obtenerSupervisores(area.value)" [(ngModel)]="registro.area" value="1">
+      <ion-select-option value="2">Termoformado</ion-select-option>
+      <ion-select-option value="3">Impresión</ion-select-option>
+      <ion-select-option value="4">Etiquetado</ion-select-option>
+      <ion-select-option value="5">Rebordeado</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-item>
+  <ion-item [attr.disabled]="!listaSupervisores">
     <ion-label color="medium"><strong>Supervisor</strong></ion-label>
     <ion-select [(ngModel)]="registro.supervisor" itemValueField="id" placeholder="Selecciona Uno" required>
       <ion-select-option *ngFor="let i of listaSupervisores" value="{{i.ID}}">{{i.NOMBRE}}</ion-select-option>
@@ -55,7 +58,7 @@
     </ion-select>
   </ion-item>
 
-  <ion-item button (click)="presentModal()">
+  <ion-item button (click)="presentModal()" [attr.disabled]="!listaSupervisores">
     <ion-label color="medium"><strong>Motivos</strong></ion-label>
     <ion-label color="medium" slot="end"><strong>{{registro.motivos?.length}}</strong></ion-label>
   </ion-item>

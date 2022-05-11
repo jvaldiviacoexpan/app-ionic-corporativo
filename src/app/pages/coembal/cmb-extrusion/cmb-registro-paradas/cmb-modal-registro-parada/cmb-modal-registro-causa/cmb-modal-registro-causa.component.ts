@@ -7,10 +7,10 @@ import { ParamRequest } from '../../../../../../../models/anymodels.model';
 
 @Component({
   selector: 'app-modal-registro-causa',
-  templateUrl: './modal-registro-causa.component.html',
-  styleUrls: ['./modal-registro-causa.component.scss']
+  templateUrl: './cmb-modal-registro-causa.component.html',
+  styleUrls: ['./cmb-modal-registro-causa.component.scss']
 })
-export class ModalRegistroCausaComponent implements OnInit {
+export class CmbModalRegistroCausaComponent implements OnInit {
 
   registroMotivos: any[] = [];
   motivos: any[];
@@ -39,7 +39,7 @@ export class ModalRegistroCausaComponent implements OnInit {
   public obtenerMotivosParadas() {
     const obj: ParamRequest<ParamArea> = new  ParamRequest();
     obj.paramRequest = new ParamArea();
-    obj.paramRequest.area = 1;
+    obj.paramRequest.area = this.navParams.data.registro.area;
 
     this.cxpService.obtenerMotivoParadas(obj).then((data: any) => {
       console.log(data.Objeto);
@@ -52,7 +52,7 @@ export class ModalRegistroCausaComponent implements OnInit {
   public obtenerMaquinas() {
     const obj: ParamRequest<ParamArea> = new  ParamRequest();
     obj.paramRequest = new ParamArea();
-    obj.paramRequest.area = 1;
+    obj.paramRequest.area = this.navParams.data.registro.area;
 
     this.cxpService.obtenerMaquinas(obj).then((data: any) => {
       console.log(data.Objeto);

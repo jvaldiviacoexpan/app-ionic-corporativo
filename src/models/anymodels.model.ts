@@ -55,6 +55,7 @@ export class TstUser {
 
 export class RegistroParadaModel {
   uid: string;
+  area: string;
   maquina: MaquinaModel;
   supervisor: string;
   fecha: Date;
@@ -110,6 +111,22 @@ export class CmbGetRegistro {
   PRODUCTO: string;
   UNIDXCAJA: number;
 }
+
+// Clases de registro de paradas
+
+export class ParamRequest<T> {
+  paramRequest: T;
+}
+
+export class ParamSupervisores {
+  empresa: string;
+  area: number;
+}
+
+export class ParamArea {
+  area: number;
+}
+
 
 
 

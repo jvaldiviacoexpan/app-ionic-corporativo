@@ -82,9 +82,43 @@ export class CxpService {
   }
 
 
+  // Modulo de registro de paradas
   public enviarRegistrosParadas(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.urlcxp}/ingresar-parada`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public obtenerSupervisadores(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlcxp}/obtener-supervisores`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public obtenerMotivoParadas(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlcxp}/obtener-motivoparadas`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public obtenerMaquinas(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlcxp}/obtener-maquinas`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {

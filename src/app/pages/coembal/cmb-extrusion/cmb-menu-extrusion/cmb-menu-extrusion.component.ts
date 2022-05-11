@@ -25,6 +25,10 @@ export class CmbMenuExtrusionComponent implements OnInit {
     this.route.navigateByUrl('/pages/cmb/extrusion/etq-emision-pallet');
   }
 
+  irRegistroParadas() {
+    this.route.navigateByUrl('/pages/cmb/extrusion/reg-paradas');
+  }
+
 
 
 }
