@@ -28,6 +28,10 @@ export class AMenuExtrusionComponent implements OnInit {
     this.route.navigateByUrl('/pages/extrusion/emision-pallet');
   }
 
+  irRegistroCorrea(): void {
+    this.route.navigateByUrl('/pages/extrusion/registro-inv-correa');
+  }
+
   menuToogle() {
     this.menu.toggle();
   }

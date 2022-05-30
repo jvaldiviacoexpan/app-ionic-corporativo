@@ -1,0 +1,119 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-align-items-center ion-header-row">
+        <ion-col size="2">
+          <ion-button fill="clear" (click)="menuToogle()">
+            <ion-icon name="menu-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="10" class="ion-text-left">
+          <ion-title style="padding-left: 0;"><strong>Registro Inventario</strong></ion-title>
+          <ion-grid fixed class="ion-no-padding">
+            <ion-row>
+              <ion-col class="ion-no-padding" size="6">
+                <ion-text color="primary" *ngIf="invId$ | async as usr">
+                  <h6 class="ion-no-margin"><strong>ID: {{usr.invid}}</strong></h6>
+                </ion-text>
+              </ion-col>
+              <ion-col size="3" class="ion-no-padding ion-no-margin">
+                <ion-button size="small" expand="block" fill="clear" shape="round" style="font-size: 0.5em;"
+                  (click)="registroDevice()">
+                  Cambiar id
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center ion-header-row">
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Cod. Barra</ion-label>
+            <ion-input #txtcodbarra (keyup.enter)="obtenerDatos(txtcodbarra.value)" (keyup)="btnRegistrar()"
+              type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item>
+            <ion-label position="floating">C/C</ion-label>
+            <ion-input #unixcaja type="number" (keyup)="btnRegistrar()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item>
+            <ion-label position="floating">Cajas</ion-label>
+            <ion-input #cantidad type="number" (keyup)="btnRegistrar()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="stsInventario">
+        <ion-col size="4">
+          <ion-text color="DARK">
+            <h6 class="ion-no-margin"><strong>{{stsInventario.ORDEN}}</strong></h6>
+          </ion-text>
+        </ion-col>
+        <ion-col size="4">
+          <ion-text color="DARK">
+            <h6 class="ion-no-margin"><strong>{{stsInventario.PRODUCTO}}</strong></h6>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let i of listaRegistro">
+      <ion-item>
+        <ion-grid class="ion-no-padding" fixed>
+          <ion-row class="ion-no-padding">
+            <ion-col size="3">
+              <ion-text style="color: dimgray;">
+                <h6><strong>{{i.ORDEN}}</strong></h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="4">
+              <ion-text style="color: dimgray;">
+                <h6><strong>{{i.CODSAP}}</strong></h6>
+              </ion-text>
+            </ion-col>
+            <ion-col class="ion-text-end" style="margin-right: 10px;" size="2">
+              <ion-text style="color: dimgray;">
+                <h6><strong>{{i.CANTIDAD}}</strong></h6>
+              </ion-text>
+            </ion-col>
+            <ion-col size="2">
+              <ion-text style="color: dimgray;">
+                <h6><strong>Cajas</strong></h6>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmarEliminar(i.ID,i.ORDEN,i.CANTIDAD)">
+          <ion-icon style="zoom: 190%;" name="trash-bin-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <ion-button expand="full" shape="round" color="tertiary" (click)="enviarRegistroInventario()"
+        [disabled]="btnRegistrar" #btnenviar>Registrar</ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

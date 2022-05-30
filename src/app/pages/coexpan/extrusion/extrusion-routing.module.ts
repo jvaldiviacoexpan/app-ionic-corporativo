@@ -7,6 +7,7 @@ import { ModalRegistroParadaComponent } from './registro-paradas/modal-registro-
 import { ModalRegistroCausaComponent } from './registro-paradas/modal-registro-parada/modal-registro-causa/modal-registro-causa.component';
 import { CxpEmisionPalletComponent } from './cxp-emision-pallet/cxp-emision-pallet.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { CxpInventarioCorreaComponent } from './cxp-inventario-correa/cxp-inventario-correa.component';
 
 
 
@@ -29,6 +30,11 @@ const routes: Routes = [{
       path: 'emision-pallet',
       component: CxpEmisionPalletComponent,
       canActivate: [AuthGuard],
+    },
+    {
+      path: 'registro-inv-correa',
+      component: CxpInventarioCorreaComponent,
+      canActivate: [AuthGuard],
     }
   ]
 }];
@@ -46,5 +52,6 @@ export const extrusionRouterComponents = [
   RegistroParadasComponent,
   ModalRegistroParadaComponent,
   ModalRegistroCausaComponent,
-  CxpEmisionPalletComponent
+  CxpEmisionPalletComponent,
+  CxpInventarioCorreaComponent
 ];
