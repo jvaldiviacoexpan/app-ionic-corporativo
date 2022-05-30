@@ -2,8 +2,5 @@
 	"appId": "io.ionic.starter",
 	"appName": "app-ionic-corporativo",
 	"webDir": "www",
-	"bundledWebRuntime": false,
-	"server": {
-		"url": "http://192.168.22.51:8100"
-	}
+	"bundledWebRuntime": false
 }

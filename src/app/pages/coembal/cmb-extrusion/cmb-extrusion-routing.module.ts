@@ -6,8 +6,9 @@ import { NgModule } from '@angular/core';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { CmbRegistroParadasComponent } from './cmb-registro-paradas/cmb-registro-paradas.component';
 import { CmbModalRegistroParadaComponent } from './cmb-registro-paradas/cmb-modal-registro-parada/cmb-modal-registro-parada.component';
-import { CmbModalRegistroCausaComponent } from
-  './cmb-registro-paradas/cmb-modal-registro-parada/cmb-modal-registro-causa/cmb-modal-registro-causa.component';
+import { CmbInventarioCorreaComponent } from './cmb-inventario-correa/cmb-inventario-correa.component';
+import { CmbModalRegistroCausaComponent }
+  from './cmb-registro-paradas/cmb-modal-registro-parada/cmb-modal-registro-causa/cmb-modal-registro-causa.component';
 
 
 
@@ -30,6 +31,11 @@ const routes: Routes = [{
       path: 'reg-paradas',
       component: CmbRegistroParadasComponent,
       canActivate: [AuthGuard],
+    },
+    {
+      path: 'inv-correa',
+      component: CmbInventarioCorreaComponent,
+      canActivate: [AuthGuard]
     }
   ]
 }];
@@ -47,4 +53,5 @@ export const cmbExtrusionRouterComponents = [
   CmbRegistroParadasComponent,
   CmbModalRegistroParadaComponent,
   CmbModalRegistroCausaComponent,
+  CmbInventarioCorreaComponent
 ];

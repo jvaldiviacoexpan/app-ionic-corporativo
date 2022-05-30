@@ -30,5 +30,10 @@ export class CmbMenuExtrusionComponent implements OnInit {
   }
 
 
+  irInventarioCorrea(): void {
+    this.route.navigateByUrl('/pages/cmb/extrusion/inv-correa');
+  }
+
+
 
 }

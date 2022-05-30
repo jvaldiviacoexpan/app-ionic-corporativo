@@ -1,29 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import * as moment from 'moment';
+import { CxpDatosBobinas, CxpRegistroInventarioModel } from '../../../../../models/anymodels.model';
+import { IonInput, IonButton, MenuController, AlertController } from '@ionic/angular';
 import { InventarioService } from '../../../../../providers/internal/inventario.service';
-import { AlertController, MenuController, IonInput, IonButton, ToastController } from '@ionic/angular';
-import { CmbRegistroInventarioModel, CmbGetRegistro } from '../../../../../models/anymodels.model';
+import * as moment from 'moment';
 
 
 
 @Component({
-  selector: 'app-cmb-inventario',
-  templateUrl: './cmb-inventario.component.html',
-  styleUrls: ['./cmb-inventario.component.scss']
+  selector: 'app-cxp-inventario-correa',
+  templateUrl: './cxp-inventario-correa.component.html',
+  styleUrls: ['./cxp-inventario-correa.component.scss']
 })
-export class CmbInventarioComponent implements OnInit {
+export class CxpInventarioCorreaComponent implements OnInit {
 
-  @ViewChild('txtcodbarra') txtCodabarra: IonInput;
+  @ViewChild('txtBobina') txtBobina: IonInput;
   @ViewChild('cantidad') txtCantidad: IonInput;
-  @ViewChild('unixcaja') txtUnixcaja: IonInput;
   @ViewChild('btnenviar') btnenviar: IonButton;
 
   invId$ = new BehaviorSubject<any>({});
-  // stsbobina: CxpDatosBobinas = new CxpDatosBobinas();
-  // stsbobinaa: CxpRegistroInventarioModel = new CxpRegistroInventarioModel();
-  stsInventario: CmbGetRegistro = new CmbGetRegistro();
-  stsInventarioo: CmbRegistroInventarioModel = new CmbRegistroInventarioModel();
+  stsbobina: CxpDatosBobinas = new CxpDatosBobinas();
+  stsbobinaa: CxpRegistroInventarioModel = new CxpRegistroInventarioModel();
   loading: boolean;
   listaRegistro: any = [];
 
@@ -31,7 +28,6 @@ export class CmbInventarioComponent implements OnInit {
     private menu: MenuController,
     private alertCtrl: AlertController,
     private inventarioServ: InventarioService,
-    private toastCtrl: ToastController
   ) { }
 
   menuToogle() {
@@ -44,29 +40,9 @@ export class CmbInventarioComponent implements OnInit {
     this.obtenerListaInventario();
   }
 
-  obtenerDatos(value: any) {
-    this.loading = true;
-    this.inventarioServ.cmbObtenerinformacion(value).then((data: any) => {
-      // console.log(data);
-      if (data.Objeto[0]) {
-        this.stsInventario = data.Objeto[0];
-        this.txtUnixcaja.value = data.Objeto[0].UNIDXCAJA;
-        this.btnenviar.disabled = false;
-      } else {
-        // console.log('no encontrado');
-        this.stsInventario = new CmbGetRegistro();
-        this.txtUnixcaja.value = 0;
-        this.stsInventario.ORDEN = 0;
-        this.stsInventario.PRODUCTO = 'N/A';
-      }
-    }, (err) => {
-      console.warn(err);
-    }).finally(() => { this.loading = false; this.apuntarCantidad(); });
-  }
-
   btnRegistrar() {
     // console.log(this.txtBobina.value?.toString());
-    if (this.txtCodabarra.value?.toString().length <= 3 ||
+    if (this.txtBobina.value?.toString().length <= 3 ||
         this.txtCantidad.value <= 0) {
       this.btnenviar.disabled = true;
     } else {
@@ -74,24 +50,45 @@ export class CmbInventarioComponent implements OnInit {
     }
   }
 
+  obtenerDatos(value: any) {
+    this.loading = true;
+    this.inventarioServ.cxpCorreaObtenerbobina(value).then((data: any) => {
+      // console.log(data);
+      if (data.Objeto[0]) {
+        this.stsbobina = data.Objeto[0];
+        this.stsbobinaa.codBarra = data.Objeto[0].CODBARRA;
+        this.stsbobinaa.padUser = this.invId$.value.invid;
+        this.stsbobinaa.cantidad = data.Objeto[0].CANTIDAD;
+        // this.txtCantidad.value = data.Objeto[0].CANTIDAD;
+        this.btnenviar.disabled = false;
+      } else {
+        // console.log('no encontrado');
+        this.stsbobina = new CxpDatosBobinas();
+        this.stsbobina.CODSAP = 'N/A';
+        this.stsbobina.DESCRIPCION = 'N/A';
+      }
+    }, (err) => {
+      console.warn(err);
+    }).finally(() => { this.loading = false; this.apuntarCantidad(); });
+  }
+
   enviarRegistroInventario() {
     // console.log(Number(this.txtCantidad.value.toString().replace(',','.')));
+
     this.loading = true;
     this.btnenviar.disabled = true;
-    this.stsInventarioo.codBarra = this.txtCodabarra.value.toString();
-    this.stsInventarioo.cantxCaja = Number(this.txtUnixcaja.value);
-    this.stsInventarioo.cantidad = Number(this.txtCantidad.value);
-    this.stsInventarioo.padUser = localStorage.getItem('inv-id');
-    this.inventarioServ.cmbRegistrarInventario(this.stsInventarioo).then((data: any) => {
+    this.stsbobinaa.codBarra = this.txtBobina.value.toString();
+    this.stsbobinaa.padUser = this.invId$.value.invid;
+    this.stsbobinaa.cantidad = Number(this.txtCantidad.value.toString().replace(',','.'));
+    // console.log(this.stsbobinaa);
+    this.inventarioServ.cxpCorreaRegistrarInventario(this.stsbobinaa).then((data: any) => {
       if (data.Status.Status === 'T') {
-        this.txtCodabarra.value = '';
+        this.txtBobina.value = '';
         this.txtCantidad.value = 0;
-        this.txtUnixcaja.value = 0;
-        this.stsInventario = null;
+        this.stsbobina = null;
         this.obtenerListaInventario();
       } else {
         // console.log(data);
-        this.presentToast(data.Status.Message_Exception_Descr, 4000, 'warning');
       }
     }, (err) => {
       console.warn(err);
@@ -104,7 +101,7 @@ export class CmbInventarioComponent implements OnInit {
     if (this.invId$.value.invid) {
       const user = this.invId$.value.invid;
       const fecha = moment(new Date()).format('DD-MM-yyyy');
-      this.inventarioServ.cmbObtenerListaInventario(user, fecha).then((data: any) => {
+      this.inventarioServ.cxpCorreaObtenerListaInventario(user, fecha).then((data: any) => {
         // console.log(data);
         this.listaRegistro = data.Objeto;
       }, (err) => {
@@ -116,7 +113,7 @@ export class CmbInventarioComponent implements OnInit {
   }
 
   eliminarRegistro(id: number) {
-    this.inventarioServ.cmbEliminarRegistroInventario(id).then((data: any) => {
+    this.inventarioServ.cxpCorreaEliminarRegistroInventario(id).then((data: any) => {
       // console.log(data);
       this.obtenerListaInventario();
     }, (err) => {
@@ -159,10 +156,11 @@ export class CmbInventarioComponent implements OnInit {
     return alert.present();
   }
 
-  async confirmarEliminar(id: number, codigo: string, cantidad: string) {
+
+  async confirmarEliminar(id: number, codigo: string, kilos: string) {
     const alert = await this.alertCtrl.create({
       header: 'Confirmar Eliminación',
-      message: `Orden: <strong>${codigo}</strong> | <strong>${cantidad} Kg.</strong>`,
+      message: `Registro: <strong>${codigo}</strong> | <strong>${kilos} Kg.</strong>`,
       buttons: [
         {
           text: 'Cancelar',
@@ -176,7 +174,7 @@ export class CmbInventarioComponent implements OnInit {
           text: 'Continuar',
           cssClass: 'btnAlertSuccess',
           handler: () => {
-            this.inventarioServ.cmbEliminarRegistroInventario(id).then((data: any) => {
+            this.inventarioServ.cxpCorreaEliminarRegistroInventario(id).then((data: any) => {
               // console.log(data);
               this.obtenerListaInventario();
             }, (err) => {
@@ -199,7 +197,7 @@ export class CmbInventarioComponent implements OnInit {
 
   apuntarCodBarra() {
     setTimeout(() => {
-      this.txtCodabarra.setFocus();
+      this.txtBobina.setFocus();
     }, 200);
   }
 
@@ -209,14 +207,4 @@ export class CmbInventarioComponent implements OnInit {
     }, 200);
   }
 
-  async presentToast(msj: string, tiempo: number, estado: string) {
-    const toast = await this.toastCtrl.create({
-      message: msj,
-      duration: tiempo,
-      color: estado
-    });
-    toast.present();
-  }
-
 }
-

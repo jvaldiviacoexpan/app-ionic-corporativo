@@ -1,20 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MenuController, AlertController, IonInput, IonButton, ToastController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import * as moment from 'moment';
+import { CmbGetRegistro, CmbRegistroInventarioModel } from '../../../../../models/anymodels.model';
 import { InventarioService } from '../../../../../providers/internal/inventario.service';
-import { AlertController, MenuController, IonInput, IonButton, ToastController } from '@ionic/angular';
-import { CmbRegistroInventarioModel, CmbGetRegistro } from '../../../../../models/anymodels.model';
-
-
+import * as moment from 'moment';
 
 @Component({
-  selector: 'app-cmb-inventario',
-  templateUrl: './cmb-inventario.component.html',
-  styleUrls: ['./cmb-inventario.component.scss']
+  selector: 'app-inventario-correa',
+  templateUrl: './cmb-inventario-correa.component.html',
+  styleUrls: ['./cmb-inventario-correo.component.scss']
 })
-export class CmbInventarioComponent implements OnInit {
+export class CmbInventarioCorreaComponent implements OnInit {
 
-  @ViewChild('txtcodbarra') txtCodabarra: IonInput;
+ @ViewChild('txtcodbarra') txtCodabarra: IonInput;
   @ViewChild('cantidad') txtCantidad: IonInput;
   @ViewChild('unixcaja') txtUnixcaja: IonInput;
   @ViewChild('btnenviar') btnenviar: IonButton;
@@ -46,7 +44,7 @@ export class CmbInventarioComponent implements OnInit {
 
   obtenerDatos(value: any) {
     this.loading = true;
-    this.inventarioServ.cmbObtenerinformacion(value).then((data: any) => {
+    this.inventarioServ.cmbCorreaObtenerinformacion(value).then((data: any) => {
       // console.log(data);
       if (data.Objeto[0]) {
         this.stsInventario = data.Objeto[0];
@@ -82,7 +80,7 @@ export class CmbInventarioComponent implements OnInit {
     this.stsInventarioo.cantxCaja = Number(this.txtUnixcaja.value);
     this.stsInventarioo.cantidad = Number(this.txtCantidad.value);
     this.stsInventarioo.padUser = localStorage.getItem('inv-id');
-    this.inventarioServ.cmbRegistrarInventario(this.stsInventarioo).then((data: any) => {
+    this.inventarioServ.cmbCorreaRegistrarInventario(this.stsInventarioo).then((data: any) => {
       if (data.Status.Status === 'T') {
         this.txtCodabarra.value = '';
         this.txtCantidad.value = 0;
@@ -104,7 +102,7 @@ export class CmbInventarioComponent implements OnInit {
     if (this.invId$.value.invid) {
       const user = this.invId$.value.invid;
       const fecha = moment(new Date()).format('DD-MM-yyyy');
-      this.inventarioServ.cmbObtenerListaInventario(user, fecha).then((data: any) => {
+      this.inventarioServ.cmbCorreaObtenerListaInventario(user, fecha).then((data: any) => {
         // console.log(data);
         this.listaRegistro = data.Objeto;
       }, (err) => {
@@ -116,8 +114,8 @@ export class CmbInventarioComponent implements OnInit {
   }
 
   eliminarRegistro(id: number) {
-    this.inventarioServ.cmbEliminarRegistroInventario(id).then((data: any) => {
-      // console.log(data);
+    this.inventarioServ.cmbCorreaEliminarRegistroInventario(id).then((data: any) => {
+      console.log(data);
       this.obtenerListaInventario();
     }, (err) => {
       console.warn(err);
@@ -176,8 +174,8 @@ export class CmbInventarioComponent implements OnInit {
           text: 'Continuar',
           cssClass: 'btnAlertSuccess',
           handler: () => {
-            this.inventarioServ.cmbEliminarRegistroInventario(id).then((data: any) => {
-              // console.log(data);
+            this.inventarioServ.cmbCorreaEliminarRegistroInventario(id).then((data: any) => {
+              console.log(data);
               this.obtenerListaInventario();
             }, (err) => {
               console.warn(err);
@@ -219,4 +217,3 @@ export class CmbInventarioComponent implements OnInit {
   }
 
 }
-
