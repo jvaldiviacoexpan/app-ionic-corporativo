@@ -4,7 +4,6 @@ import { environment as env } from 'src/environments/environment';
 import { GetTokenModel } from 'src/models/auth0.model';
 import { AuthService } from '@auth0/auth0-angular';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -52,5 +51,18 @@ export class Auth0Service {
         });
     });
   }
+
+  public getUserList(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${env.urlCxpAuth0}/get-allusers`)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+
 
 }

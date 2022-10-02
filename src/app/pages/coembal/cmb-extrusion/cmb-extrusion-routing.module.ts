@@ -10,9 +10,6 @@ import { CmbInventarioCorreaComponent } from './cmb-inventario-correa/cmb-invent
 import { CmbModalRegistroCausaComponent }
   from './cmb-registro-paradas/cmb-modal-registro-parada/cmb-modal-registro-causa/cmb-modal-registro-causa.component';
 
-
-
-
 const routes: Routes = [{
   path: '',
   component: CmbExtrusionComponent,

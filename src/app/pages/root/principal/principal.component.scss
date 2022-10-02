@@ -18,7 +18,7 @@
 
 .btn-cxp {
   --border-radius: 5px;
-  margin: 0 0 4em 0;
+  // margin: 0 0 4em 0;
   font-size: x-large;
   --background: #3c84fc;
   color: white;
@@ -27,6 +27,22 @@
 .btn-cmb {
   --border-radius: 5px;
   font-size: x-large;
+}
+
+.btn-prueba-coembal {
+  --border-radius: 5px;
+  // margin: 0 0 4em 0;
+  font-size: x-large;
+  --background: #5486fc;
+  color: white;
+}
+
+.btn-conf {
+  --border-radius: 5px;
+  // margin: 0 0 4em 0;
+  font-size: 20px;
+  color: white;
+  margin-top: 50px;
 }
 
 

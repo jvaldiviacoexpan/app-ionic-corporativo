@@ -6,6 +6,7 @@ import { RootComponent } from './root.component';
 import { MainMenuCxpComponent } from './main-menu-cxp/main-menu-cxp.component';
 import { MainMenuCmbComponent } from './main-menu-cmb/main-menu-cmb.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 const routes: Routes = [{
   path: '',
@@ -24,6 +25,11 @@ const routes: Routes = [{
       path: 'cmb-main',
       component: MainMenuCmbComponent,
       canActivate: [AuthGuard],
+    },
+    {
+      path: 'config',
+      loadChildren: () => import('./configuracion/configuracion.module')
+        .then(m => m.ConfigurationModule)
     },
     {
       path: 'login',
@@ -48,6 +54,7 @@ export const rootRouterComponents = [
   LoginComponent,
   MainMenuCxpComponent,
   MainMenuCmbComponent,
-  PrincipalComponent
+  PrincipalComponent,
+  ConfiguracionComponent,
 ];
 

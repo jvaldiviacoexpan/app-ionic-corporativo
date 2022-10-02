@@ -39,10 +39,17 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     this.route.navigateByUrl('pages/root/cmb-main');
   }
 
+  irMenuTestCoembal() {
+    this.cambioEmpresa(env.dbTestCoembal);
+    // this.route.navigateByUrl('pages/root/cmb-main');
+  }
+
+  irMenuMenuConfig() {
+    this.route.navigateByUrl('pages/root/config/conf-menu');
+  }
+
   cambioEmpresa(dbChange: string): void {
     const db = localStorage.getItem('sapdb');
-    // console.log(db);
-    // console.log(dbChange);
     if (db !== dbChange) {
       localStorage.removeItem('sapusr');
       localStorage.setItem('sapdb', dbChange);

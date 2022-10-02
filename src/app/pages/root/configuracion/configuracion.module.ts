@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { CmbExtrusionRoutingModule, cmbExtrusionRouterComponents } from './cmb-extrusion-routing.module';
 import { FormsModule } from '@angular/forms';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { configuracionRouterComponents, ConfiguracionRoutingModule } from './configuracion-routing.module';
 
 @NgModule({
   imports: [
@@ -11,11 +11,10 @@ import { IonicSelectableModule } from 'ionic-selectable';
     CommonModule,
     FormsModule,
     IonicSelectableModule,
-    CmbExtrusionRoutingModule
+    ConfiguracionRoutingModule
   ],
   declarations: [
-    ...cmbExtrusionRouterComponents
+    ...configuracionRouterComponents
   ]
 })
-export class CmbExtrusionModule { }
-
+export class ConfigurationModule { }
