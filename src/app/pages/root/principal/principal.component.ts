@@ -60,7 +60,7 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     const TIEMPO = new Date();
     if (TIEMPO.getHours() >= 5 && TIEMPO.getHours() <= 11) {
       return 'Buenos Días';
-    } else if (TIEMPO.getHours() >= 12 && TIEMPO.getHours() <= 22) {
+    } else if (TIEMPO.getHours() >= 12 && TIEMPO.getHours() <= 20) {
       return 'Buenas Tardes';
     } else {
       return 'Buenas Noches';

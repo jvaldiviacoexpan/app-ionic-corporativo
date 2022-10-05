@@ -20,7 +20,7 @@ export class ConfMenuComponent {
   }
 
   irPermisos() {
-    this.route.navigateByUrl('pages/root/config/permisos');
+    this.route.navigateByUrl('pages/root/config/lista-usuarios');
   }
 
 

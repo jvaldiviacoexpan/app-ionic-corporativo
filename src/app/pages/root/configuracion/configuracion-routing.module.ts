@@ -4,6 +4,7 @@ import { ConfMenuComponent } from './conf-menu/conf-menu.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { NgModule } from '@angular/core';
 import { PermisosComponent } from './permisos/permisos.component';
+import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 
 
 const routes: Routes = [{
@@ -19,6 +20,11 @@ const routes: Routes = [{
       path: 'permisos',
       component: PermisosComponent,
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'lista-usuarios',
+      component: ListaUsuariosComponent,
+      canActivate: [AuthGuard]
     }
   ]
 }];
@@ -33,4 +39,5 @@ export class ConfiguracionRoutingModule { }
 export const configuracionRouterComponents = [
   ConfMenuComponent,
   PermisosComponent,
+  ListaUsuariosComponent
 ];
