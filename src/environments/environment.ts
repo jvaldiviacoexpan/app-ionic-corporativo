@@ -9,7 +9,7 @@ export const environment = {
 
 
   // urlcxp:      'https://localhost:44356/api',
-  // urlCxpAuth0: 'https://localhost:44360/api',
+  urlCxpAuth0: 'https://localhost:44360/api',
   // https://localhost:44333/api/v1/logistica/inventario/
   // urlcxpprueba: 'https://localhost:44303',
 
@@ -18,7 +18,7 @@ export const environment = {
 
   // AUTH0
   urlAuth0:       'https://coexpancl.us.auth0.com',
-  urlCxpAuth0:    'https://api.coexpan.cl/api/v1/auth0',
+  // urlCxpAuth0:    'https://api.coexpan.cl/api/v1/auth0',
   urlCxpAuth0V2:  'https://api.coexpan.cl/api/v1/auth0',
 
   dbCoexpan:      'Z_SBO_COEXPAN_TEST',
