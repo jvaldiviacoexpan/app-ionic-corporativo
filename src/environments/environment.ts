@@ -17,8 +17,8 @@ export const environment = {
   urlApi:       'https://api.coexpan.cl',
 
   // constantes
-  dbCoexpan: 'SBO_COEXPAN_OFI',
-  dbCoembal: 'SBO_COEMBAL_OFI',
+  dbCoexpan: 'SBO_COEMBAL_FUSION',
+  dbCoembal: 'SBO_COEMBAL_FUSION',
   // dbCoexpan: 'Z_SBO_COEXPAN_TEST2',
   // dbCoembal: 'Z_SBO_COEMBAL_TEST2',
 
