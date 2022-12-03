@@ -37,6 +37,10 @@ export class AMenuLogisticaComponent implements OnInit {
     this.route.navigateByUrl('/pages/logistica/inv/reg-inventario');
   }
 
+  navRegInventarioDos() {
+    this.route.navigateByUrl('/pages/logistica/inv-dos/reg-inventario-dos');
+  }
+
   menuToogle() {
     this.menu.toggle();
   }
