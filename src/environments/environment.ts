@@ -13,17 +13,17 @@ export const environment = {
   // https://localhost:44333/api/v1/logistica/inventario/
   // urlcxpprueba: 'https://localhost:44303',
 
-  urlcxp: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  // urlBase:      'https://movil.coexpan.cl/app-corporativo',
+  urlcxp:       'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  urlAuth0:     'https://coexpancl.us.auth0.com',
+  urlCxpAuth0:  'https://api.coexpan.cl/api/v1/auth0',
   urlApi: 'https://api.coexpan.cl',
 
-  // AUTH0
-  urlAuth0:       'https://coexpancl.us.auth0.com',
-  // urlCxpAuth0:    'https://api.coexpan.cl/api/v1/auth0',
-  urlCxpAuth0V2:  'https://api.coexpan.cl/api/v1/auth0',
-
-  dbCoexpan:      'Z_SBO_COEXPAN_TEST',
-  dbCoembal:      'Z_SBO_COEMBAL_TEST',
-  dbTestCoembal:  '01TEST_COEMBAL',
+  // constantes
+  dbCoexpan: '01TEST_COEMBAL',
+  dbCoembal: '01TEST_COEMBAL',
+  // dbCoexpan: 'Z_SBO_COEXPAN_TEST2',
+  // dbCoembal: 'Z_SBO_COEMBAL_TEST2',
 
 };
 

@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CxpInventarioComponent } from './cxp-inventario.component';
 import { CxpRegistroInventarioComponent } from './cxp-registro-inventario/cxp-registro-inventario.component';
 
-
-
 const routes: Routes = [{
   path: '',
   component: CxpInventarioComponent,

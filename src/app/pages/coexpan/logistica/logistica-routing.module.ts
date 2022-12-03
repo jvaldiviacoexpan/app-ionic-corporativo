@@ -31,6 +31,12 @@ const routes: Routes = [{
       loadChildren: () => import('./cxp-inventario/cxp-inventario.module')
         .then(m => m.CxpInventarioModule),
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'inv-dos',
+      loadChildren: () => import('./cxp-inventario-dos/cxp-inventario-dos.module')
+        .then(m => m.CxpInventarioDosModule),
+      canActivate: [AuthGuard]
     }
   ]
 }];
