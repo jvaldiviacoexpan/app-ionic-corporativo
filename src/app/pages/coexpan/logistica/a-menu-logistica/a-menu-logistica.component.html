@@ -24,12 +24,13 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="6">
-        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="navEtqEntradaMercanciaMp()">
+      <ion-col size="6" *ngIf="enabled.etiquetaMateriasPrimas">
+        <ion-button
+        class="btn-color-cxp" size="large" expand="block" (click)="navEtqEntradaMercanciaMp()">
           <span class="btn-text">Materias Primas</span>
         </ion-button>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="enabled.etiquetaBobinas">
         <ion-button class="btn-color-cxp" size="large" expand="block" disabled="true">
           <span class="btn-text">Bobinas</span>
         </ion-button>
@@ -42,12 +43,12 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="enabled.entradaMateriasPrimas">
         <ion-button class="btn-color-cxp" size="large" expand="block" (click)="navEntradaMercanciaMp()">
           <span class="btn-text">Materias Primas</span>
         </ion-button>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="enabled.entradaBobinas">
         <ion-button class="btn-color-cxp" size="large" expand="block" disabled="true">
           <span class="btn-text">Bobinas</span>
         </ion-button>
@@ -60,12 +61,12 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="enabled.salidaMateriaPrimas">
         <ion-button class="btn-color-cxp" shape="" size="large" expand="block" disabled="true">
           <span class="btn-text">Materias Primas</span>
         </ion-button>
       </ion-col>
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="enabled.salidaBobinas">
         <ion-button class="btn-color-cxp" size="large" expand="block" disabled="true">
           <span class="btn-text">Bobinas</span>
         </ion-button>
@@ -78,20 +79,13 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-start">
-      <ion-col size="6">
+      <ion-col size="6" *ngIf="enabled.inventario">
         <ion-button class="btn-color-cxp" shape="" size="large" expand="block" (click)="navRegInventario()">
           <span class="btn-text">Reg. Inventario</span>
         </ion-button>
       </ion-col>
 
-      <ion-col size="6">
-        <ion-button class="btn-color-cxp" shape="" size="large" expand="block" (click)="navRegInventarioDos()">
-          <span class="btn-text">Reg. Inventario 2</span>
-        </ion-button>
-      </ion-col>
-
     </ion-row>
-
 
   </ion-grid>
 </ion-content>

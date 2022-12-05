@@ -17,4 +17,4 @@ import { configuracionRouterComponents, ConfiguracionRoutingModule } from './con
     ...configuracionRouterComponents
   ]
 })
-export class ConfigurationModule { }
+export class ConfiguracionModule { }

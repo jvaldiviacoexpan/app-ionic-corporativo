@@ -40,7 +40,7 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   }
 
   irMenuTestCoembal() {
-    this.cambioEmpresa(env.dbTestCoembal);
+    this.cambioEmpresa(env.dbCoembal);
     // this.route.navigateByUrl('pages/root/cmb-main');
   }
 

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ConfMenuComponent } from './conf-menu/conf-menu.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { NgModule } from '@angular/core';
-import { PermisosComponent } from './permisos/permisos.component';
+import { PermisosComponent } from './lista-usuarios/permisos/permisos.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 
 

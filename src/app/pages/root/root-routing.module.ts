@@ -29,7 +29,7 @@ const routes: Routes = [{
     {
       path: 'config',
       loadChildren: () => import('./configuracion/configuracion.module')
-        .then(m => m.ConfigurationModule)
+        .then(m => m.ConfiguracionModule)
     },
     {
       path: 'login',

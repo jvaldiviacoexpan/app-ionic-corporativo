@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="" *ngIf="loadMenu">
+<ion-content class="" *ngIf="modulos.loading">
   <ion-grid fixed class="ion-margin-top">
     <ion-row>
       <ion-col class="ion-margin-top ion-padding-bottom" size="12">
@@ -44,34 +44,34 @@
   </ion-grid>
 </ion-content>
 
-<ion-content class="background-image ion-padding-top" *ngIf="showThisContent$ | async as dtuser">
+<ion-content class="background-image ion-padding-top" *ngIf="!modulos.loading">
   <ion-grid>
 
     <ion-list class="ion-margin-top">
-      <div *ngFor="let i of dtuser.datauser">
+      <div>
       <ion-item class="ion-padding-bottom" lines="full" button (click)="irMenuLogistica()"
-      *ngIf="i === 'logistica'" >
+      *ngIf="modulos.logistica" >
         <ion-icon slot="start"  name="bus"></ion-icon>
         <ion-label style="font-size: 1.4rem;" color="medium"><strong>Logistica</strong></ion-label>
         <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
       </ion-item>
 
       <ion-item class="ion-padding-bottom" lines="full" button (click)="irMenuExtrusion()"
-      *ngIf="i === 'extrusion'" >
+      *ngIf="modulos.extrusion" >
         <ion-icon slot="start" name="disc-outline"></ion-icon>
         <ion-label style="font-size: 1.4rem;" color="medium"><strong>Extrusión</strong></ion-label>
         <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
       </ion-item>
 
       <ion-item class="ion-padding-bottom" lines="full" button
-      *ngIf="i === 'rrhh'">
+      *ngIf="modulos.rrhh">
         <ion-icon slot="start" name="accessibility"></ion-icon>
         <ion-label style="font-size: 1.4rem;" color="medium"><strong>Recursos Humanos</strong></ion-label>
         <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
       </ion-item>
 
       <ion-item class="ion-padding-bottom" lines="full" button
-      *ngIf="i === 'finanza'">
+      *ngIf="modulos.finanzas">
         <ion-icon slot="start" name="wallet-outline"></ion-icon>
         <ion-label style="font-size: 1.4rem;" color="medium"><strong>Finanzas</strong></ion-label>
         <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
