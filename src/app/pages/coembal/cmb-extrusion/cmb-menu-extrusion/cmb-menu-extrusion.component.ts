@@ -71,9 +71,9 @@ export class CmbMenuExtrusionComponent implements OnInit, AfterViewInit {
   }
 
   habilitarModulos() {
-    const found1 = this.showThisContent$.value.datauser.find((el: any) => el.id === 1);
-    const found2 = this.showThisContent$.value.datauser.find((el: any) => el.id === 2);
-    const found3 = this.showThisContent$.value.datauser.find((el: any) => el.id === 3);
+    const found1 = this.showThisContent$.value.datauser.find((el: any) => el.id === 1 && el.enabled === true);
+    const found2 = this.showThisContent$.value.datauser.find((el: any) => el.id === 2 && el.enabled === true);
+    const found3 = this.showThisContent$.value.datauser.find((el: any) => el.id === 3 && el.enabled === true);
 
     if (found1 !== undefined) { this.enabled.found1 = true; }
     if (found2 !== undefined) { this.enabled.found2 = true; }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { extrusionRouterComponents, ExtrusionRoutingModule } from './extrusion-routing.module';
 import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonicSelectableModule } from 'ionic-selectable';
-import { FormsModule } from '@angular/forms';
+import { materiasPrimasRouterComponents, MateriasPrimasRoutingModule } from './materias-primas-routing.module';
 
 @NgModule({
   imports: [
@@ -11,12 +11,11 @@ import { FormsModule } from '@angular/forms';
     IonicSelectableModule,
     CommonModule,
     FormsModule,
-    ExtrusionRoutingModule,
+    MateriasPrimasRoutingModule
   ],
   declarations: [
-    ...extrusionRouterComponents,
+    ...materiasPrimasRouterComponents,
   ]
 })
 
-export class ExtrusionModule { }
-
+export class MateriasPrimasModule { }

@@ -59,7 +59,7 @@ export class CmbMenuLogisticaComponent implements AfterViewInit {
   }
 
   habilitarModulos() {
-    const found4 = this.showThisContent$.value.datauser.find((el: any) => el.id === 4);
+    const found4 = this.showThisContent$.value.datauser.find((el: any) => el.id === 4 && el.enabled === true);
 
     if (found4 !== undefined) { this.enabled.found4 = true; }
   }

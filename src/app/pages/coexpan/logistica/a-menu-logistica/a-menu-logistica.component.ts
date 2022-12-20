@@ -81,19 +81,19 @@ export class AMenuLogisticaComponent implements OnInit, AfterViewInit {
 
   habilitarModulos() {
     const found12 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 12);
+      .find((el: any) => el.id === 12 && el.enabled === true);
     const found13 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 13);
+      .find((el: any) => el.id === 13 && el.enabled === true);
     const found14 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 14);
+      .find((el: any) => el.id === 14 && el.enabled === true);
     const found15 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 15);
+      .find((el: any) => el.id === 15 && el.enabled === true);
     const found16 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 16);
+      .find((el: any) => el.id === 16 && el.enabled === true);
     const found17 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 17);
+      .find((el: any) => el.id === 17 && el.enabled === true);
     const found18 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 18);
+      .find((el: any) => el.id === 18 && el.enabled === true);
 
 
     if (found12 !== undefined) { this.enabled.etiquetaMateriasPrimas = true; }

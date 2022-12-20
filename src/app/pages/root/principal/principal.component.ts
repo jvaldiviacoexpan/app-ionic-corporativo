@@ -2,7 +2,10 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { environment as env } from 'src/environments/environment';
-// import { CameraSource, Camera, CameraResultType } from '@capacitor/camera';
+import { BehaviorSubject } from 'rxjs';
+import { MenuController } from '@ionic/angular';
+import { Auth0Service } from '../../../../providers/internal/auth0.service';
+import { SecurityService } from '../../../../providers/external/security.service';
 
 @Component({
   selector: 'app-principal',
@@ -11,12 +14,29 @@ import { environment as env } from 'src/environments/environment';
 })
 export class PrincipalComponent implements OnInit, AfterViewInit {
 
+  modulos = {
+    // Antiguo
+    logistica: false,
+    extrusion: false,
+
+    materiasPrimas: false,
+    configuracion: false,
+
+    loading: true,
+  };
+
+  showThisContent$ = new BehaviorSubject<any>({});
+  authRoles$ = new BehaviorSubject<any>({});
+
   tiempoDia = '';
   loading = true;
 
   constructor(
     public auth: AuthService,
     private route: Router,
+    private menu: MenuController,
+    private auth0Serv: Auth0Service,
+    private securityService: SecurityService
   ) { }
 
   ngOnInit() {
@@ -27,6 +47,7 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.obtenerRoles();
   }
 
   irMenusCoexpan() {
@@ -67,21 +88,55 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     }
   }
 
+  menuToogle() {
+    this.menu.toggle();
+  }
 
+  navMenuMateriasPrimas() {
+    this.route.navigateByUrl('/pages/materias-primas/menu');
+  }
 
-  // takeFoto() {
-  //   Camera.getPhoto({
-  //     quality: 100,
-  //     resultType: CameraResultType.Uri,
-  //     source: CameraSource.Prompt
-  //   }).then((image) => {
-  //     // imgSrc is passed to src of img tag
-  //     // imgSrc = this.domSanitizer.bypassSecurityTrustResourceUrl(image && (image.webPath));
-  //     // image.path is what you will have to send to the uploadPhoto method as uripath
-  //     // console.log(image);
-  //   }).catch((err) => {
-  //       console.warn(err);
-  //   });
-  // }
+  navMenuLogistica() {
+    this.route.navigateByUrl('/pages/cmb/logistica/menu-logistica');
+  }
+
+  navMenuExtrusion() {
+    this.route.navigateByUrl('/pages/cmb/extrusion/menu-extrusion');
+  }
+
+  obtenerRoles() {
+    this.auth.user$.subscribe((user) => {
+      this.auth0Serv.getAuth().then((resp: any) => {
+        const userdata = {
+          idToken: resp.access_token,
+          idUser: user.sub,
+        };
+        const datarest = this.securityService.encrypt(JSON.stringify(userdata));
+        this.auth0Serv.getUserRoles(datarest).then((restuser: any) => {
+          this.showThisContent$.next({ datauser: restuser.app_metadata.roles });
+          this.habilitarModulos();
+        }, (err) => {
+        });
+      }, (err) => {
+      }).finally(() => this.modulos.loading = false);
+    });
+  }
+
+  habilitarModulos() {
+    const foundExtrusion = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'extrusion' && el.business === 'cmb');
+
+    const foundLogistica = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'logistica' && el.business === 'cmb');
+
+    const foundMateriasPrimas = this.showThisContent$.value.datauser.find((el: any) =>
+      el.zone === 'materias-primas' && el.business === 'cmb');
+
+    const foundConfiguracion = this.showThisContent$.value.datauser.find((el: any) =>
+      el.zone === 'configuracion' && el.business === 'cmb');
+
+    if (foundExtrusion !== undefined) { this.modulos.extrusion = true; }
+    if (foundLogistica !== undefined) { this.modulos.logistica = true; }
+    if (foundMateriasPrimas !== undefined) { this.modulos.materiasPrimas = true; }
+    if (foundConfiguracion !== undefined) { this.modulos.configuracion = true; }
+  }
 
 }

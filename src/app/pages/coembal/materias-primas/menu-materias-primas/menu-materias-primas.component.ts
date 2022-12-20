@@ -7,11 +7,11 @@ import { Auth0Service } from '../../../../../providers/internal/auth0.service';
 import { SecurityService } from '../../../../../providers/external/security.service';
 
 @Component({
-  selector: 'app-a-menu-extrusion',
-  templateUrl: './a-menu-extrusion.component.html',
-  styleUrls: ['./a-menu-extrusion.component.scss'],
+  selector: 'app-menu-materias-primas',
+  templateUrl: './menu-materias-primas.component.html',
+  styleUrls: ['./menu-materias-primas.component.scss'],
 })
-export class AMenuExtrusionComponent implements OnInit, AfterViewInit {
+export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
 
   enabled = {
     found5: false,
@@ -93,11 +93,11 @@ export class AMenuExtrusionComponent implements OnInit, AfterViewInit {
       .find((el: any) => el.id === 11 && el.enabled === true);
 
 
-    if (found5 !== undefined) { this.enabled.found5 = true; }
-    if (found6 !== undefined) { this.enabled.found6 = true; }
-    if (found7 !== undefined) { this.enabled.found7 = true; }
-    if (found8 !== undefined) { this.enabled.found8 = true; }
-    if (found9 !== undefined) { this.enabled.found9 = true; }
+    if (found5  !== undefined) { this.enabled.found5 = true; }
+    if (found6  !== undefined) { this.enabled.found6 = true; }
+    if (found7  !== undefined) { this.enabled.found7 = true; }
+    if (found8  !== undefined) { this.enabled.found8 = true; }
+    if (found9  !== undefined) { this.enabled.found9 = true; }
     if (found10 !== undefined) { this.enabled.found10 = true; }
     if (found11 !== undefined) { this.enabled.found11 = true; }
 

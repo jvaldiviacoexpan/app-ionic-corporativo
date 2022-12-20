@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, MenuController, ToastController } from '@ionic/angular';
 import { CxpService } from 'src/providers/internal/cxp.service';
-import { RestOcModel } from '../../../../../../models/rest.model';
-import { TstUser, Datos, EmisionEtiquetaMpModel, ParamZebra } from '../../../../../../models/anymodels.model';
+import { RestOcModel } from '../../../../../models/rest.model';
+import { TstUser, EmisionEtiquetaMpModel, Datos, ParamZebra } from '../../../../../models/anymodels.model';
 
 @Component({
   selector: 'app-ent-materias-primas',

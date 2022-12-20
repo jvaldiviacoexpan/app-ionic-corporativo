@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-align-items-center ion-header-row">
+        <ion-col size="2">
+          <ion-button fill="clear" (click)="menuToogle()">
+            <ion-icon name="menu-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="10" class="ion-text-left">
+          <ion-title color="medium"><strong>Menu Materias Primas</strong></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="background-image">
+  <ion-grid>
+    <ion-row class="ion-margin-top">
+      <ion-col size="12">
+        <ion-label color="medium"><strong>Gestión Etiquetas</strong></ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6" *ngIf="enabled.found5">
+        <ion-button class="btn-color-cxp" size="large"  expand="block" (click)="irEmisionPallet()">
+          <span class="btn-text">Emisión Etiqueta</span>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="enabled.found6">
+        <ion-button class="btn-color-cxp" size="large" expand="block" disabled="false">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Re-Imprimir Etiqueta</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">(Disabled)</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+

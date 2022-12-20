@@ -1,7 +1,6 @@
 import { PagesComponent } from './pages.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AuthGuard } from '@auth0/auth0-angular';
 
 
 const routes: Routes = [{
@@ -12,6 +11,11 @@ const routes: Routes = [{
       path: 'root',
       loadChildren: () => import('./root/root.module')
         .then(m => m.RootModule),
+    },
+    {
+      path: 'materias-primas',
+      loadChildren: () => import('./coembal/materias-primas/materias-primas.module')
+        .then(m => m.MateriasPrimasModule)
     },
     {
       path: 'logistica',
