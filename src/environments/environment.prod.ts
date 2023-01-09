@@ -2,7 +2,7 @@ export const environment = {
   production: true,
 
   // API DESA
-  urlBase: 'https://movil.coexpan.cl/desa-app-corporativo',
+  urlBase: 'https://test.coexpan.cl/movil/app-corporativo',
   urlAuth0: 'https://test.coexpan.cl/api/v1/integracion/auth0',
   urlMateriasPrimas: 'https://test.coexpan.cl/api/v1/bodega/materias-primas',
   urlInventario: 'https://test.coexpan.cl/api/v1/logistica/inventario',

@@ -7,23 +7,24 @@ export const environment = {
   // urlBase:      'https://movil.coexpan.cl/app-corporativo',
 
   // API LOCAL
-  // urlBase:  'http://localhost:8100',
+  // urlBase: 'http://localhost:8100',
   // urlAuth0: 'https://localhost:44360/api',
-  // urlMateriasPrimas:   'https://localhost:44356/api',
+  // urlMateriasPrimas: 'https://localhost:44356/api',
   // urlInventario: 'https://localhost:44362/api',
+  // urlApi: 'NODEF',
 
   // API DESARROLLO
-  urlBase: 'https://movil.coexpan.cl/desa-app-corporativo',
+  urlBase: 'https://test.coexpan.cl/movil/app-corporativo',
   urlAuth0: 'https://test.coexpan.cl/api/v1/integracion/auth0',
   urlMateriasPrimas: 'https://test.coexpan.cl/api/v1/bodega/materias-primas',
   urlInventario: 'https://test.coexpan.cl/api/v1/logistica/inventario',
-  // urlcxpprueba: 'https://localhost:44303',
+  // urlApi: 'NODEF',
 
   // API PRODUCCION
   // urlBase: 'https://movil.coexpan.cl/app-corporativo',
   // urlAuth0: 'https://coexpancl.us.auth0.com', NO SIRVE AHORA
   // urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
-  //urlInventario: 'https://localhost:44333/api',
+  // urlInventario: 'https://localhost:44333/api',
   urlApi: 'https://api.coexpan.cl',
 
   // constantes
