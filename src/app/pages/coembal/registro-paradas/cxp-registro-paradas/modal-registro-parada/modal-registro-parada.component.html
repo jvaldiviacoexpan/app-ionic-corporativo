@@ -30,18 +30,10 @@
     </ion-select>
   </ion-item>
 
-  <!-- <ion-item>
-    <ion-label color="medium"><strong>Máquina</strong></ion-label>
-    <ionic-selectable item-content [(ngModel)]="registro.maquina" itemValueField="id" itemTextField="nombre"
-      [items]="maquinas" [canSearch]="true" placeholder="Seleccione Uno" required>
-    </ionic-selectable>
-  </ion-item> -->
-
   <ion-item>
     <ion-label color="medium"><strong>Fecha</strong></ion-label>
-    <!-- <ion-datetime-button [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
-    </ion-datetime-button> -->
-    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-datetime [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
+    </ion-datetime>
   </ion-item>
 
   <ion-item>
