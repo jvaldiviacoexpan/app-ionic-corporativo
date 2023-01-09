@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { CmbLogisticaRoutingModule, cmbLogisticaRouterComponents } from './cmb-logistica-routing.module';
+import { InventarioRoutingModule, inventarioRouterComponents } from './inventario-routing.module';
 
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
-    CmbLogisticaRoutingModule
+    InventarioRoutingModule
   ],
   declarations: [
-    ...cmbLogisticaRouterComponents
+    ...inventarioRouterComponents
   ]
 })
-export class CmbLogisticaModule { }
+export class InventarioModule { }

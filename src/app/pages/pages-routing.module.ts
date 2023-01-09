@@ -18,6 +18,18 @@ const routes: Routes = [{
         .then(m => m.MateriasPrimasModule)
     },
     {
+      path: 'inventario',
+      loadChildren: () => import('./coembal/inventario/inventario.module')
+        .then(m => m.InventarioModule)
+    },
+    {
+      path: 'registro-paradas',
+      loadChildren: () => import('./coembal/registro-paradas/registro-paradas.module')
+        .then(m => m.RegistroParadasModule)
+    },
+
+    //TODO Corregir lo de abajo ya que no va
+    {
       path: 'logistica',
       loadChildren: () => import('./coexpan/logistica/logistica.module')
         .then(m => m.LogisticaModule)
@@ -26,16 +38,6 @@ const routes: Routes = [{
       path: 'extrusion',
       loadChildren: () => import('./coexpan/extrusion/extrusion.module')
         .then(m => m.ExtrusionModule)
-    },
-    {
-      path: 'cmb/logistica',
-      loadChildren: () => import('./coembal/cmb-logistica/cmb-logistica.module')
-        .then(m => m.CmbLogisticaModule)
-    },
-    {
-      path: 'cmb/extrusion',
-      loadChildren: () => import('./coembal/cmb-extrusion/cmb-extrusion.module')
-        .then(m => m.CmbExtrusionModule)
     },
     {
       path: '',

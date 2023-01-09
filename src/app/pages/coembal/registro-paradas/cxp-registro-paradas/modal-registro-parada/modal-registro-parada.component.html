@@ -39,8 +39,9 @@
 
   <ion-item>
     <ion-label color="medium"><strong>Fecha</strong></ion-label>
-    <ion-datetime [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
-    </ion-datetime>
+    <!-- <ion-datetime-button [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
+    </ion-datetime-button> -->
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
   </ion-item>
 
   <ion-item>
@@ -87,6 +88,12 @@
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime id="datetime" [(ngModel)]="registro.fecha"></ion-datetime>
+  </ng-template>
+</ion-modal>
 
 
 

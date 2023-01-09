@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-cmb-extrusion',
+  selector: 'app-inventario',
   template: '<ion-router-outlet></ion-router-outlet>'
 })
-export class CmbExtrusionComponent {
+export class InventarioComponent {
 
-  constructor() { }
+  constructor(  ) { }
 
 }

@@ -5,17 +5,17 @@ import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Service } from '../../../../../providers/internal/auth0.service';
 import { SecurityService } from '../../../../../providers/external/security.service';
 import { BehaviorSubject } from 'rxjs';
+import { ToolService } from '../../../../../providers/external/tools.service';
 
 @Component({
-  templateUrl: './cmb-menu-extrusion.component.html',
-  styleUrls: ['./cmb-menu-extrusion.component.css']
+  templateUrl: './menu-registro-paradas.component.html',
+  styleUrls: ['./menu-registro-paradas.component.css']
 })
-export class CmbMenuExtrusionComponent implements OnInit, AfterViewInit {
+export class MenuRegistroParadasComponent implements OnInit, AfterViewInit {
 
   enabled = {
-    found1: false,
-    found2: false,
-    found3: false,
+    rgp01: false,
+    rgp02: false,
   };
   showThisContent$ = new BehaviorSubject<any>({});
 
@@ -24,14 +24,16 @@ export class CmbMenuExtrusionComponent implements OnInit, AfterViewInit {
     private route: Router,
     private auth: AuthService,
     private auth0Serv: Auth0Service,
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private toolService: ToolService,
   ) { }
 
   ngOnInit(): void {
-    // console.log('Extrusion menu works');
+    // console.log('RegistroParadas menu works');
   }
 
   ngAfterViewInit(): void {
+    this.toolService.simpleLoader('Cargando...');
     this.obtenerRoles();
   }
 
@@ -49,7 +51,7 @@ export class CmbMenuExtrusionComponent implements OnInit, AfterViewInit {
         }, (err) => {
         });
       }, (err) => {
-      });
+      }).finally(() => this.toolService.dismissLoader());
     });
   }
 
@@ -57,27 +59,20 @@ export class CmbMenuExtrusionComponent implements OnInit, AfterViewInit {
     this.menu.toggle();
   }
 
-  navCmbEmisionCajaPallet() {
-    this.route.navigateByUrl('/pages/cmb/extrusion/etq-emision-pallet');
+  irRegistroParadasCoembal() {
+    this.route.navigateByUrl('/pages/registro-paradas/rgp-coembal');
   }
 
-  irRegistroParadas() {
-    this.route.navigateByUrl('/pages/cmb/extrusion/reg-paradas');
-  }
-
-
-  irInventarioCorrea(): void {
-    this.route.navigateByUrl('/pages/cmb/extrusion/inv-correa');
+  irRegistroParadasCoexpan() {
+    this.route.navigateByUrl('/pages/registro-paradas/rgp-coexpan');
   }
 
   habilitarModulos() {
-    const found1 = this.showThisContent$.value.datauser.find((el: any) => el.id === 1 && el.enabled === true);
-    const found2 = this.showThisContent$.value.datauser.find((el: any) => el.id === 2 && el.enabled === true);
-    const found3 = this.showThisContent$.value.datauser.find((el: any) => el.id === 3 && el.enabled === true);
+    const rgp01 = this.showThisContent$.value.datauser.find((el: any) => el.id === 'rgp01' && el.enabled === true);
+    const rgp02 = this.showThisContent$.value.datauser.find((el: any) => el.id === 'rgp02' && el.enabled === true);
 
-    if (found1 !== undefined) { this.enabled.found1 = true; }
-    if (found2 !== undefined) { this.enabled.found2 = true; }
-    if (found3 !== undefined) { this.enabled.found3 = true; }
+    if (rgp01 !== undefined) { this.enabled.rgp01 = true; }
+    if (rgp02 !== undefined) { this.enabled.rgp02 = true; }
   }
 
 

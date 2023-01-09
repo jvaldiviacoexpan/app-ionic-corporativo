@@ -52,21 +52,21 @@
     <ion-list class="ion-margin-top">
       <div>
 
-        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.materiasPrimas" (click)="navMenuMateriasPrimas()">
+        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.materiasprimas" (click)="navMenuMateriasPrimas()">
           <ion-icon slot="start" name="color-filter"></ion-icon>
           <ion-label style="font-size: 1.4rem;" color="medium"><strong>Materias Primas</strong></ion-label>
           <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
         </ion-item>
 
-        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.logistica" (click)="navMenuLogistica()">
-          <ion-icon slot="start" name="bus"></ion-icon>
-          <ion-label style="font-size: 1.4rem;" color="medium"><strong>Logistica</strong></ion-label>
+        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.inventario" (click)="navMenuInventario()">
+          <ion-icon slot="start" name="cube"></ion-icon>
+          <ion-label style="font-size: 1.4rem;" color="medium"><strong>Inventario</strong></ion-label>
           <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
         </ion-item>
 
-        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.extrusion" (click)="navMenuExtrusion()">
-          <ion-icon slot="start" name="bus"></ion-icon>
-          <ion-label style="font-size: 1.4rem;" color="medium"><strong>Extrusion</strong></ion-label>
+        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.registroParadas" (click)="navMenuRegistroParadas()">
+          <ion-icon slot="start" name="create"></ion-icon>
+          <ion-label style="font-size: 1.4rem;" color="medium"><strong>Registro Paradas</strong></ion-label>
           <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
         </ion-item>
 

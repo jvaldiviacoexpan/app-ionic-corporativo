@@ -3,6 +3,7 @@ import { MateriasPrimasComponent } from './materias-primas.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EtqEntMateriasPrimasComponent } from './etq-ent-materias-primas/etq-ent-materias-primas.component';
 import { MenuMateriasPrimasComponent } from './menu-materias-primas/menu-materias-primas.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 
 const routes: Routes = [{
@@ -11,11 +12,13 @@ const routes: Routes = [{
   children: [
     {
       path: 'menu',
-      component: MenuMateriasPrimasComponent
+      component: MenuMateriasPrimasComponent,
+      canActivate: [AuthGuard],
     },
     {
       path: 'etiqueta',
-      component: EtqEntMateriasPrimasComponent
+      component: EtqEntMateriasPrimasComponent,
+      canActivate: [AuthGuard],
     }
   ]
 }];

@@ -28,132 +28,96 @@
   <div class="row ion-margin-top" *ngIf="roles.length !== 0">
     <div class="col">
       <div class="tabs">
+
+        <div class="tab">
+          <input type="checkbox" id="chck0">
+          <label class="tab-label" for="chck0">Configuración</label>
+          <div class="tab-content">
+            <ion-item>
+              <ion-label>Permisos</ion-label>
+              <ion-toggle #cfg01 (click)="tooglePermisos(!cfg01.checked, 'cfg', 'configuracion', 'permisos', 'cfg01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Param. Impresoras</ion-label>
+              <ion-toggle #cfg02 (click)="tooglePermisos(!cfg02.checked, 'cfg', 'configuracion', 'parametros-impresora', 'cfg02')">
+              </ion-toggle>
+            </ion-item>
+          </div>
+        </div>
+
         <div class="tab">
           <input type="checkbox" id="chck1">
-          <label class="tab-label" for="chck1">Coembal Extrusión</label>
+          <label class="tab-label" for="chck1">Materias Primas</label>
           <div class="tab-content">
+
             <ion-item>
-              <ion-label>Extr. Emisión Caja Pallet</ion-label>
-              <ion-toggle #id1
-              (click)="tooglePermisos(!id1.checked, 'cmb', 'extrusion', 'caja-pallet', 1)">
-            </ion-toggle>
+              <ion-label>Emisión Etiqueta</ion-label>
+              <ion-toggle #mpr01 (click)="tooglePermisos(!mpr01.checked, 'cxp', 'materias-primas', 'emision-etiqueta', 'mpr01')">
+              </ion-toggle>
             </ion-item>
 
             <ion-item>
-              <ion-label>Extr. Registro Paradas</ion-label>
-              <ion-toggle #id2
-              (click)="tooglePermisos(!id2.checked, 'cmb', 'extrusion', 'registro-paradas', 2)"
-              > </ion-toggle>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Correa</ion-label>
-              <ion-toggle #id3
-              (click)="tooglePermisos(!id3.checked, 'cmb', 'extrusion', 'correa', 3)"> </ion-toggle>
+              <ion-label>Re-Imprimir Etiqueta</ion-label>
+              <ion-toggle #mpr02 (click)="tooglePermisos(!mpr02.checked, 'cxp', 'materias-primas', 'reimprimir-pallet', 'mpr02')">
+              </ion-toggle>
             </ion-item>
 
           </div>
         </div>
+
         <div class="tab">
-          <input type="checkbox" id="chck2">
-          <label class="tab-label" for="chck2">Coembal Logística</label>
+          <input type="checkbox" id="chck6">
+          <label class="tab-label" for="chck6">Inventario</label>
           <div class="tab-content">
             <ion-item>
-              <ion-label>Log. Registro Inventario</ion-label>
-              <ion-toggle #id4
-              (click)="tooglePermisos(!id4.checked, 'cmb', 'logistica', 'reg. inventario', 4)"> </ion-toggle>
+              <ion-label>Inventario Coembal</ion-label>
+              <ion-toggle #inv01
+                (click)="tooglePermisos(!inv01.checked, 'cmb', 'inventario', 'inventario-coembal', 'inv01')">
+              </ion-toggle>
             </ion-item>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="row ion-margin-top" *ngIf="roles.length !== 0">
-    <div class="col">
-      <div class="tabs">
-        <div class="tab">
-          <input type="checkbox" id="chck3">
-          <label class="tab-label" for="chck3">Coexpan Extrusión</label>
-          <div class="tab-content">
             <ion-item>
-              <ion-label>Extr. Emisión Pallet</ion-label>
-              <ion-toggle #id5 (click)="tooglePermisos(!id5.checked, 'cxp', 'extrusion', 'emision pallet', 5)"> </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Reimprimir Bob.</ion-label>
-              <ion-toggle #id6
-              (click)="tooglePermisos(!id6.checked, 'cxp', 'extrusion', 'reimprimir-pallet', 6)"> </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Eliminar Etq. Bob.</ion-label>
-              <ion-toggle #id7
-              (click)="tooglePermisos(!id7.checked, 'cxp', 'extrusion', 'Eliminar-etiqueta-bobina', 7)"> </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Entr. Merc. Materias Primas</ion-label>
-              <ion-toggle #id8 (click)="tooglePermisos(!id8.checked, 'cxp', 'extrusion', 'entrada-mercancia-materias-primas', 8)">
+              <ion-label>Inventario Coexpan</ion-label>
+              <ion-toggle #inv02 (click)="tooglePermisos(!inv02.checked, 'cmb', 'inventario', 'inventario-coexpan', 'inv02')">
               </ion-toggle>
             </ion-item>
+
             <ion-item>
-              <ion-label>Entr. Merc. Bobinas</ion-label>
-              <ion-toggle #id9 (click)="tooglePermisos(!id9.checked, 'cxp', 'extrusion', 'entrada-mercancia-bobinas', 9)">
+              <ion-label>Inventario Coembal Correa</ion-label>
+              <ion-toggle #inv03 (click)="tooglePermisos(!inv03.checked, 'cmb', 'inventario', 'inventario-coembal-correa', 'inv03')">
               </ion-toggle>
             </ion-item>
+
             <ion-item>
-              <ion-label>Registro Paradas</ion-label>
-              <ion-toggle #id10 (click)="tooglePermisos(!id10.checked, 'cxp', 'extrusion', 'registro-paradas', 10)">
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Correa</ion-label>
-              <ion-toggle #id11 (click)="tooglePermisos(!id11.checked, 'cxp', 'extrusion', 'correa', 11)">
+              <ion-label>Inventario Coexpan Correa</ion-label>
+              <ion-toggle #inv04
+                (click)="tooglePermisos(!inv04.checked, 'cmb', 'inventario', 'inventario-coexpan-correa', 'inv04')">
               </ion-toggle>
             </ion-item>
           </div>
         </div>
+
         <div class="tab">
-          <input type="checkbox" id="chck4">
-          <label class="tab-label" for="chck4">Coexpan Logística</label>
+          <input type="checkbox" id="chck7">
+          <label class="tab-label" for="chck7">Registro Paradas</label>
           <div class="tab-content">
             <ion-item>
-              <ion-label>Etq. Materias Primas</ion-label>
-              <ion-toggle #id12
-              (click)="tooglePermisos(!id12.checked, 'cxp', 'logistica', 'etiquetado-materias-primas', 12)">
+              <ion-label>Registro Paradas Coembal</ion-label>
+              <ion-toggle #rgp01 (click)="tooglePermisos(!rgp01.checked, 'cmb', 'registro-paradas', 'registro-paradas-coembal', 'rgp01')">
               </ion-toggle>
             </ion-item>
+
             <ion-item>
-              <ion-label>Etq. Bobinas</ion-label>
-              <ion-toggle #id13 (click)="tooglePermisos(!id13.checked, 'cxp', 'logistica', 'etiquetado-bobinas', 13)">
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Entr. Merc. Materias Primas</ion-label>
-              <ion-toggle #id14 (click)="tooglePermisos(!id14.checked, 'cxp', 'logistica', 'entrada-mercancia-bobinas', 14)">
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Entr. Merc. Bobinas</ion-label>
-              <ion-toggle #id15 (click)="tooglePermisos(!id15.checked, 'cxp', 'logistica', 'entrada-mercancia-bobinas', 15)">
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Sal. Merc. Materias Primas</ion-label>
-              <ion-toggle #id16 (click)="tooglePermisos(!id16.checked, 'cxp', 'logistica', 'salida-mercancia-materias-primas', 16)">
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Sal. Merc. Materias Primas</ion-label>
-              <ion-toggle #id17 (click)="tooglePermisos(!id17.checked, 'cxp', 'logistica', 'salida-mercancia-bobinas', 17)">
-              </ion-toggle>
-            </ion-item>
-            <ion-item>
-              <ion-label>Sal. Merc. Materias Primas</ion-label>
-              <ion-toggle #id18 (click)="tooglePermisos(!id18.checked, 'cxp', 'logistica', 'registro-inventario', 18)">
+              <ion-label>Registro Paradas Coexpan</ion-label>
+              <ion-toggle #rgp02
+                (click)="tooglePermisos(!rgp02.checked, 'cmb', 'registro-paradas', 'registro-paradas-coexpan', 'rgp02')">
               </ion-toggle>
             </ion-item>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -163,7 +127,12 @@
   <ion-toolbar>
     <ion-grid fixed>
       <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
+        <ion-col size="6">
+          <ion-button color="danger" expand="block" fill="solid" (click)="dismiss()">
+            Cancelar
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
           <ion-button color="success" expand="block" fill="solid" (click)="dismissData()">
             Guardar
           </ion-button>

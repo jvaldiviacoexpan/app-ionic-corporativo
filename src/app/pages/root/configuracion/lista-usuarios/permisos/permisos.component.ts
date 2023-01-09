@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/cor
 import { MenuController, NavParams, ModalController, ToastController, IonToggle } from '@ionic/angular';
 import { Auth0Service } from '../../../../../../providers/internal/auth0.service';
 import { SecurityService } from '../../../../../../providers/external/security.service';
+import { ToolService } from '../../../../../../providers/external/tools.service';
 
 @Component({
   selector: 'app-permisos',
@@ -9,25 +10,22 @@ import { SecurityService } from '../../../../../../providers/external/security.s
   styleUrls: ['./permisos.component.scss']
 })
 export class PermisosComponent implements OnInit, AfterViewInit {
+  // Configuracion
+  @ViewChild('cfg01') tglCfg01: IonToggle;
+  @ViewChild('cfg02') tglCfg02: IonToggle;
+  // Materias Primas
+  @ViewChild('mpr01') tglMpr01: IonToggle;
+  @ViewChild('mpr02') tglMpr02: IonToggle;
+  // Inventario
+  @ViewChild('inv01') tglInv01: IonToggle;
+  @ViewChild('inv02') tglInv02: IonToggle;
+  @ViewChild('inv03') tglInv03: IonToggle;
+  @ViewChild('inv04') tglInv04: IonToggle;
+  // Registro Paradas
+  @ViewChild('rgp01') tglRgp01: IonToggle;
+  @ViewChild('rgp02') tglRgp02: IonToggle;
 
-  @ViewChild('id1') toogle1: IonToggle;
-  @ViewChild('id2') toogle2: IonToggle;
-  @ViewChild('id3') toogle3: IonToggle;
-  @ViewChild('id4') toogle4: IonToggle;
-  @ViewChild('id5') toogle5: IonToggle;
-  @ViewChild('id6') toogle6: IonToggle;
-  @ViewChild('id7') toogle7: IonToggle;
-  @ViewChild('id8') toogle8: IonToggle;
-  @ViewChild('id9') toogle9: IonToggle;
-  @ViewChild('id10') toogle10: IonToggle;
-  @ViewChild('id11') toogle11: IonToggle;
-  @ViewChild('id12') toogle12: IonToggle;
-  @ViewChild('id13') toogle13: IonToggle;
-  @ViewChild('id14') toogle14: IonToggle;
-  @ViewChild('id15') toogle15: IonToggle;
-  @ViewChild('id16') toogle16: IonToggle;
-  @ViewChild('id17') toogle17: IonToggle;
-  @ViewChild('id18') toogle18: IonToggle;
+  //#region CODIGO LOGICO NO MODIFICAR
 
   user: any;
   roles = [];
@@ -39,6 +37,7 @@ export class PermisosComponent implements OnInit, AfterViewInit {
     private toastController: ToastController,
     private auth0Service: Auth0Service,
     private securityService: SecurityService,
+    private toolService: ToolService,
   ) { }
 
   ngOnInit(): void {
@@ -82,13 +81,13 @@ export class PermisosComponent implements OnInit, AfterViewInit {
   }
 
 
-  tooglePermisos(toogle: any, empresa: string, area: string, descripcion: any, idmodulo: number) {
+  tooglePermisos(toogle: any, empresa: string, modulo: string, descripcion: any, componente: string) {
 
     const rol = {
-      id: idmodulo,
+      id: componente,
       enabled: toogle,
       business: empresa,
-      zone: area,
+      zone: modulo,
       description: descripcion,
     };
 
@@ -113,6 +112,7 @@ export class PermisosComponent implements OnInit, AfterViewInit {
 
 
   dismissData() {
+    this.toolService.simpleLoader('Cargando...');
     const roles = {
       roles: this.roles,
     };
@@ -137,11 +137,17 @@ export class PermisosComponent implements OnInit, AfterViewInit {
 
     }, (err: any) => {
       console.error(err);
+    }).finally(() => {
+      this.modalController.dismiss();
+      this.toolService.dismissLoader();
     });
-
-    this.modalController.dismiss({holi: 'jeje'});
   }
 
+  dismiss() {
+    this.modalController.dismiss();
+  }
+
+  //#endregion CODIGO LOGICO NO MODIFICAR
 
   cargarPermisos() {
     console.log('cargar permisos');
@@ -149,24 +155,45 @@ export class PermisosComponent implements OnInit, AfterViewInit {
       console.log(data);
 
       if (data.id) {
-        if (data.id === 1) { this.toogle1.checked = data.enabled; }
-        if (data.id === 2) { this.toogle2.checked = data.enabled; }
-        if (data.id === 3) { this.toogle3.checked = data.enabled; }
-        if (data.id === 4) { this.toogle4.checked = data.enabled; }
-        if (data.id === 5) { this.toogle5.checked = data.enabled; }
-        if (data.id === 6) { this.toogle6.checked = data.enabled; }
-        if (data.id === 7) { this.toogle7.checked = data.enabled; }
-        if (data.id === 8) { this.toogle8.checked = data.enabled; }
-        if (data.id === 9) { this.toogle9.checked = data.enabled; }
-        if (data.id === 10) { this.toogle10.checked = data.enabled; }
-        if (data.id === 11) { this.toogle11.checked = data.enabled; }
-        if (data.id === 12) { this.toogle12.checked = data.enabled; }
-        if (data.id === 13) { this.toogle13.checked = data.enabled; }
-        if (data.id === 14) { this.toogle14.checked = data.enabled; }
-        if (data.id === 15) { this.toogle15.checked = data.enabled; }
-        if (data.id === 16) { this.toogle16.checked = data.enabled; }
-        if (data.id === 17) { this.toogle17.checked = data.enabled; }
-        if (data.id === 18) { this.toogle18.checked = data.enabled; }
+        switch (data.id) {
+          // Configuracion
+          case 'cfg01':
+            this.tglCfg01.checked  = data.enabled;
+            break;
+          case 'cfg02':
+            this.tglCfg02.checked  = data.enabled;
+            break;
+          // Materias Primas
+          case 'mpr01':
+            this.tglMpr01.checked  = data.enabled;
+            break;
+          case 'mpr02':
+            this.tglMpr02.checked  = data.enabled;
+            break;
+          // Inventario
+          case 'inv01':
+            this.tglInv01.checked  = data.enabled;
+            break;
+          case 'inv02':
+            this.tglInv02.checked  = data.enabled;
+            break;
+          case 'inv03':
+            this.tglInv03.checked  = data.enabled;
+            break;
+          case 'inv04':
+            this.tglInv04.checked  = data.enabled;
+            break;
+          // Registro Paradas
+          case 'rgp01':
+            this.tglRgp01.checked  = data.enabled;
+            break;
+          case 'rgp02':
+            this.tglRgp02.checked  = data.enabled;
+            break;
+
+          default:
+            break;
+        }
       }
     });
   }

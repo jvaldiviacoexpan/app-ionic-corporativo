@@ -50,7 +50,8 @@ export class TstUser {
   cantEtq:   number;
   fecha:     string;
   numAtCard: string;
-  docNum:    number;
+  docNum: number;
+  pesoPallet: number;
 }
 
 export class RegistroParadaModel {
@@ -58,7 +59,7 @@ export class RegistroParadaModel {
   area: string;
   maquina: MaquinaModel;
   supervisor: string;
-  fecha: Date;
+  fecha: string;
   turno: string;
   motivos: RegistroMotivosModel[];
   nroMotivos: number;

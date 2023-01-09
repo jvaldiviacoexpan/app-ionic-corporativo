@@ -52,7 +52,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
       } else {
         this.ocRows = data.Objeto;
         this.proveedor = data.Objeto[0].H_CardName;
-        this.area = data.Objeto[0].H_U_AREA;
+        this.area = data.Objeto[0].H_U_AREA === '0' ? 'Sin Area' : data.Objeto[0].H_U_AREA;
       }
     }, (err) => {
       console.warn(err);
@@ -72,13 +72,21 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
 
     const alert = await this.alertController.create({
       header: 'Emisión de Etiquetas',
-      message: 'Ingrese la <strong>Cantidad de Pallets</strong>.',
+      message: 'Ingrese la <strong>Cantidad de Pallets</strong> y el Peso del Pallet. ',
       inputs: [
         {
           name: 'cantEtqs',
           type: 'number',
           min: 1, max: 50,
           cssClass: '',
+          placeholder: 'Cantidad Etiquetas'
+        },
+        {
+          name: 'pesoPallet',
+          type: 'number',
+          min: 1, max: 10000,
+          cssClass: '',
+          placeholder: 'Peso Pallet'
         }
       ],
       buttons: [
@@ -95,7 +103,8 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
           handler: (data) => {
             const usr: TstUser = new TstUser();
             usr.docNum  = Number(oc.H_DocNum);
-            usr.cantEtq   = data.cantEtqs;
+            usr.cantEtq = data.cantEtqs;
+            oc.B_PesoPallet = data.pesoPallet.toString();
             usr.numAtCard = oc.H_NumAtCard;
             usr.usuario = 'jordan.valdivia@coexpan.cl';
             usr.fecha = '.';

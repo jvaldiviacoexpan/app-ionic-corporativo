@@ -1,15 +1,15 @@
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ToastController, AlertController, ModalController, AngularDelegate } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ToastController, AlertController, ModalController } from '@ionic/angular';
+import { CmbModalRegistroParadaComponent } from './cmb-modal-registro-parada/cmb-modal-registro-parada.component';
 import { RegistroParadaModel } from '../../../../../models/anymodels.model';
 import { CxpService } from '../../../../../providers/internal/cxp.service';
 import { ToolService } from '../../../../../providers/external/tools.service';
-import { CmbModalRegistroParadaComponent } from './cmb-modal-registro-parada/cmb-modal-registro-parada.component';
 
 
 @Component({
   selector: 'app-registro-paradas',
-  templateUrl: './cmb-registro.paradas.component.html',
+  templateUrl: './cmb-registro-paradas.component.html',
   styleUrls: ['./cmb-registro-paradas.component.scss']
 })
 export class CmbRegistroParadasComponent implements OnInit {
@@ -94,11 +94,11 @@ export class CmbRegistroParadasComponent implements OnInit {
       } else {
         this.presentToast(data.Message, 3000, 'danger');
       }
-      setTimeout(() => { this.toolService.dismissLoader(); }, 250);
+      this.toolService.dismissLoader();
       // console.log(data);
     }, (err) => {
       this.presentToast('Error en registrar Paradas.', 3000, 'danger');
-      setTimeout(() => { this.toolService.dismissLoader(); }, 250);
+      this.toolService.dismissLoader();
     });
   }
 

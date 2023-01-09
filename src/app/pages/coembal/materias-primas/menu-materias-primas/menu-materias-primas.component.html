@@ -19,19 +19,19 @@
 <ion-content class="background-image">
   <ion-grid>
     <ion-row class="ion-margin-top">
-      <ion-col size="12">
+      <ion-col size="12" *ngIf="enabled.mpr01 || enabled.mpr02">
         <ion-label color="medium"><strong>Gestión Etiquetas</strong></ion-label>
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="6" *ngIf="enabled.found5">
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="6" *ngIf="enabled.mpr01">
         <ion-button class="btn-color-cxp" size="large"  expand="block" (click)="irEmisionPallet()">
           <span class="btn-text">Emisión Etiqueta</span>
         </ion-button>
       </ion-col>
 
-      <ion-col size="6" *ngIf="enabled.found6">
+      <ion-col size="6" *ngIf="enabled.mpr02">
         <ion-button class="btn-color-cxp" size="large" expand="block" disabled="false">
           <ion-grid>
             <ion-row class="ion-no-margin ion-no-padding">

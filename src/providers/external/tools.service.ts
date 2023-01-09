@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { mergeScan } from 'rxjs/operators';
+import { environment as env } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +23,13 @@ export class ToolService {
 
   // Dismiss loader
   dismissLoader() {
-    this.loadingController.dismiss().then((response) => {
+    setTimeout(() => {
+      this.loadingController.dismiss().then((response) => {
       // console.log('Loader closed!', response);
     }).catch((err) => {
       // console.log('Error occured : ', err);
     });
+    }, env.dismissTimer);
   }
 
   // Auto hide show loader

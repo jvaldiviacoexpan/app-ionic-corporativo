@@ -38,7 +38,7 @@ export class ModalRegistroParadaComponent implements OnInit {
   }
 
   get validacionDatos(): boolean {
-    console.log(this.registro);
+    // console.log(this.registro);
     if (
       // this.registro.maquina     === undefined ||
       this.registro.supervisor  === undefined ||
@@ -56,6 +56,7 @@ export class ModalRegistroParadaComponent implements OnInit {
   ngOnInit(): void {
     this.maquinas = this.maquinasService.getMaquinas();
     this.motivos = this.motivosService.getMotivos();
+    this.registro.fecha = new Date().toISOString();
     this.obtenerSupervisores();
   }
 

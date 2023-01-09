@@ -15,6 +15,7 @@ const routes: Routes = [{
     {
       path: 'inicio',
       component: PrincipalComponent,
+      canActivate: [AuthGuard],
     },
     {
       path: 'main',

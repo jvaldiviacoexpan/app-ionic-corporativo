@@ -2,17 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuController, AlertController, IonInput, IonButton } from '@ionic/angular';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
-import { InventarioService } from '../../../../../../providers/internal/inventario.service';
-import { CxpDatosBobinas, CxpRegistroInventarioModel } from '../../../../../../models/anymodels.model';
+import { InventarioService } from '../../../../../providers/internal/inventario.service';
+import { CxpDatosBobinas, CxpRegistroInventarioModel } from '../../../../../models/anymodels.model';
 
 
 @Component({
   selector: 'app-cxp-registro-inventario',
-  templateUrl: './cxp-registro-inventario.component.html',
-  styleUrls: ['./cxp-registro-inventario.component.scss']
+  templateUrl: './cxp-inventario.component.html',
+  styleUrls: ['./cxp-inventario.component.scss']
 })
 
-export class CxpRegistroInventarioComponent implements OnInit {
+export class CxpInventarioComponent implements OnInit {
 
   invId$ = new BehaviorSubject<any>({});
   stsbobina: CxpDatosBobinas = new CxpDatosBobinas();

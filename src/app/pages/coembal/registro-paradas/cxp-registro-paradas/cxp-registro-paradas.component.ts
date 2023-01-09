@@ -7,11 +7,11 @@ import { ToolService } from '../../../../../providers/external/tools.service';
 
 
 @Component({
-  selector: 'app-registro-paradas',
-  templateUrl: './registro.paradas.component.html',
-  styleUrls: ['./registro-paradas.component.scss']
+  selector: 'app-cxp-registro-paradas',
+  templateUrl: './cxp-registro-paradas.component.html',
+  styleUrls: ['./cxp-registro-paradas.component.scss']
 })
-export class RegistroParadasComponent implements OnInit {
+export class CxpRegistroParadasComponent implements OnInit {
 
   registros: RegistroParadaModel[] = [];
 
@@ -93,11 +93,11 @@ export class RegistroParadasComponent implements OnInit {
       } else {
         this.presentToast(data.Message, 3000, 'danger');
       }
-      setTimeout(() => { this.toolService.dismissLoader(); }, 250);
+      this.toolService.dismissLoader();
       // console.log(data);
     }, (err) => {
       this.presentToast('Error en registrar Paradas.', 3000, 'danger');
-      setTimeout(() => { this.toolService.dismissLoader(); }, 250);
+      this.toolService.dismissLoader();
     });
   }
 

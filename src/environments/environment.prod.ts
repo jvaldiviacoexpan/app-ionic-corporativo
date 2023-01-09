@@ -9,6 +9,5 @@ export const environment = {
   urlApi: 'https://api.coexpan.cl',
 
   // DB
-  dbCoexpan: '01TEST_COEMBAL',
-  dbCoembal: '01TEST_COEMBAL',
+  dbCoembal: 'SBO_COEMBAL_FUSION_TEST',
 };

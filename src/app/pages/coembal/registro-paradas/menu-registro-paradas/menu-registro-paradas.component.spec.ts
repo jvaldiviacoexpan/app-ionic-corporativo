@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CmbMenuExtrusionComponent } from './cmb-menu-extrusion.component';
+import { MenuRegistroParadasComponent } from './menu-registro-paradas.component';
 
 describe('CmbMenuExtrusionPage', () => {
-  let component: CmbMenuExtrusionComponent;
-  let fixture: ComponentFixture<CmbMenuExtrusionComponent>;
+  let component: MenuRegistroParadasComponent;
+  let fixture: ComponentFixture<MenuRegistroParadasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CmbMenuExtrusionComponent ]
+      declarations: [ MenuRegistroParadasComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CmbMenuExtrusionComponent);
+    fixture = TestBed.createComponent(MenuRegistroParadasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

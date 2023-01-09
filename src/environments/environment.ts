@@ -6,24 +6,32 @@ export const environment = {
   production: false,
   // urlBase:      'https://movil.coexpan.cl/app-corporativo',
 
-  // API DEV
-  urlBase:        'http://localhost:8100',
+  // API LOCAL
+  urlBase:  'http://localhost:8100',
   urlAuth0: 'https://localhost:44360/api',
-  // urlcxp:      'https://localhost:44356/api',
+  urlcxp:   'https://localhost:44356/api',
   // https://localhost:44333/api/v1/logistica/inventario/
   // urlcxpprueba: 'https://localhost:44303',
 
-  // API
+  // API DESARROLLO
+  // urlBase:  'http://localhost:8100',
+  // urlAuth0: 'https://localhost:44360/api',
+  // urlcxp:   'https://localhost:44356/api',
+  // https://localhost:44333/api/v1/logistica/inventario/
+  // urlcxpprueba: 'https://localhost:44303',
+
+  // API PRODUCCION
   // urlBase:      'https://movil.coexpan.cl/app-corporativo',
-  // urlAuth0:     'https://coexpancl.us.auth0.com',
-  urlcxp:       'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  // urlAuth0:     'https://coexpancl.us.auth0.com', NO SIRVE AHORA
+  // urlcxp:       'https://api.coexpan.cl/api/v1/bodega/materias-primas',
   urlApi: 'https://api.coexpan.cl',
 
   // constantes
-  dbCoexpan: '01TEST_COEMBAL',
-  dbCoembal: '01TEST_COEMBAL',
-  // dbCoexpan: 'Z_SBO_COEXPAN_TEST2',
-  // dbCoembal: 'Z_SBO_COEMBAL_TEST2',
+  dbCoembal: 'SBO_COEMBAL_FUSION_TEST',
+  // dbCoexpan: 'SBO_COEMBAL_FUSION',
+  // dbCoembal: 'SBO_COEMBAL_FUSION',
+
+  dismissTimer: 250,
 
 };
 

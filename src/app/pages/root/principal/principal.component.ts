@@ -15,11 +15,9 @@ import { SecurityService } from '../../../../providers/external/security.service
 export class PrincipalComponent implements OnInit, AfterViewInit {
 
   modulos = {
-    // Antiguo
-    logistica: false,
-    extrusion: false,
-
-    materiasPrimas: false,
+    materiasprimas: false,
+    inventario: false,
+    registroParadas: false,
     configuracion: false,
 
     loading: true,
@@ -44,37 +42,20 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     this.auth.user$.subscribe((data) => {
         this.loading = false;
     });
+    this.asignarEmpresa();
   }
 
   ngAfterViewInit() {
     this.obtenerRoles();
   }
 
-  irMenusCoexpan() {
-    this.cambioEmpresa(env.dbCoexpan);
-    this.route.navigateByUrl('/pages/root/main');
-  }
-
-  irMenusCoembal() {
-    this.cambioEmpresa(env.dbCoembal);
-    this.route.navigateByUrl('pages/root/cmb-main');
-  }
-
-  irMenuTestCoembal() {
-    this.cambioEmpresa(env.dbCoembal);
-    // this.route.navigateByUrl('pages/root/cmb-main');
-  }
 
   irMenuMenuConfig() {
     this.route.navigateByUrl('pages/root/config/conf-menu');
   }
 
-  cambioEmpresa(dbChange: string): void {
-    const db = localStorage.getItem('sapdb');
-    if (db !== dbChange) {
-      localStorage.removeItem('sapusr');
-      localStorage.setItem('sapdb', dbChange);
-    }
+  asignarEmpresa() {
+    localStorage.setItem('sapdb', env.dbCoembal);
   }
 
   obtenertiempoDia(): string {
@@ -96,12 +77,12 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     this.route.navigateByUrl('/pages/materias-primas/menu');
   }
 
-  navMenuLogistica() {
-    this.route.navigateByUrl('/pages/cmb/logistica/menu-logistica');
+  navMenuInventario() {
+    this.route.navigateByUrl('/pages/inventario/menu-inventario');
   }
 
-  navMenuExtrusion() {
-    this.route.navigateByUrl('/pages/cmb/extrusion/menu-extrusion');
+  navMenuRegistroParadas() {
+    this.route.navigateByUrl('/pages/registro-paradas/menu');
   }
 
   obtenerRoles() {
@@ -123,20 +104,16 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   }
 
   habilitarModulos() {
-    const foundExtrusion = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'extrusion' && el.business === 'cmb');
+    const foundConfiguracion  = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'configuracion');
+    const foundMateriasPrimas = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'materias-primas');
+    const foundInventario = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'inventario');
+    const foundRegistroParadas     = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'registro-paradas');
 
-    const foundLogistica = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'logistica' && el.business === 'cmb');
 
-    const foundMateriasPrimas = this.showThisContent$.value.datauser.find((el: any) =>
-      el.zone === 'materias-primas' && el.business === 'cmb');
-
-    const foundConfiguracion = this.showThisContent$.value.datauser.find((el: any) =>
-      el.zone === 'configuracion' && el.business === 'cmb');
-
-    if (foundExtrusion !== undefined) { this.modulos.extrusion = true; }
-    if (foundLogistica !== undefined) { this.modulos.logistica = true; }
-    if (foundMateriasPrimas !== undefined) { this.modulos.materiasPrimas = true; }
-    if (foundConfiguracion !== undefined) { this.modulos.configuracion = true; }
+    if (foundConfiguracion  !== undefined) { this.modulos.configuracion = true; }
+    if (foundMateriasPrimas !== undefined) { this.modulos.materiasprimas = true; }
+    if (foundInventario     !== undefined) { this.modulos.inventario = true; }
+    if (foundRegistroParadas     !== undefined) { this.modulos.registroParadas = true; }
   }
 
 }

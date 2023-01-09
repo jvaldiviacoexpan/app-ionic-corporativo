@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Service } from '../../../../../providers/internal/auth0.service';
 import { SecurityService } from '../../../../../providers/external/security.service';
+import { ToolService } from '../../../../../providers/external/tools.service';
 
 @Component({
   selector: 'app-menu-materias-primas',
@@ -14,13 +15,8 @@ import { SecurityService } from '../../../../../providers/external/security.serv
 export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
 
   enabled = {
-    found5: false,
-    found6: false,
-    found7: false,
-    found8: false,
-    found9: false,
-    found10: false,
-    found11: false,
+    mpr01: false,
+    mpr02: false,
   };
 
   showThisContent$ = new BehaviorSubject<any>({});
@@ -30,28 +26,21 @@ export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
     private route: Router,
     private auth: AuthService,
     private auth0Serv: Auth0Service,
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private toolService: ToolService,
   ) { }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+
   }
 
   ngAfterViewInit(): void {
+    this.toolService.simpleLoader('Cargando...');
     this.obtenerRoles();
   }
 
-  irRegistroParadas() {
-    this.route.navigateByUrl('/pages/extrusion/reg-paradas');
-  }
-
   irEmisionPallet() {
-    this.route.navigateByUrl('/pages/extrusion/emision-pallet');
-  }
-
-  irRegistroCorrea(): void {
-    this.route.navigateByUrl('/pages/extrusion/registro-inv-correa');
+    this.route.navigateByUrl('/pages/materias-primas/etiqueta');
   }
 
   menuToogle() {
@@ -70,36 +59,23 @@ export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
           this.showThisContent$.next({ datauser: restuser.app_metadata.roles });
           this.habilitarModulos();
         }, (err) => {
+          // Todo Falta informacion adicional
         });
       }, (err) => {
-      });
+        // Todo Falta informacion adicional
+      }).finally(() => this.toolService.dismissLoader());
     });
   }
 
   habilitarModulos() {
-    const found5 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 5 && el.enabled === true);
-    const found6 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 6 && el.enabled === true);
-    const found7 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 7 && el.enabled === true);
-    const found8 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 8 && el.enabled === true);
-    const found9 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 9 && el.enabled === true);
-    const found10 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 10 && el.enabled === true);
-    const found11 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 11 && el.enabled === true);
+    const mpr01 = this.showThisContent$.value.datauser
+      .find((el: any) => el.id === 'mpr01' && el.enabled === true);
+    const mpr02 = this.showThisContent$.value.datauser
+      .find((el: any) => el.id === 'mpr02' && el.enabled === true);
 
 
-    if (found5  !== undefined) { this.enabled.found5 = true; }
-    if (found6  !== undefined) { this.enabled.found6 = true; }
-    if (found7  !== undefined) { this.enabled.found7 = true; }
-    if (found8  !== undefined) { this.enabled.found8 = true; }
-    if (found9  !== undefined) { this.enabled.found9 = true; }
-    if (found10 !== undefined) { this.enabled.found10 = true; }
-    if (found11 !== undefined) { this.enabled.found11 = true; }
+    if (mpr01  !== undefined) { this.enabled.mpr01 = true; }
+    if (mpr02  !== undefined) { this.enabled.mpr02 = true; }
 
   }
 
