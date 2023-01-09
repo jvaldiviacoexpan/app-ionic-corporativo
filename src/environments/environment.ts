@@ -7,28 +7,27 @@ export const environment = {
   // urlBase:      'https://movil.coexpan.cl/app-corporativo',
 
   // API LOCAL
-  urlBase:  'http://localhost:8100',
-  urlAuth0: 'https://localhost:44360/api',
-  urlcxp:   'https://localhost:44356/api',
-  // https://localhost:44333/api/v1/logistica/inventario/
-  // urlcxpprueba: 'https://localhost:44303',
-
-  // API DESARROLLO
   // urlBase:  'http://localhost:8100',
   // urlAuth0: 'https://localhost:44360/api',
-  // urlcxp:   'https://localhost:44356/api',
-  // https://localhost:44333/api/v1/logistica/inventario/
+  // urlMateriasPrimas:   'https://localhost:44356/api',
+  // urlInventario: 'https://localhost:44362/api',
+
+  // API DESARROLLO
+  urlBase: 'https://movil.coexpan.cl/desa-app-corporativo',
+  urlAuth0: 'https://test.coexpan.cl/api/v1/integracion/auth0',
+  urlMateriasPrimas: 'https://test.coexpan.cl/api/v1/bodega/materias-primas',
+  urlInventario: 'https://test.coexpan.cl/api/v1/logistica/inventario',
   // urlcxpprueba: 'https://localhost:44303',
 
   // API PRODUCCION
-  // urlBase:      'https://movil.coexpan.cl/app-corporativo',
-  // urlAuth0:     'https://coexpancl.us.auth0.com', NO SIRVE AHORA
-  // urlcxp:       'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  // urlBase: 'https://movil.coexpan.cl/app-corporativo',
+  // urlAuth0: 'https://coexpancl.us.auth0.com', NO SIRVE AHORA
+  // urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  //urlInventario: 'https://localhost:44333/api',
   urlApi: 'https://api.coexpan.cl',
 
   // constantes
   dbCoembal: 'SBO_COEMBAL_FUSION_TEST',
-  // dbCoexpan: 'SBO_COEMBAL_FUSION',
   // dbCoembal: 'SBO_COEMBAL_FUSION',
 
   dismissTimer: 250,

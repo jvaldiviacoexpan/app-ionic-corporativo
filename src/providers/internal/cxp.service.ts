@@ -16,7 +16,7 @@ export class CxpService {
 
   public obtenerInformacionOc(idCarpeta: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/get-oc`, JSON.stringify(idCarpeta))
+      this.http.post(`${env.urlMateriasPrimas}/get-oc`, JSON.stringify(idCarpeta))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -27,7 +27,7 @@ export class CxpService {
 
   public emisionEtiquetasMateriasPrimas(emisionEtq: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/generar-etiqueta`, JSON.stringify(emisionEtq))
+      this.http.post(`${env.urlMateriasPrimas}/generar-etiqueta`, JSON.stringify(emisionEtq))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -38,7 +38,7 @@ export class CxpService {
 
   public obtenerPalletCodigoBarra(codbarra: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/obtener-pl`, JSON.stringify(codbarra))
+      this.http.post(`${env.urlMateriasPrimas}/obtener-pl`, JSON.stringify(codbarra))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -49,7 +49,7 @@ export class CxpService {
 
   public enviarEntradaMercanciaMateriasPrimas(em: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/sap/entrada-mercancia`, JSON.stringify(em))
+      this.http.post(`${env.urlMateriasPrimas}/sap/entrada-mercancia`, JSON.stringify(em))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -60,7 +60,7 @@ export class CxpService {
 
   public obtenerImpresoras() {
     return new Promise((resolve, reject) => {
-      this.http.get(`${env.urlcxp}/obtener-impresoras`)
+      this.http.get(`${env.urlMateriasPrimas}/obtener-impresoras`)
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -72,7 +72,7 @@ export class CxpService {
 
   public estadoImpresora(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/estado-impresora`, JSON.stringify(data))
+      this.http.post(`${env.urlMateriasPrimas}/estado-impresora`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -85,7 +85,7 @@ export class CxpService {
   // Modulo de registro de paradas
   public enviarRegistrosParadas(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/ingresar-parada`, JSON.stringify(data))
+      this.http.post(`${env.urlMateriasPrimas}/ingresar-parada`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -96,7 +96,7 @@ export class CxpService {
 
   public obtenerSupervisadores(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/obtener-supervisores`, JSON.stringify(data))
+      this.http.post(`${env.urlMateriasPrimas}/obtener-supervisores`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -107,7 +107,7 @@ export class CxpService {
 
   public obtenerMotivoParadas(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/obtener-motivoparadas`, JSON.stringify(data))
+      this.http.post(`${env.urlMateriasPrimas}/obtener-motivoparadas`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -118,7 +118,7 @@ export class CxpService {
 
   public obtenerMaquinas(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/obtener-maquinas`, JSON.stringify(data))
+      this.http.post(`${env.urlMateriasPrimas}/obtener-maquinas`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
