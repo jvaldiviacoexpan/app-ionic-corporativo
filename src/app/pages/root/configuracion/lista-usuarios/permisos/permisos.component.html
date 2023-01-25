@@ -100,6 +100,25 @@
         </div>
 
         <div class="tab">
+          <input type="checkbox" id="chck8">
+          <label class="tab-label" for="chck8">Entrada Mercancía</label>
+          <div class="tab-content">
+            <ion-item>
+              <ion-label>PT Caja</ion-label>
+              <ion-toggle #etr01 (click)="tooglePermisos(!etr01.checked, 'cmb', 'entrada-mercancia', 'pt-caja', 'etr01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Reimpresión Etq. PT Caja</ion-label>
+              <ion-toggle #etr02 (click)="tooglePermisos(!etr02.checked, 'cmb', 'entrada-mercancia', 'reimprimir-pt-caja', 'etr02')">
+              </ion-toggle>
+            </ion-item>
+
+          </div>
+        </div>
+
+        <div class="tab">
           <input type="checkbox" id="chck7">
           <label class="tab-label" for="chck7">Registro Paradas</label>
           <div class="tab-content">

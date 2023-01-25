@@ -9,6 +9,7 @@ import { MotivosService } from '../../../../../../providers/internal/motivos.ser
 import { RegistroParadaModel, ParamRequest, ParamSupervisores } from '../../../../../../models/anymodels.model';
 import { CxpService } from '../../../../../../providers/internal/cxp.service';
 import { CmbModalRegistroCausaComponent } from './cmb-modal-registro-causa/cmb-modal-registro-causa.component';
+import * as moment from 'moment';
 
 
 @Component({
@@ -57,6 +58,7 @@ export class CmbModalRegistroParadaComponent implements OnInit {
   ngOnInit(): void {
     this.maquinas = this.maquinasService.getMaquinas();
     this.motivos = this.motivosService.getMotivos();
+    this.registro.fecha = new Date();
     // this.obtenerSupervisores();
   }
 

@@ -56,7 +56,7 @@ export class ModalRegistroParadaComponent implements OnInit {
   ngOnInit(): void {
     this.maquinas = this.maquinasService.getMaquinas();
     this.motivos = this.motivosService.getMotivos();
-    this.registro.fecha = new Date().toISOString();
+    this.registro.fecha = new Date();
     this.obtenerSupervisores();
   }
 

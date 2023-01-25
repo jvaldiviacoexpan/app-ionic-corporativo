@@ -130,7 +130,7 @@ export class CxpService {
   // Emision de Etiquetas Bobinas
   public postBuscarDatosBobina(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/info-bobina`, JSON.stringify(data))
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/info-bobina`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -141,7 +141,7 @@ export class CxpService {
 
   public postEmisionPalletBobina(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/emision-pallet`, JSON.stringify(data))
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/emision-pallet`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -153,7 +153,7 @@ export class CxpService {
   // Emision de Etiqueta Caja Pallet Coembal
   public postBuscarDatosCaja(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/info-caja-pallet`, JSON.stringify(data))
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/info-caja-pallet`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -164,7 +164,50 @@ export class CxpService {
 
   public postEmisionPalletCaja(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlApi}/api/v1/wscxp-extrusion/etiquetas/emision-caja-pallet`, JSON.stringify(data))
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/emision-caja-pallet`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postSapEntradaMercanciaCajaPallet(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/entrada-mercancia-cajapallet`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public getEjecutarEtlExtrusion() {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${env.urlEntradaMercancia}/etiquetas/ejecucion-etl-extrusion`)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postObtenerDatosEtiqueta(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/obtener-datos-etiqueta`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+  public postReimprimirCajaPallet(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/etiquetas/reimprimir-caja-pallet`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {

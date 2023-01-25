@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-
 @Component({
   selector: 'app-entrada-mercancia',
   template: '<ion-router-outlet></ion-router-outlet>'
@@ -8,6 +7,6 @@ import { Component } from '@angular/core';
 
 export class EntradaMercanciaComponent {
 
-  constructor() {}
+  contructor() { }
 
 }

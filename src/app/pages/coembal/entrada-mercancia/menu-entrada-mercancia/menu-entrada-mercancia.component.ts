@@ -1,22 +1,22 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '@auth0/auth0-angular';
 import { Auth0Service } from '../../../../../providers/internal/auth0.service';
 import { SecurityService } from '../../../../../providers/external/security.service';
 import { ToolService } from '../../../../../providers/external/tools.service';
 
 @Component({
-  selector: 'app-menu-materias-primas',
-  templateUrl: './menu-materias-primas.component.html',
-  styleUrls: ['./menu-materias-primas.component.scss'],
+  selector: 'app-menu-entrada-mercancia',
+  templateUrl: './menu-entrada-mercancia.component.html',
+  styleUrls: ['./menu-entrada-mercancia.component.scss']
 })
-export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
+export class MenuEntradaMercanciaComponent implements OnInit, AfterViewInit {
 
   enabled = {
-    mpr01: false,
-    mpr02: false,
+    etr01: false,
+    etr02: false,
   };
 
   showThisContent$ = new BehaviorSubject<any>({});
@@ -35,14 +35,6 @@ export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.toolService.simpleLoader('Cargando...');
     this.obtenerRoles();
-  }
-
-  irEmisionPallet() {
-    this.route.navigateByUrl('/pages/materias-primas/etiqueta');
-  }
-
-  menuToogle() {
-    this.menu.toggle();
   }
 
   obtenerRoles() {
@@ -66,17 +58,28 @@ export class MenuMateriasPrimasComponent implements OnInit, AfterViewInit {
   }
 
   habilitarModulos() {
-    const mpr01 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 'mpr01' && el.enabled === true);
-    const mpr02 = this.showThisContent$.value.datauser
-      .find((el: any) => el.id === 'mpr02' && el.enabled === true);
+    const etr01 = this.showThisContent$.value.datauser
+      .find((el: any) => el.id === 'etr01' && el.enabled === true);
+    const etr02 = this.showThisContent$.value.datauser
+      .find((el: any) => el.id === 'etr02' && el.enabled === true);
 
 
-    if (mpr01  !== undefined) { this.enabled.mpr01 = true; }
-    if (mpr02  !== undefined) { this.enabled.mpr02 = true; }
+    if (etr01  !== undefined) { this.enabled.etr01 = true; }
+    if (etr02  !== undefined) { this.enabled.etr02 = true; }
 
   }
 
+  menuToogle() {
+    this.menu.toggle();
+  }
+
+  irPtCaja() {
+    this.route.navigateByUrl('/pages/entrada-mercancia/pt-caja');
+  }
+
+
+  irReimprimirPtCaja() {
+    this.route.navigateByUrl('/pages/entrada-mercancia/reimprimir-pt-caja');
+  }
 
 }
-

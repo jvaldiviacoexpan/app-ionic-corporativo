@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInput, MenuController, ToastController } from '@ionic/angular';
-import { CxpService } from '../../../../../../providers/internal/cxp.service';
-import { RestPalletModel } from '../../../../../../models/rest.model';
-import { Doc, EmMateriaPrimaModel, Ign1EMDetalle } from '../../../../../../models/sapbo.model';
-import { ToolService } from '../../../../../../providers/external/tools.service';
+import { RestPalletModel } from '../../../../../models/rest.model';
+import { CxpService } from '../../../../../providers/internal/cxp.service';
+import { ToolService } from '../../../../../providers/external/tools.service';
+import { Doc, EmMateriaPrimaModel, Ign1EMDetalle } from '../../../../../models/sapbo.model';
 
 
 @Component({

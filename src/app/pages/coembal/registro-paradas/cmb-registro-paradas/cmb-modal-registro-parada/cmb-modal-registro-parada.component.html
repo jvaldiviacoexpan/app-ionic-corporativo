@@ -35,8 +35,7 @@
 
   <ion-item>
     <ion-label color="medium"><strong>Fecha</strong></ion-label>
-    <ion-datetime [(ngModel)]="registro.fecha" displayFormat="DD/MM/YYYY" min="2020-01-01" required>
-    </ion-datetime>
+    <ion-datetime-button ngDefaultControl [(ngModel)]="registro.fecha"  datetime="datetime"></ion-datetime-button>
   </ion-item>
 
   <ion-item>
@@ -86,10 +85,6 @@
 
 <ion-modal [keepContentsMounted]="true">
   <ng-template>
-    <ion-datetime id="datetime" [(ngModel)]="registro.fecha"></ion-datetime>
+    <ion-datetime id="datetime"></ion-datetime>
   </ng-template>
 </ion-modal>
-
-
-
-

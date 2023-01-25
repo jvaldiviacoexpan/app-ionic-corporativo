@@ -21,6 +21,9 @@ export class PermisosComponent implements OnInit, AfterViewInit {
   @ViewChild('inv02') tglInv02: IonToggle;
   @ViewChild('inv03') tglInv03: IonToggle;
   @ViewChild('inv04') tglInv04: IonToggle;
+  // Inventario
+  @ViewChild('etr01') tglEtr01: IonToggle;
+  @ViewChild('etr02') tglEtr02: IonToggle;
   // Registro Paradas
   @ViewChild('rgp01') tglRgp01: IonToggle;
   @ViewChild('rgp02') tglRgp02: IonToggle;
@@ -34,7 +37,6 @@ export class PermisosComponent implements OnInit, AfterViewInit {
     private navParams: NavParams,
     private menu: MenuController,
     private modalController: ModalController,
-    private toastController: ToastController,
     private auth0Service: Auth0Service,
     private securityService: SecurityService,
     private toolService: ToolService,
@@ -182,6 +184,13 @@ export class PermisosComponent implements OnInit, AfterViewInit {
             break;
           case 'inv04':
             this.tglInv04.checked  = data.enabled;
+            break;
+          // Entrada Mercancia
+          case 'etr01':
+            this.tglEtr01.checked = data.enabled;
+            break;
+          case 'etr02':
+            this.tglEtr02.checked = data.enabled;
             break;
           // Registro Paradas
           case 'rgp01':

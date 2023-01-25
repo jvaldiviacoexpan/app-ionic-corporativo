@@ -59,7 +59,7 @@ export class RegistroParadaModel {
   area: string;
   maquina: MaquinaModel;
   supervisor: string;
-  fecha: string;
+  fecha: Date;
   turno: string;
   motivos: RegistroMotivosModel[];
   nroMotivos: number;

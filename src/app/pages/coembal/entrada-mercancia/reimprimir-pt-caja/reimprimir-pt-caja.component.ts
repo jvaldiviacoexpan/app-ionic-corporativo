@@ -1,0 +1,273 @@
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { IonInput, IonButton, MenuController, ToastController, AlertController } from '@ionic/angular';
+import { CxpService } from '../../../../../providers/internal/cxp.service';
+import { ToolService } from '../../../../../providers/external/tools.service';
+import { Data, RequestDatosEtiqueta } from 'src/models/requestEtqCajaPalletModel.model';
+
+
+
+@Component({
+  selector: 'app-reimprimir-pt-caja',
+  templateUrl: './reimprimir-pt-caja.component.html',
+  styleUrls: ['./reimprimir-pt-caja.component.scss']
+})
+export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
+
+  // Componentes
+  @ViewChild('txtCodigo') txtCodigo: IonInput;
+  @ViewChild('cantCajas') txtCantCajas: IonInput;
+  @ViewChild('btnCodigo') btnCodigo: IonButton;
+  @ViewChild('btnEmision') btnEmision: IonButton;
+
+  dtoDatosResponse: any;
+  loading = false;
+  cliente = '';
+  ordenFab = '';
+  producto = '';
+
+  constructor(
+    private menuCtrl: MenuController,
+    private cxpService: CxpService,
+    private toastController: ToastController,
+    private toolService: ToolService,
+    private alertController: AlertController,
+  ) { }
+
+  ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
+    this.btnEmision.disabled = true;
+  }
+
+  menuToogle(): void {
+    this.menuCtrl.toggle();
+  }
+
+  obtenerInformacionCaja(cod: string): any {
+    this.reestablecerDatos();
+    this.loading = true;
+
+    if (cod.length === 0) {
+      this.presentToast('Escanee un codigo antes de continuar.', 2000, 'warning');
+      this.codigoSetFocus();
+      return;
+    }
+
+    this.accionBusqueda(true);
+    this.cxpService.postObtenerDatosEtiqueta(cod).then((resp: any) => {
+      if (resp.Status.Status === 'T') {
+
+        console.log(resp);
+        this.dtoDatosResponse = resp;
+        this.cliente = this.dtoDatosResponse.Response[0].CLIENTE;
+        this.ordenFab = this.dtoDatosResponse.Response[0].LOTE;
+        this.producto = this.dtoDatosResponse.Response[0].COD_PRODUCTO;
+        this.cantidadCajasSetFocus();
+
+      } else {
+        this.presentToast(resp.Status.Message, 2000, 'warning');
+      }
+      // console.log(resp);
+    }, (err) => {
+      console.warn(err);
+    }).finally(() => {
+      this.accionBusqueda(false);
+    });
+  }
+
+  async alertaConfirmarEtiqueta() {
+
+    if (!this.successEntradaMercancia() || !this.revisionDatosEntradaMercancia()) {
+      return;
+    }
+
+    const alert = await this.alertController.create({
+      header: 'Imprimir Etiqueta',
+      message: 'Desea imprimir la etiqueta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'btnAlertDanger',
+          handler: () => {
+            // console.log('Confirm Cancel.');
+          }
+        }, {
+          text: 'Imprimir',
+          cssClass: 'btnAlertSuccess',
+          handler: (data) => {
+            this.emitirPalletCajaCoembal();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  emitirPalletCajaCoembal(): void {
+
+    const req: RequestDatosEtiqueta = new RequestDatosEtiqueta();
+    req.data = new Data();
+    req.ipPrint = localStorage.getItem('ipimp');
+
+    req.data.descProducto = '';
+    req.data.cliente = this.dtoDatosResponse.Response[0].DESC_PRODUCTO;
+    req.data.proceso = this.dtoDatosResponse.Response[0].PROCESO;
+    req.data.codProceso = 'ND';
+    req.data.cantxCaja = this.dtoDatosResponse.Response[0].CLIENTE;
+    // req.data.lote:          string;
+    // req.data.color:         string;
+    // req.data.codProducto:   string;
+    // req.data.tipoResina:    string;
+    // req.data.cantidadCajas: string;
+    // req.data.cantidadCajas = Number(this.txtCantCajas.value.toString());
+
+    console.log(req);
+
+    this.toolService.simpleLoader('Enviando datos...');
+    this.cxpService.postSapEntradaMercanciaCajaPallet(req).then((data: any) => {
+      if (data.Status === 'T') {
+        this.presentToast('Imprimiendo etiqueta...', 2000, 'success');
+        this.reestablecerDatos();
+      } else {
+        this.presentToast(data.Message, 5000, 'warning');
+        setTimeout(() => {
+          this.presentToast(`Sap: ${data.Sap_Message}`, 4000, 'warning');
+        }, 5000);
+      }
+    }, err => {
+      console.error(err);
+    }).finally(() => this.toolService.dismissLoader());
+  }
+
+  actualizarFuenteDatos(): void {
+    this.toolService.simpleLoader('Refrescando datos...');
+    this.cxpService.getEjecutarEtlExtrusion().then((data: any) => {
+      if (data.Status.Status === 'T') {
+        console.log(data);
+        if (data.Response[0].STATUS === 1) {
+          this.presentToast('Datos refrescados', 2000, 'success');
+        } else {
+          this.presentToast('Error en la comunicación con el servidor. \n Intente nuevamente.', 5000, 'warning');
+        }
+      } else {
+        this.presentToast(data.Status.Message, 5000, 'warning');
+      }
+    }, err => {
+      console.error(err);
+    }).finally(() => this.toolService.dismissLoader());
+  }
+
+  codigoSetFocus() { setTimeout(() => { this.txtCodigo.setFocus(); }, 300); }
+  cantidadCajasSetFocus() { setTimeout(() => { this.txtCantCajas.setFocus(); }, 300); }
+
+  get deshabilitarBotonEnviar(): boolean {
+    let resp = true;
+    if (this.dtoDatosResponse) {
+      resp = false;
+    }
+    return resp;
+  }
+
+  accionBusqueda(action: boolean) {
+    this.txtCodigo.disabled = action;
+    this.btnCodigo.disabled = action;
+    this.loading = action;
+    if (action) { this.txtCodigo.value = ''; }
+  }
+
+  reestablecerDatos() {
+    this.cliente = '';
+    this.ordenFab = '';
+    this.producto = '';
+    this.dtoDatosResponse = null;
+  }
+
+  async presentToast(mensaje: string, duracion: number, tcolor: string) {
+    const toast = await this.toastController.create({
+      message: mensaje, duration: duracion, color: tcolor
+    });
+    await toast.present();
+  }
+
+  successEntradaMercancia(): boolean {
+    let ok = true;
+    const ipPrint = localStorage.getItem('ipimp');
+    const login = localStorage.getItem('sapusr');
+
+    if (!ipPrint) {
+      this.presentToast('Seleccione una impresora antes de emitir la etiqueta.', 2000, 'warning');
+      ok = false;
+    }
+    if (!login) {
+      this.presentToast('Inicie sesión en Sap Business One para Continuar.', 5000, 'warning');
+      ok = false;
+    }
+    if (this.dtoDatosResponse.Response.cantxCaja === '0') {
+      this.presentToast('SAPBO: Und/Caja o Kg/Bob sin parámetros, modifique en Sap Business One y vuelva a intentar.', 5000, 'warning');
+      ok = false;
+    }
+    return ok;
+
+  }
+
+  revisionDatosEntradaMercancia(): boolean {
+
+    const status = {
+      message: ''
+    };
+    let result = false;
+    const list: string[] = [];
+
+    if (this.dtoDatosResponse.Response.bodega === null) {
+      status.message = 'Sap BO: Sin asignación de bodega.';
+      list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.cantxCaja === null) {
+      status.message = 'Sap BO: Cantidad por cajas vacío.';
+      list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.codCosto === null) {
+      status.message = 'Sap BO: Sin asignación de código de costo.';
+      list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.codigoProducto === null) {
+      status.message = 'SCP2: Sin asignación de código de producto.';
+      list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.peso === null) {
+      status.message = 'Sap BO: Sin asignación de peso envase.';
+      list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.precio === null) {
+      status.message = 'Sap BO: Precio resina no asignado.';
+      list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.precioEnvase === null) {
+      status.message = 'Sap BO: Precio envase no válido.';
+      list.push(status.message);
+    }
+
+    let msg = `Error al enviar Entrada Mercancia. <br> <ul>`;
+    if (list.length > 0) {
+      list.forEach(e => {
+        msg += `<li>${e}</li>`;
+      });
+      msg += '</ul>';
+      this.presentToast(`${msg}`, 5000, 'warning');
+
+    } else {
+      result = true;
+    }
+    return result;
+
+  }
+
+}
+

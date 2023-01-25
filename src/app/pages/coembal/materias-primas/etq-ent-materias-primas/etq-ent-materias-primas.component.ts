@@ -86,7 +86,7 @@ export class EtqEntMateriasPrimasComponent implements OnInit {
           type: 'number',
           min: 1, max: 10000,
           cssClass: '',
-          placeholder: 'Peso Pallet'
+          placeholder: 'Cantidad/Peso'
         }
       ],
       buttons: [

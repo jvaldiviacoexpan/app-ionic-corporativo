@@ -1,5 +1,5 @@
 import { RestImpresoraModel } from './../models/restImpresora.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Login } from '../models/sapbo.model';
 import { SecurityService } from '../providers/external/security.service';
@@ -14,7 +14,7 @@ import { environment as env } from 'src/environments/environment';
   styleUrls: ['app.component.scss'],
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   impseleccionada: string;
 
@@ -31,6 +31,17 @@ export class AppComponent implements OnInit {
     this.auth.getAccessTokenSilently().subscribe(()=>{}, (err: Error) => {
       // console.log(err.message);
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.verificarImpresoraSeleccionada();
+  }
+
+  verificarImpresoraSeleccionada(): void {
+    const ipPrint = localStorage.getItem('ipimpname');
+    if (ipPrint) {
+      this.impseleccionada = ipPrint;
+    }
   }
 
   get existeUrsSap(): boolean {
@@ -132,7 +143,6 @@ export class AppComponent implements OnInit {
     this.auth.logout({
       federated: true,
       returnTo: `${env.urlBase}/#/pages/root/login`,
-      // returnTo: 'http://localhost:8100/#/pages/root/login'
     });
     localStorage.removeItem('sapusr');
     this.toolServices.simpleLoader('Cargando...');
@@ -186,11 +196,15 @@ export class AppComponent implements OnInit {
                     if (data === i.IP) {
                       this.presentToast(`Impresora ${i.TAG_NOMBRE} seleccionada.`, 2000, 'success');
                       this.impseleccionada = i.TAG_NOMBRE;
+                      localStorage.setItem('ipimpname', i.TAG_NOMBRE);
                       localStorage.setItem('ipimp', data);
                     }
                   });
                 } else {
                   this.presentToast(rest.Message, 3000, 'danger');
+                  localStorage.removeItem('ipimpname');
+                  localStorage.removeItem('ipimp');
+                  this.impseleccionada = '';
                 }
               }, (err) => {
                 console.warn(err);

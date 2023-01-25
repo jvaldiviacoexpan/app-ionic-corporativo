@@ -27,17 +27,10 @@ const routes: Routes = [{
       loadChildren: () => import('./coembal/registro-paradas/registro-paradas.module')
         .then(m => m.RegistroParadasModule)
     },
-
-    //TODO Corregir lo de abajo ya que no va
     {
-      path: 'logistica',
-      loadChildren: () => import('./coexpan/logistica/logistica.module')
-        .then(m => m.LogisticaModule)
-    },
-    {
-      path: 'extrusion',
-      loadChildren: () => import('./coexpan/extrusion/extrusion.module')
-        .then(m => m.ExtrusionModule)
+      path: 'entrada-mercancia',
+      loadChildren: () => import('./coembal/entrada-mercancia/entrada-mercancia.module')
+        .then(m => m.EntradaMercanciaModule)
     },
     {
       path: '',

@@ -17,9 +17,9 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   modulos = {
     materiasprimas: false,
     inventario: false,
+    entradaMercancia: false,
     registroParadas: false,
     configuracion: false,
-
     loading: true,
   };
 
@@ -46,7 +46,18 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.comprobarUsuario();
     this.obtenerRoles();
+  }
+
+  comprobarUsuario() {
+    setTimeout(() => {
+      this.auth.isAuthenticated$.subscribe(data => {
+        if (data === false) {
+          this.route.navigateByUrl('/pages/root/login');
+        }
+      });
+    }, 2000);
   }
 
 
@@ -81,6 +92,10 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     this.route.navigateByUrl('/pages/inventario/menu-inventario');
   }
 
+  navMenuEntradaMercancia() {
+    this.route.navigateByUrl('/pages/entrada-mercancia/menu');
+  }
+
   navMenuRegistroParadas() {
     this.route.navigateByUrl('/pages/registro-paradas/menu');
   }
@@ -107,12 +122,14 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     const foundConfiguracion  = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'configuracion');
     const foundMateriasPrimas = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'materias-primas');
     const foundInventario = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'inventario');
+    const foundEntradaMercancia = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'entrada-mercancia');
     const foundRegistroParadas     = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'registro-paradas');
 
 
     if (foundConfiguracion  !== undefined) { this.modulos.configuracion = true; }
     if (foundMateriasPrimas !== undefined) { this.modulos.materiasprimas = true; }
-    if (foundInventario     !== undefined) { this.modulos.inventario = true; }
+    if (foundInventario !== undefined) { this.modulos.inventario = true; }
+    if (foundEntradaMercancia     !== undefined) { this.modulos.entradaMercancia = true; }
     if (foundRegistroParadas     !== undefined) { this.modulos.registroParadas = true; }
   }
 
