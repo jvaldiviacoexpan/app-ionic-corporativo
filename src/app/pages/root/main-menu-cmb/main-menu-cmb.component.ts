@@ -14,7 +14,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MainMenuCmbComponent implements AfterViewInit {
 
-  loadMenu: boolean;
+  modulos = {
+    logistica: false,
+    extrusion: false,
+    loading: true,
+  };
   showThisContent$ = new BehaviorSubject<any>({});
   authRoles$ = new BehaviorSubject<any>({});
 
@@ -30,26 +34,6 @@ export class MainMenuCmbComponent implements AfterViewInit {
     this.obtenerRoles();
   }
 
-  obtenerRoles() {
-    this.loadMenu = true;
-    this.auth.user$.subscribe((user) => {
-      this.auth0Serv.getAuth().then((resp: any) => {
-        const userdata = {
-          idToken: resp.access_token,
-          email: user.email,
-        };
-        const datarest = this.securityService.encrypt(JSON.stringify(userdata));
-        this.auth0Serv.getDataUser(datarest).then((restuser: any) => {
-          this.showThisContent$.next({ datauser: restuser[0].app_metadata.roles });
-        }, (err) => {
-          console.warn(err);
-        });
-      }, (err) => {
-        console.warn(err);
-      }).finally(()=>this.loadMenu = false);
-    });
-  }
-
   menuToogle() {
     this.menu.toggle();
   }
@@ -60,6 +44,32 @@ export class MainMenuCmbComponent implements AfterViewInit {
 
   navMenuExtrusion() {
     this.router.navigateByUrl('/pages/cmb/extrusion/menu-extrusion');
+  }
+
+  obtenerRoles() {
+    this.auth.user$.subscribe((user) => {
+      this.auth0Serv.getAuth().then((resp: any) => {
+        const userdata = {
+          idToken: resp.access_token,
+          idUser: user.sub,
+        };
+        const datarest = this.securityService.encrypt(JSON.stringify(userdata));
+        this.auth0Serv.getUserRoles(datarest).then((restuser: any) => {
+          this.showThisContent$.next({ datauser: restuser.app_metadata.roles });
+          this.habilitarModulos();
+        }, (err) => {
+        });
+      }, (err) => {
+      }).finally(() => this.modulos.loading = false);
+    });
+  }
+
+  habilitarModulos() {
+    const foundExtrusion = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'extrusion' && el.business === 'cmb');
+    const foundLogistica = this.showThisContent$.value.datauser.find((el: any) => el.zone === 'logistica' && el.business === 'cmb');
+
+    if (foundExtrusion !== undefined) { this.modulos.extrusion = true; }
+    if (foundLogistica !== undefined) { this.modulos.logistica = true; }
   }
 
 

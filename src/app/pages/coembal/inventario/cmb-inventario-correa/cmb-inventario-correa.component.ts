@@ -1,0 +1,219 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MenuController, AlertController, IonInput, IonButton, ToastController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
+import { CmbGetRegistro, CmbRegistroInventarioModel } from '../../../../../models/anymodels.model';
+import { InventarioService } from '../../../../../providers/internal/inventario.service';
+import * as moment from 'moment';
+
+@Component({
+  selector: 'app-inventario-correa',
+  templateUrl: './cmb-inventario-correa.component.html',
+  styleUrls: ['./cmb-inventario-correo.component.scss']
+})
+export class CmbInventarioCorreaComponent implements OnInit {
+
+ @ViewChild('txtcodbarra') txtCodabarra: IonInput;
+  @ViewChild('cantidad') txtCantidad: IonInput;
+  @ViewChild('unixcaja') txtUnixcaja: IonInput;
+  @ViewChild('btnenviar') btnenviar: IonButton;
+
+  invId$ = new BehaviorSubject<any>({});
+  // stsbobina: CxpDatosBobinas = new CxpDatosBobinas();
+  // stsbobinaa: CxpRegistroInventarioModel = new CxpRegistroInventarioModel();
+  stsInventario: CmbGetRegistro = new CmbGetRegistro();
+  stsInventarioo: CmbRegistroInventarioModel = new CmbRegistroInventarioModel();
+  loading: boolean;
+  listaRegistro: any = [];
+
+  constructor(
+    private menu: MenuController,
+    private alertCtrl: AlertController,
+    private inventarioServ: InventarioService,
+    private toastCtrl: ToastController
+  ) { }
+
+  menuToogle() {
+    this.menu.toggle();
+  }
+
+  ngOnInit(): void {
+    this.asignarIdentificador();
+    this.invId$.next({ invid: localStorage.getItem('inv-id') });
+    this.obtenerListaInventario();
+  }
+
+  obtenerDatos(value: any) {
+    this.loading = true;
+    this.inventarioServ.cmbCorreaObtenerinformacion(value).then((data: any) => {
+      // console.log(data);
+      if (data.Objeto[0]) {
+        this.stsInventario = data.Objeto[0];
+        this.txtUnixcaja.value = data.Objeto[0].UNIDXCAJA;
+        this.btnenviar.disabled = false;
+      } else {
+        // console.log('no encontrado');
+        this.stsInventario = new CmbGetRegistro();
+        this.txtUnixcaja.value = 0;
+        this.stsInventario.ORDEN = 0;
+        this.stsInventario.PRODUCTO = 'N/A';
+      }
+    }, (err) => {
+      console.warn(err);
+    }).finally(() => { this.loading = false; this.apuntarCantidad(); });
+  }
+
+  btnRegistrar() {
+    // console.log(this.txtBobina.value?.toString());
+    if (this.txtCodabarra.value?.toString().length <= 3 ||
+        this.txtCantidad.value <= 0) {
+      this.btnenviar.disabled = true;
+    } else {
+      this.btnenviar.disabled = false;
+    }
+  }
+
+  enviarRegistroInventario() {
+    // console.log(Number(this.txtCantidad.value.toString().replace(',','.')));
+    this.loading = true;
+    this.btnenviar.disabled = true;
+    this.stsInventarioo.codBarra = this.txtCodabarra.value.toString();
+    this.stsInventarioo.cantxCaja = Number(this.txtUnixcaja.value);
+    this.stsInventarioo.cantidad = Number(this.txtCantidad.value);
+    this.stsInventarioo.padUser = localStorage.getItem('inv-id');
+    this.inventarioServ.cmbCorreaRegistrarInventario(this.stsInventarioo).then((data: any) => {
+      if (data.Status.Status === 'T') {
+        this.txtCodabarra.value = '';
+        this.txtCantidad.value = 0;
+        this.txtUnixcaja.value = 0;
+        this.stsInventario = null;
+        this.obtenerListaInventario();
+      } else {
+        // console.log(data);
+        this.presentToast(data.Status.Message_Exception_Descr, 4000, 'warning');
+      }
+    }, (err) => {
+      console.warn(err);
+    }).finally(() => {
+      this.loading = false; this.btnenviar.disabled = false; this.apuntarCodBarra();
+    });
+  }
+
+  obtenerListaInventario() {
+    if (this.invId$.value.invid) {
+      const user = this.invId$.value.invid;
+      const fecha = moment(new Date()).format('DD-MM-yyyy');
+      this.inventarioServ.cmbCorreaObtenerListaInventario(user, fecha).then((data: any) => {
+        // console.log(data);
+        this.listaRegistro = data.Objeto;
+      }, (err) => {
+        console.warn(err);
+      });
+    } else {
+      // console.log('sin datos');
+    }
+  }
+
+  eliminarRegistro(id: number) {
+    this.inventarioServ.cmbCorreaEliminarRegistroInventario(id).then((data: any) => {
+      console.log(data);
+      this.obtenerListaInventario();
+    }, (err) => {
+      console.warn(err);
+    });
+  }
+
+  async registroDevice() {
+    const alert = await this.alertCtrl.create({
+      header: 'Nombre Dipositivo',
+      message: 'Ingrese <strong>Identificador</strong> para el inventario.',
+      inputs: [
+        {
+          name: 'identificador',
+          type: 'text',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'btnAlertDanger',
+          handler: (blah) => {
+            // console.log('Confirm Cancel:', blah);
+          },
+        },
+        {
+          text: 'Okay',
+          cssClass: 'btnAlertSuccess',
+          handler: (data) => {
+            // console.log(data);
+            localStorage.setItem('inv-id', data.identificador);
+            this.invId$.next({ invid: localStorage.getItem('inv-id') });
+            this.asignarIdentificador();
+            this.obtenerListaInventario();
+          },
+        },
+      ],
+    });
+    return alert.present();
+  }
+
+  async confirmarEliminar(id: number, codigo: string, cantidad: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmar Eliminación',
+      message: `Orden: <strong>${codigo}</strong> | <strong>${cantidad} Kg.</strong>`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'btnAlertDanger',
+          handler: (blah) => {
+            // console.log('Confirm Cancel:', blah);
+          },
+        },
+        {
+          text: 'Continuar',
+          cssClass: 'btnAlertSuccess',
+          handler: () => {
+            this.inventarioServ.cmbCorreaEliminarRegistroInventario(id).then((data: any) => {
+              console.log(data);
+              this.obtenerListaInventario();
+            }, (err) => {
+              console.warn(err);
+            });
+          }
+        },
+      ],
+    });
+    return alert.present();
+  }
+
+  asignarIdentificador() {
+    const idem = localStorage.getItem('inv-id');
+    if (idem === null || idem === '') {
+      this.registroDevice();
+      // console.log(idem);
+    }
+  }
+
+  apuntarCodBarra() {
+    setTimeout(() => {
+      this.txtCodabarra.setFocus();
+    }, 200);
+  }
+
+  apuntarCantidad() {
+    setTimeout(() => {
+      this.txtCantidad.setFocus();
+    }, 200);
+  }
+
+  async presentToast(msj: string, tiempo: number, estado: string) {
+    const toast = await this.toastCtrl.create({
+      message: msj,
+      duration: tiempo,
+      color: estado
+    });
+    toast.present();
+  }
+
+}

@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="" *ngIf="loadMenu">
+<ion-content class="" *ngIf="modulos.loading">
   <ion-grid fixed class="ion-margin-top">
     <ion-row>
       <ion-col class="ion-margin-top ion-padding-bottom" size="12">
@@ -46,18 +46,18 @@
   </ion-grid>
 </ion-content>
 
-<ion-content class="background-image ion-padding-top" *ngIf="showThisContent$ | async as dtuser">
+<ion-content class="background-image ion-padding-top" *ngIf="!modulos.loading">
   <ion-grid>
 
     <ion-list class="ion-margin-top">
-      <div *ngFor="let i of dtuser.datauser">
-        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="i === 'logistica'"
+      <div>
+        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.logistica"
         (click)="navMenuLogistica()">
           <ion-icon slot="start" name="bus"></ion-icon>
           <ion-label style="font-size: 1.4rem;" color="medium"><strong>Logistica</strong></ion-label>
           <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
         </ion-item>
-        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="i === 'extrusion'" (click)="navMenuExtrusion()">
+        <ion-item class="ion-padding-bottom" lines="full" button *ngIf="modulos.extrusion" (click)="navMenuExtrusion()">
           <ion-icon slot="start" name="bus"></ion-icon>
           <ion-label style="font-size: 1.4rem;" color="medium"><strong>Extrusion</strong></ion-label>
           <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>

@@ -21,18 +21,6 @@ const routes: Routes = [{
       canActivate: [AuthGuard]
     },
     {
-      path: 'em',
-      loadChildren: () => import('./entrada-mercancia/entrada-mercancia.module')
-        .then(m => m.EntradamercanciaModule),
-      canActivate: [AuthGuard]
-    },
-    {
-      path: 'inv',
-      loadChildren: () => import('./cxp-inventario/cxp-inventario.module')
-        .then(m => m.CxpInventarioModule),
-      canActivate: [AuthGuard]
-    },
-    {
       path: 'inv-dos',
       loadChildren: () => import('./cxp-inventario-dos/cxp-inventario-dos.module')
         .then(m => m.CxpInventarioDosModule),

@@ -1,7 +1,6 @@
 import { PagesComponent } from './pages.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AuthGuard } from '@auth0/auth0-angular';
 
 
 const routes: Routes = [{
@@ -14,24 +13,24 @@ const routes: Routes = [{
         .then(m => m.RootModule),
     },
     {
-      path: 'logistica',
-      loadChildren: () => import('./coexpan/logistica/logistica.module')
-        .then(m => m.LogisticaModule)
+      path: 'materias-primas',
+      loadChildren: () => import('./coembal/materias-primas/materias-primas.module')
+        .then(m => m.MateriasPrimasModule)
     },
     {
-      path: 'extrusion',
-      loadChildren: () => import('./coexpan/extrusion/extrusion.module')
-        .then(m => m.ExtrusionModule)
+      path: 'inventario',
+      loadChildren: () => import('./coembal/inventario/inventario.module')
+        .then(m => m.InventarioModule)
     },
     {
-      path: 'cmb/logistica',
-      loadChildren: () => import('./coembal/cmb-logistica/cmb-logistica.module')
-        .then(m => m.CmbLogisticaModule)
+      path: 'registro-paradas',
+      loadChildren: () => import('./coembal/registro-paradas/registro-paradas.module')
+        .then(m => m.RegistroParadasModule)
     },
     {
-      path: 'cmb/extrusion',
-      loadChildren: () => import('./coembal/cmb-extrusion/cmb-extrusion.module')
-        .then(m => m.CmbExtrusionModule)
+      path: 'entrada-mercancia',
+      loadChildren: () => import('./coembal/entrada-mercancia/entrada-mercancia.module')
+        .then(m => m.EntradaMercanciaModule)
     },
     {
       path: '',

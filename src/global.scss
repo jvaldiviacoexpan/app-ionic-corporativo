@@ -9,6 +9,13 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+// Font to all aplication
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 400;
+  src: url('./assets/fonts/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
@@ -31,6 +38,7 @@
   color: #d9534f !important;
   background-color: rgba(119, 119, 119, 0.053) !important;
 }
+
 .btnAlertSuccess {
   color: #5cb85c !important;
   background-color: rgba(119, 119, 119, 0.053) !important;

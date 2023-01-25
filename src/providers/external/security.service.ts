@@ -14,7 +14,7 @@ export class SecurityService {
 
   public sapIniciarSesion(login: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${env.urlcxp}/sap/inicio-sesion`, JSON.stringify(login)).subscribe(res => {
+      this.http.post(`${env.urlMateriasPrimas}/sap/inicio-sesion`, JSON.stringify(login)).subscribe(res => {
         resolve(res);
       }, err => {
         reject(err);

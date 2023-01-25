@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-align-items-center ion-header-row">
+        <ion-col size="2">
+          <ion-button fill="clear" (click)="menuToogle()">
+            <ion-icon name="menu-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="10" class="ion-text-left">
+          <ion-title color="medium"><strong>Menu Entrada Mercancia</strong></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="background-image">
+  <ion-grid>
+    <ion-row class="ion-margin-top">
+      <ion-col size="12" *ngIf="enabled.etr01 || enabled.etr02">
+        <ion-label color="medium"><strong>Gestión Etiquetas</strong></ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="6" *ngIf="enabled.etr01">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irPtCaja()">
+          <span class="btn-text">PT Caja</span>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="enabled.etr02">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irReimprimirPtCaja()">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Re-Imprimir Etiqueta</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">PT Caja</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

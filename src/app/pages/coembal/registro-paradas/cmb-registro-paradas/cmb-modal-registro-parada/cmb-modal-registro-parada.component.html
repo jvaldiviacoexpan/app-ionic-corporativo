@@ -1,0 +1,90 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="primary" expand="block" fill="clear" (click)="dismiss()">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+    <ion-title color="medium"><strong>Registro Parada</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item-divider class="ion-padding-top">
+  </ion-item-divider>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Area</strong></ion-label>
+    <ion-select #area (ionChange)="obtenerSupervisores(area.value)" [(ngModel)]="registro.area" value="1">
+      <ion-select-option value="2">Termoformado</ion-select-option>
+      <ion-select-option value="3">Impresión</ion-select-option>
+      <ion-select-option value="4">Etiquetado</ion-select-option>
+      <ion-select-option value="5">Rebordeado</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item [attr.disabled]="!listaSupervisores">
+    <ion-label color="medium"><strong>Supervisor</strong></ion-label>
+    <ion-select [(ngModel)]="registro.supervisor" itemValueField="id" placeholder="Selecciona Uno" required>
+      <ion-select-option *ngFor="let i of listaSupervisores" value="{{i.ID}}">{{i.NOMBRE}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Fecha</strong></ion-label>
+    <ion-datetime-button ngDefaultControl [(ngModel)]="registro.fecha"  datetime="datetime"></ion-datetime-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium"><strong>Turno</strong></ion-label>
+    <ion-select [(ngModel)]="registro.turno" placeholder="Seleccione Uno" required>
+      <ion-select-option value="T1">Turno 1</ion-select-option>
+      <ion-select-option value="T2">Turno 2</ion-select-option>
+      <ion-select-option value="T3">Turno 3</ion-select-option>
+      <ion-select-option value="T20">Turno 20</ion-select-option>
+      <ion-select-option value="T21">Turno 21</ion-select-option>
+      <ion-select-option value="T24">Turno 24</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item button (click)="presentModal()" [attr.disabled]="!listaSupervisores">
+    <ion-label color="medium"><strong>Motivos</strong></ion-label>
+    <ion-label color="medium" slot="end"><strong>{{registro.motivos?.length}}</strong></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="medium" position="floating"><strong>Observación</strong></ion-label>
+    <ion-textarea [(ngModel)]="registro.observacion" required></ion-textarea>
+  </ion-item>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="8" *ngIf="!registro.uid">
+          <ion-button color="success" [disabled]="validacionDatos" expand="block" fill="outline"
+          (click)="dismissData()">
+            Registrar
+          </ion-button>
+        </ion-col>
+        <ion-col size="8" *ngIf="registro.uid">
+          <ion-button color="success" [disabled]="validacionDatos" expand="block" fill="outline" (click)="dismissData()" >
+            Modificar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime id="datetime"></ion-datetime>
+  </ng-template>
+</ion-modal>

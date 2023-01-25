@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="medium"><strong>Reg. Paradas Coexpan</strong></ion-title>
+  </ion-toolbar>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12">
+        <ion-progress-bar color="medium"></ion-progress-bar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="7">
+        <ion-button expand="block" (click)="presentModal()">
+          Nueva Causa
+          <ion-icon slot="end" name="add"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let r of registros" >
+      <ion-item (click)="modificarDatos(r)">
+        <ion-label color="medium"><strong>
+          {{obtenerArea(r.area)}} - Motivos: {{r.motivos?.length}}
+        </strong></ion-label>
+        <ion-button slot="end" color ="medium" expand="block" shape="round"
+        (click)="alertaInformacionParada(r)">
+          Info.
+        </ion-button>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="terteary" (click)="eliminarRegistro(r)">
+          <ion-icon style="font-size: 2.5rem;" color="danger" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="8">
+          <ion-button color="success" expand="block" fill="outline" (click)="enviarRegistros()">
+            Enviar Registros
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

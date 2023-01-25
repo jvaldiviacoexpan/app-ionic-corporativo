@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { EtqEntradaMercanciaComponent } from './etq-entrada-mercancia.component';
-import { EtqEntMateriasPrimasComponent } from './etq-ent-materias-primas/etq-ent-materias-primas.component';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [{
@@ -9,7 +8,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'etq-entr-materias-primas',
-      component: EtqEntMateriasPrimasComponent
+      // component: EtqEntMateriasPrimasComponent
     }
   ]
 }];
@@ -23,5 +22,4 @@ export class EtqEntradaMercanciaRoutingModule { }
 
 export const etqEntradaMercanciaRouterComponents = [
   EtqEntradaMercanciaComponent,
-  EtqEntMateriasPrimasComponent,
 ];

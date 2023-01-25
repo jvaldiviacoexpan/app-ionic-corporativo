@@ -1,0 +1,38 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-align-items-center ion-header-row" *ngIf="enabled.cfg01 || enabled.cfg02">
+        <ion-col size="2">
+          <ion-button fill="clear" (click)="menuToogle()">
+            <ion-icon name="menu-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="10" class="ion-text-left">
+          <ion-title>Configuracíon</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background-image">
+  <ion-grid>
+    <ion-row class="ion-justify-content-between" style="margin-top: 40px;">
+      <ion-col  class="ion-text-center cube ripple" size="6" (click)="irPermisos()" *ngIf="enabled.cfg01" >
+        <ion-icon color="warning" class="standard-icon" name="key-outline" size="large"></ion-icon>
+        <ion-text color="dark">
+          <h5 class="standard-text">Permisos</h5>
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="6" class="ion-text-center cube ripple" *ngIf="enabled.cfg02">
+        <ion-icon style="color: rgb(66, 66, 66);" class="standard-icon" name="print-outline" size="large"></ion-icon>
+        <ion-text color="dark">
+          <h5 class="standard-text">Impresora</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

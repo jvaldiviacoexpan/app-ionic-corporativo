@@ -4,27 +4,36 @@
 
 export const environment = {
   production: false,
-  urlBase:     'http://localhost:8100',
-  // urlcxp:      'https://localhost:44356/api',
-  // urlCxpAuth0: 'https://localhost:44360/api',
-  // https://localhost:44333/api/v1/logistica/inventario/
-  // urlcxpprueba: 'https://localhost:44303',
 
-  // urlBase:      'https://movil.coexpan.cl/app-corporativo',
-  urlcxp:       'https://api.coexpan.cl/api/v1/bodega/materias-primas',
-  urlAuth0:     'https://coexpancl.us.auth0.com',
-  urlCxpAuth0:  'https://api.coexpan.cl/api/v1/auth0',
-  urlApi: 'https://api.coexpan.cl',
+  // API LOCAL
+  // urlBase: 'http://localhost:8100',
+  // urlAuth0: 'https://localhost:44360/api',
+  // urlMateriasPrimas: 'https://localhost:44356/api',
+  // urlInventario: 'https://localhost:44362/api',
+  // urlEntradaMercancia: 'https://localhost:44303/api',
+
+  // API DESARROLLO
+  // urlBase: 'https://test.coexpan.cl/app-corporativo',
+  // urlAuth0: 'https://test.coexpan.cl/api/v1/integracion/auth0',
+  // urlMateriasPrimas: 'https://test.coexpan.cl/api/v1/bodega/materias-primas',
+  // urlInventario: 'https://test.coexpan.cl/api/v1/logistica/inventario',
+  // urlEntradaMercancia: 'https://test.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
+
+  // API PRODUCCION
+  urlBase: 'https://movil.coexpan.cl/app-corporativo',
+  urlAuth0: 'https://api.coexpan.cl/api/v1/integracion/auth0',
+  urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  urlInventario: 'https://api.coexpan.cl/api/v1/logistica/inventario',
+  urlEntradaMercancia: 'https://api.coexpan.cl/cat-services/extrusion/wscxp-extrusion/api',
+  // urlEntradaMercancia: 'https://api.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
 
   // constantes
-  dbCoexpan: 'SBO_COEMBAL_FUSION',
+  // dbCoembal: 'SBO_COEMBAL_FUSION_TEST',
   dbCoembal: 'SBO_COEMBAL_FUSION',
-  // dbCoexpan: 'Z_SBO_COEXPAN_TEST2',
-  // dbCoembal: 'Z_SBO_COEMBAL_TEST2',
+
+  dismissTimer: 250,
 
 };
-
-
 
 /*
 * For easier debugging in development mode, you can import the following file

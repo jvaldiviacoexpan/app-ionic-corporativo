@@ -1,0 +1,163 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-align-items-center ion-header-row">
+        <ion-col size="2">
+          <ion-button fill="clear" (click)="menuToogle()">
+            <ion-icon name="menu-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="10" class="ion-text-left">
+          <ion-title>{{user.name | titlecase}}</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="row ion-margin-top" *ngIf="roles.length === 0">
+    <div class="col">
+      <ion-skeleton-text animated style="width: 100%; height: 600%"></ion-skeleton-text>
+    </div>
+  </div>
+
+  <div class="row ion-margin-top" *ngIf="roles.length !== 0">
+    <div class="col">
+      <div class="tabs">
+
+        <div class="tab">
+          <input type="checkbox" id="chck0">
+          <label class="tab-label" for="chck0">Configuración</label>
+          <div class="tab-content">
+            <ion-item>
+              <ion-label>Permisos</ion-label>
+              <ion-toggle #cfg01 (click)="tooglePermisos(!cfg01.checked, 'cfg', 'configuracion', 'permisos', 'cfg01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Param. Impresoras</ion-label>
+              <ion-toggle #cfg02 (click)="tooglePermisos(!cfg02.checked, 'cfg', 'configuracion', 'parametros-impresora', 'cfg02')">
+              </ion-toggle>
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="tab">
+          <input type="checkbox" id="chck1">
+          <label class="tab-label" for="chck1">Materias Primas</label>
+          <div class="tab-content">
+
+            <ion-item>
+              <ion-label>Emisión Etiqueta</ion-label>
+              <ion-toggle #mpr01 (click)="tooglePermisos(!mpr01.checked, 'cxp', 'materias-primas', 'emision-etiqueta', 'mpr01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Re-Imprimir Etiqueta</ion-label>
+              <ion-toggle #mpr02 (click)="tooglePermisos(!mpr02.checked, 'cxp', 'materias-primas', 'reimprimir-pallet', 'mpr02')">
+              </ion-toggle>
+            </ion-item>
+
+          </div>
+        </div>
+
+        <div class="tab">
+          <input type="checkbox" id="chck6">
+          <label class="tab-label" for="chck6">Inventario</label>
+          <div class="tab-content">
+            <ion-item>
+              <ion-label>Inventario Coembal</ion-label>
+              <ion-toggle #inv01
+                (click)="tooglePermisos(!inv01.checked, 'cmb', 'inventario', 'inventario-coembal', 'inv01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Inventario Coexpan</ion-label>
+              <ion-toggle #inv02 (click)="tooglePermisos(!inv02.checked, 'cmb', 'inventario', 'inventario-coexpan', 'inv02')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Inventario Coembal Correa</ion-label>
+              <ion-toggle #inv03 (click)="tooglePermisos(!inv03.checked, 'cmb', 'inventario', 'inventario-coembal-correa', 'inv03')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Inventario Coexpan Correa</ion-label>
+              <ion-toggle #inv04
+                (click)="tooglePermisos(!inv04.checked, 'cmb', 'inventario', 'inventario-coexpan-correa', 'inv04')">
+              </ion-toggle>
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="tab">
+          <input type="checkbox" id="chck8">
+          <label class="tab-label" for="chck8">Entrada Mercancía</label>
+          <div class="tab-content">
+            <ion-item>
+              <ion-label>PT Caja</ion-label>
+              <ion-toggle #etr01 (click)="tooglePermisos(!etr01.checked, 'cmb', 'entrada-mercancia', 'pt-caja', 'etr01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Reimpresión Etq. PT Caja</ion-label>
+              <ion-toggle #etr02 (click)="tooglePermisos(!etr02.checked, 'cmb', 'entrada-mercancia', 'reimprimir-pt-caja', 'etr02')">
+              </ion-toggle>
+            </ion-item>
+
+          </div>
+        </div>
+
+        <div class="tab">
+          <input type="checkbox" id="chck7">
+          <label class="tab-label" for="chck7">Registro Paradas</label>
+          <div class="tab-content">
+            <ion-item>
+              <ion-label>Registro Paradas Coembal</ion-label>
+              <ion-toggle #rgp01 (click)="tooglePermisos(!rgp01.checked, 'cmb', 'registro-paradas', 'registro-paradas-coembal', 'rgp01')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Registro Paradas Coexpan</ion-label>
+              <ion-toggle #rgp02
+                (click)="tooglePermisos(!rgp02.checked, 'cmb', 'registro-paradas', 'registro-paradas-coexpan', 'rgp02')">
+              </ion-toggle>
+            </ion-item>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6">
+          <ion-button color="danger" expand="block" fill="solid" (click)="dismiss()">
+            Cancelar
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="success" expand="block" fill="solid" (click)="dismissData()">
+            Guardar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

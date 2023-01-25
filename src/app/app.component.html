@@ -4,7 +4,7 @@
       <ion-content>
         <ion-list id="inbox-list">
 
-          <ion-list-header>{{user.name}}</ion-list-header>
+          <ion-list-header>{{user.name | titlecase}}</ion-list-header>
           <ion-note>{{user.email}}</ion-note>
 
           <ion-menu-toggle auto-hide="false">
