@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-grid fixed>
@@ -41,7 +40,8 @@
 
             <ion-item>
               <ion-label>Param. Impresoras</ion-label>
-              <ion-toggle #cfg02 (click)="tooglePermisos(!cfg02.checked, 'cfg', 'configuracion', 'parametros-impresora', 'cfg02')">
+              <ion-toggle #cfg02
+                (click)="tooglePermisos(!cfg02.checked, 'cfg', 'configuracion', 'parametros-impresora', 'cfg02')">
               </ion-toggle>
             </ion-item>
           </div>
@@ -54,13 +54,15 @@
 
             <ion-item>
               <ion-label>Emisión Etiqueta</ion-label>
-              <ion-toggle #mpr01 (click)="tooglePermisos(!mpr01.checked, 'cxp', 'materias-primas', 'emision-etiqueta', 'mpr01')">
+              <ion-toggle #mpr01
+                (click)="tooglePermisos(!mpr01.checked, 'cxp', 'materias-primas', 'emision-etiqueta', 'mpr01')">
               </ion-toggle>
             </ion-item>
 
             <ion-item>
               <ion-label>Re-Imprimir Etiqueta</ion-label>
-              <ion-toggle #mpr02 (click)="tooglePermisos(!mpr02.checked, 'cxp', 'materias-primas', 'reimprimir-pallet', 'mpr02')">
+              <ion-toggle #mpr02
+                (click)="tooglePermisos(!mpr02.checked, 'cxp', 'materias-primas', 'reimprimir-pallet', 'mpr02')">
               </ion-toggle>
             </ion-item>
 
@@ -80,13 +82,15 @@
 
             <ion-item>
               <ion-label>Inventario Coexpan</ion-label>
-              <ion-toggle #inv02 (click)="tooglePermisos(!inv02.checked, 'cmb', 'inventario', 'inventario-coexpan', 'inv02')">
+              <ion-toggle #inv02
+                (click)="tooglePermisos(!inv02.checked, 'cmb', 'inventario', 'inventario-coexpan', 'inv02')">
               </ion-toggle>
             </ion-item>
 
             <ion-item>
               <ion-label>Inventario Coembal Correa</ion-label>
-              <ion-toggle #inv03 (click)="tooglePermisos(!inv03.checked, 'cmb', 'inventario', 'inventario-coembal-correa', 'inv03')">
+              <ion-toggle #inv03
+                (click)="tooglePermisos(!inv03.checked, 'cmb', 'inventario', 'inventario-coembal-correa', 'inv03')">
               </ion-toggle>
             </ion-item>
 
@@ -94,6 +98,27 @@
               <ion-label>Inventario Coexpan Correa</ion-label>
               <ion-toggle #inv04
                 (click)="tooglePermisos(!inv04.checked, 'cmb', 'inventario', 'inventario-coexpan-correa', 'inv04')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Transferencia Stock</ion-label>
+              <ion-toggle #inv05
+                (click)="tooglePermisos(!inv05.checked, 'cmb', 'inventario', 'transferencia-stock', 'inv05')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Transferencia Stock Masivo</ion-label>
+              <ion-toggle #inv06
+                (click)="tooglePermisos(!inv06.checked, 'cmb', 'inventario', 'transferencia-stock-masivo', 'inv06')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Moler Extrusión</ion-label>
+              <ion-toggle #inv07
+                (click)="tooglePermisos(!inv07.checked, 'cmb', 'entrada-mercancia', 'moler-extrusion', 'inv07')">
               </ion-toggle>
             </ion-item>
           </div>
@@ -105,13 +130,43 @@
           <div class="tab-content">
             <ion-item>
               <ion-label>PT Caja</ion-label>
-              <ion-toggle #etr01 (click)="tooglePermisos(!etr01.checked, 'cmb', 'entrada-mercancia', 'pt-caja', 'etr01')">
+              <ion-toggle #etr01
+                (click)="tooglePermisos(!etr01.checked, 'cmb', 'entrada-mercancia', 'pt-caja', 'etr01')">
               </ion-toggle>
             </ion-item>
 
             <ion-item>
               <ion-label>Reimpresión Etq. PT Caja</ion-label>
-              <ion-toggle #etr02 (click)="tooglePermisos(!etr02.checked, 'cmb', 'entrada-mercancia', 'reimprimir-pt-caja', 'etr02')">
+              <ion-toggle #etr02
+                (click)="tooglePermisos(!etr02.checked, 'cmb', 'entrada-mercancia', 'reimpresion-pt-caja', 'etr02')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Etiqueta Bobina</ion-label>
+              <ion-toggle #etr03
+                (click)="tooglePermisos(!etr03.checked, 'cmb', 'entrada-mercancia', 'etiqueta-bobina', 'etr03')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Reimpresión Etq. Bobina</ion-label>
+              <ion-toggle #etr04
+                (click)="tooglePermisos(!etr04.checked, 'cmb', 'entrada-mercancia', 'reimpresion-etq-bobina', 'etr04')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Eliminar Etq. Bobina</ion-label>
+              <ion-toggle #etr05
+                (click)="tooglePermisos(!etr05.checked, 'cmb', 'entrada-mercancia', 'eliminar-etq-bobina', 'etr05')">
+              </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Entrada Mercancía Bobina</ion-label>
+              <ion-toggle #etr06
+                (click)="tooglePermisos(!etr06.checked, 'cmb', 'entrada-mercancia', 'entrada-mercancia-bobina', 'etr06')">
               </ion-toggle>
             </ion-item>
 
@@ -124,7 +179,8 @@
           <div class="tab-content">
             <ion-item>
               <ion-label>Registro Paradas Coembal</ion-label>
-              <ion-toggle #rgp01 (click)="tooglePermisos(!rgp01.checked, 'cmb', 'registro-paradas', 'registro-paradas-coembal', 'rgp01')">
+              <ion-toggle #rgp01
+                (click)="tooglePermisos(!rgp01.checked, 'cmb', 'registro-paradas', 'registro-paradas-coembal', 'rgp01')">
               </ion-toggle>
             </ion-item>
 
@@ -160,4 +216,3 @@
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
-

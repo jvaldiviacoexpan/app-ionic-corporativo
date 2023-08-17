@@ -20,7 +20,7 @@
   <ion-grid>
     <ion-row class="ion-margin-top">
       <ion-col size="12" *ngIf="enabled.etr01 || enabled.etr02">
-        <ion-label color="medium"><strong>Gestión Etiquetas</strong></ion-label>
+        <ion-label color="medium"><strong>Cajas</strong></ion-label>
       </ion-col>
     </ion-row>
 
@@ -47,6 +47,105 @@
           </ion-grid>
         </ion-button>
       </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="12" *ngIf="enabled.etr03 || enabled.etr04 || enabled.etr05 || enabled.etr06">
+        <ion-label color="medium"><strong>Bobinas</strong></ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="6" *ngIf="enabled.etr03">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irEtiquetaPalletBobina()">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Emisión</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">Etiqueta Bobina</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="enabled.etr04">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irReimprimirEtiquetaPalletBobina()">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Reimpresión</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">Etiqueta Bobina</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="6" *ngIf="enabled.etr05">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irEliminarEtiquetaPalletBobina()">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Eliminar</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">Etiqueta Bobina</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" *ngIf="enabled.etr06">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irEmPalletBobina()">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Entrada Mercancia</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">Pallets Bobina</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-justify-content-start">
+      <ion-col size="6" *ngIf="enabled.etr04">
+        <ion-button class="btn-color-cxp" size="large" expand="block" (click)="irReimprimirEtiquetaPalletBobinaSap()">
+          <ion-grid>
+            <ion-row class="ion-no-margin ion-no-padding">
+              <ion-col>
+                <span class="btn-text">Reimpresión</span><br>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span class="btn-text">Correl. Bobina Sap</span><br>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-button>
+      </ion-col>
+
     </ion-row>
 
   </ion-grid>

@@ -4,14 +4,18 @@ export class RequestDatosEtiqueta {
 }
 
 export class Data {
-    descProducto:  string;
-    cliente:       string;
-    proceso:       string;
-    codProceso:    string;
-    cantxCaja:     string;
-    lote:          string;
-    color:         string;
-    codProducto:   string;
-    tipoResina:    string;
-    cantidadCajas: string;
+  descProducto:  string;
+  cliente:       string;
+  proceso:       string;
+  codProceso:    string;
+  cantxCaja:     string;
+  lote:          string;
+  color:         string;
+  codProducto:   string;
+  tipoResina:    string;
+  cantidadCajas: string;
+  correlativo:   string;
+  fecha:         string;
+  codigoQr:      string;
+  sapCorrel:     string;
 }

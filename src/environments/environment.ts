@@ -13,23 +13,22 @@ export const environment = {
   // urlEntradaMercancia: 'https://localhost:44303/api',
 
   // API DESARROLLO
-  // urlBase: 'https://test.coexpan.cl/app-corporativo',
-  // urlAuth0: 'https://test.coexpan.cl/api/v1/integracion/auth0',
-  // urlMateriasPrimas: 'https://test.coexpan.cl/api/v1/bodega/materias-primas',
-  // urlInventario: 'https://test.coexpan.cl/api/v1/logistica/inventario',
-  // urlEntradaMercancia: 'https://test.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
+  urlBase: 'https://test.coexpan.cl/app-corporativo',
+  urlAuth0: 'https://test.coexpan.cl/api/v1/integracion/auth0',
+  urlMateriasPrimas: 'https://test.coexpan.cl/api/v1/bodega/materias-primas',
+  urlInventario: 'https://test.coexpan.cl/api/v1/logistica/inventario',
+  urlEntradaMercancia: 'https://test.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
 
   // API PRODUCCION
-  urlBase: 'https://movil.coexpan.cl/app-corporativo',
-  urlAuth0: 'https://api.coexpan.cl/api/v1/integracion/auth0',
-  urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
-  urlInventario: 'https://api.coexpan.cl/api/v1/logistica/inventario',
-  urlEntradaMercancia: 'https://api.coexpan.cl/cat-services/extrusion/wscxp-extrusion/api',
+  // urlBase: 'https://movil.coexpan.cl/app-corporativo',
+  // urlAuth0: 'https://api.coexpan.cl/api/v1/integracion/auth0',
+  // urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
+  // urlInventario: 'https://api.coexpan.cl/api/v1/logistica/inventario',
   // urlEntradaMercancia: 'https://api.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
 
   // constantes
-  // dbCoembal: 'SBO_COEMBAL_FUSION_TEST',
-  dbCoembal: 'SBO_COEMBAL_FUSION',
+  dbCoembal: 'SBO_COEMBAL_FUSION_TEST',
+  // dbCoembal: 'SBO_COEMBAL_FUSION',
 
   dismissTimer: 250,
 

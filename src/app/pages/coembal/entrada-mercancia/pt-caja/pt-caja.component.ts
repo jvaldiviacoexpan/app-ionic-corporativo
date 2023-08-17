@@ -225,14 +225,17 @@ export class PtCajaComponent implements OnInit, AfterViewInit {
     if (!ipPrint) {
       this.presentToast('Seleccione una impresora antes de emitir la etiqueta.', 2000, 'warning');
       ok = false;
+      return ok;
     }
     if (!login) {
       this.presentToast('Inicie sesión en Sap Business One para Continuar.', 5000, 'warning');
       ok = false;
+      return ok;
     }
     if (this.dtoDatosResponse.Response.cantxCaja === '0') {
       this.presentToast('SAPBO: Und/Caja o Kg/Bob sin parámetros, modifique en Sap Business One y vuelva a intentar.', 5000, 'warning');
       ok = false;
+      return ok;
     }
     return ok;
 
@@ -254,6 +257,12 @@ export class PtCajaComponent implements OnInit, AfterViewInit {
     if (this.dtoDatosResponse.Response.cantxCaja === null) {
       status.message = 'Sap BO: Cantidad por cajas vacío.';
       list.push(status.message);
+    }
+
+    if (this.dtoDatosResponse.Response.color === null ||
+        this.dtoDatosResponse.Response.color === '') {
+        status.message = 'Sap BO: Color no puede estar vacío.';
+        list.push(status.message);
     }
 
     if (this.dtoDatosResponse.Response.codCosto === null) {

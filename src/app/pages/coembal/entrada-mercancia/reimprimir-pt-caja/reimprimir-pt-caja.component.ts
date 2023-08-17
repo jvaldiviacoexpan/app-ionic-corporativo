@@ -17,13 +17,11 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
   @ViewChild('txtCodigo') txtCodigo: IonInput;
   @ViewChild('cantCajas') txtCantCajas: IonInput;
   @ViewChild('btnCodigo') btnCodigo: IonButton;
-  @ViewChild('btnEmision') btnEmision: IonButton;
+
+  etRows: [] = [];
 
   dtoDatosResponse: any;
   loading = false;
-  cliente = '';
-  ordenFab = '';
-  producto = '';
 
   constructor(
     private menuCtrl: MenuController,
@@ -35,9 +33,7 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void { }
 
-  ngAfterViewInit(): void {
-    this.btnEmision.disabled = true;
-  }
+  ngAfterViewInit(): void {  }
 
   menuToogle(): void {
     this.menuCtrl.toggle();
@@ -56,18 +52,11 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
     this.accionBusqueda(true);
     this.cxpService.postObtenerDatosEtiqueta(cod).then((resp: any) => {
       if (resp.Status.Status === 'T') {
-
-        console.log(resp);
         this.dtoDatosResponse = resp;
-        this.cliente = this.dtoDatosResponse.Response[0].CLIENTE;
-        this.ordenFab = this.dtoDatosResponse.Response[0].LOTE;
-        this.producto = this.dtoDatosResponse.Response[0].COD_PRODUCTO;
-        this.cantidadCajasSetFocus();
-
+        this.etRows = this.dtoDatosResponse.Response;
       } else {
         this.presentToast(resp.Status.Message, 2000, 'warning');
       }
-      // console.log(resp);
     }, (err) => {
       console.warn(err);
     }).finally(() => {
@@ -75,11 +64,7 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
     });
   }
 
-  async alertaConfirmarEtiqueta() {
-
-    if (!this.successEntradaMercancia() || !this.revisionDatosEntradaMercancia()) {
-      return;
-    }
+  async alertaConfirmarEtiqueta(data: any) {
 
     const alert = await this.alertController.create({
       header: 'Imprimir Etiqueta',
@@ -95,8 +80,8 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
         }, {
           text: 'Imprimir',
           cssClass: 'btnAlertSuccess',
-          handler: (data) => {
-            this.emitirPalletCajaCoembal();
+          handler: () => {
+            this.emitirPalletCajaCoembal(data);
           }
         }
       ]
@@ -104,62 +89,42 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
     await alert.present();
   }
 
-  emitirPalletCajaCoembal(): void {
+  emitirPalletCajaCoembal(data: any): void {
 
     const req: RequestDatosEtiqueta = new RequestDatosEtiqueta();
     req.data = new Data();
     req.ipPrint = localStorage.getItem('ipimp');
 
-    req.data.descProducto = '';
-    req.data.cliente = this.dtoDatosResponse.Response[0].DESC_PRODUCTO;
-    req.data.proceso = this.dtoDatosResponse.Response[0].PROCESO;
+    req.data.descProducto = data.DESC_PRODUCTO;
+    req.data.cliente = data.CLIENTE;
+    req.data.proceso = data.PROCESO;
+    req.data.cantxCaja = data.CANTIDADXCAJA;
+    req.data.lote = data.LOTE;
+    req.data.color = data.COLOR;
+    req.data.codProducto = data.COD_PRODUCTO;
+    req.data.cantidadCajas = data.CANTIDAD_CAJAS;
+    req.data.correlativo = data.CORRELATIVO;
+    req.data.fecha = data.FECHA;
+    req.data.codigoQr = data.CODIGO_QR;
+    req.data.tipoResina = 'ND';
     req.data.codProceso = 'ND';
-    req.data.cantxCaja = this.dtoDatosResponse.Response[0].CLIENTE;
-    // req.data.lote:          string;
-    // req.data.color:         string;
-    // req.data.codProducto:   string;
-    // req.data.tipoResina:    string;
-    // req.data.cantidadCajas: string;
-    // req.data.cantidadCajas = Number(this.txtCantCajas.value.toString());
+    req.data.sapCorrel = data.SAP_CORREL;
+
 
     console.log(req);
 
     this.toolService.simpleLoader('Enviando datos...');
-    this.cxpService.postSapEntradaMercanciaCajaPallet(req).then((data: any) => {
-      if (data.Status === 'T') {
+    this.cxpService.postReimprimirCajaPallet(req).then((resp: any) => {
+      if (resp.Status === 'T') {
         this.presentToast('Imprimiendo etiqueta...', 2000, 'success');
         this.reestablecerDatos();
       } else {
-        this.presentToast(data.Message, 5000, 'warning');
-        setTimeout(() => {
-          this.presentToast(`Sap: ${data.Sap_Message}`, 4000, 'warning');
-        }, 5000);
+        this.presentToast(resp.Message, 5000, 'warning');
       }
     }, err => {
       console.error(err);
     }).finally(() => this.toolService.dismissLoader());
   }
-
-  actualizarFuenteDatos(): void {
-    this.toolService.simpleLoader('Refrescando datos...');
-    this.cxpService.getEjecutarEtlExtrusion().then((data: any) => {
-      if (data.Status.Status === 'T') {
-        console.log(data);
-        if (data.Response[0].STATUS === 1) {
-          this.presentToast('Datos refrescados', 2000, 'success');
-        } else {
-          this.presentToast('Error en la comunicación con el servidor. \n Intente nuevamente.', 5000, 'warning');
-        }
-      } else {
-        this.presentToast(data.Status.Message, 5000, 'warning');
-      }
-    }, err => {
-      console.error(err);
-    }).finally(() => this.toolService.dismissLoader());
-  }
-
-  codigoSetFocus() { setTimeout(() => { this.txtCodigo.setFocus(); }, 300); }
-  cantidadCajasSetFocus() { setTimeout(() => { this.txtCantCajas.setFocus(); }, 300); }
 
   get deshabilitarBotonEnviar(): boolean {
     let resp = true;
@@ -169,6 +134,8 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
     return resp;
   }
 
+  codigoSetFocus() { setTimeout(() => { this.txtCodigo.setFocus(); }, 300); }
+
   accionBusqueda(action: boolean) {
     this.txtCodigo.disabled = action;
     this.btnCodigo.disabled = action;
@@ -177,10 +144,7 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
   }
 
   reestablecerDatos() {
-    this.cliente = '';
-    this.ordenFab = '';
-    this.producto = '';
-    this.dtoDatosResponse = null;
+    this.etRows = [];
   }
 
   async presentToast(mensaje: string, duracion: number, tcolor: string) {
@@ -203,69 +167,8 @@ export class ReimprimirPtCajaComponent implements OnInit, AfterViewInit {
       this.presentToast('Inicie sesión en Sap Business One para Continuar.', 5000, 'warning');
       ok = false;
     }
-    if (this.dtoDatosResponse.Response.cantxCaja === '0') {
-      this.presentToast('SAPBO: Und/Caja o Kg/Bob sin parámetros, modifique en Sap Business One y vuelva a intentar.', 5000, 'warning');
-      ok = false;
-    }
+
     return ok;
-
-  }
-
-  revisionDatosEntradaMercancia(): boolean {
-
-    const status = {
-      message: ''
-    };
-    let result = false;
-    const list: string[] = [];
-
-    if (this.dtoDatosResponse.Response.bodega === null) {
-      status.message = 'Sap BO: Sin asignación de bodega.';
-      list.push(status.message);
-    }
-
-    if (this.dtoDatosResponse.Response.cantxCaja === null) {
-      status.message = 'Sap BO: Cantidad por cajas vacío.';
-      list.push(status.message);
-    }
-
-    if (this.dtoDatosResponse.Response.codCosto === null) {
-      status.message = 'Sap BO: Sin asignación de código de costo.';
-      list.push(status.message);
-    }
-
-    if (this.dtoDatosResponse.Response.codigoProducto === null) {
-      status.message = 'SCP2: Sin asignación de código de producto.';
-      list.push(status.message);
-    }
-
-    if (this.dtoDatosResponse.Response.peso === null) {
-      status.message = 'Sap BO: Sin asignación de peso envase.';
-      list.push(status.message);
-    }
-
-    if (this.dtoDatosResponse.Response.precio === null) {
-      status.message = 'Sap BO: Precio resina no asignado.';
-      list.push(status.message);
-    }
-
-    if (this.dtoDatosResponse.Response.precioEnvase === null) {
-      status.message = 'Sap BO: Precio envase no válido.';
-      list.push(status.message);
-    }
-
-    let msg = `Error al enviar Entrada Mercancia. <br> <ul>`;
-    if (list.length > 0) {
-      list.forEach(e => {
-        msg += `<li>${e}</li>`;
-      });
-      msg += '</ul>';
-      this.presentToast(`${msg}`, 5000, 'warning');
-
-    } else {
-      result = true;
-    }
-    return result;
 
   }
 

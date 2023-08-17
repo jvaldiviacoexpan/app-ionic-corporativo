@@ -205,9 +205,155 @@ export class CxpService {
         });
     });
   }
+
   public postReimprimirCajaPallet(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.urlEntradaMercancia}/etiquetas/reimprimir-caja-pallet`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public getEjecutarEtlPesaje() {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${env.urlEntradaMercancia}/extrusion-bobina/init-pesaje`)
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postEtiquetaBobinaEm(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/etiqueta-bobina-em`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postObtenerDatosEtiquetaBobinaEm(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/get-etq-pallet-bobina`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postReimprimirEtiquetaBobinaEm(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/reimprimir-etiqueta-bobina-em`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postReimprimirEtiquetaBobinaSap(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        `${env.urlEntradaMercancia}/extrusion-bobina/api/extrusion-bobina/reimprimir-etiqueta-bobina-sap`, JSON.stringify(data)
+      )
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postEliminarEtiquetaBobinaEm(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/eliminar-etiqueta-bobina-em`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postSapObtenerDatosEtiquetaBobinaEm(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/obtener-datos-palletbobina-em`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postAgregarEntradaMercanciaPalletBobinas(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/sap-em-agregar-palletbobina`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postReimprimirEtiquetaPalletRecepcion(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/extrusion-bobina/reimprimir-etq-palletrecepcionbobina`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postObtenerInformacionMoler(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/pormoler/info-por-moler`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postObtenerInformacionMolerBobinas(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/pormoler/info-por-moler-bobinas`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postTransferenciaPorMoler(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/pormoler/transferencia-por-moler`, JSON.stringify(data))
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public postTransferenciaPorMolerBobinas(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${env.urlEntradaMercancia}/pormoler/transferencia-por-moler-bobinas`, JSON.stringify(data))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
