@@ -13,7 +13,7 @@ export const environment = {
   urlAuth0: 'https://api.coexpan.cl/api/v1/integracion/auth0',
   urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
   urlInventario: 'https://api.coexpan.cl/api/v1/logistica/inventario',
-  urlEntradaMercancia: 'https://api.coexpan.cl/cat-services/extrusion/wscxp-extrusion/api',
+  urlEntradaMercancia: 'https://api.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
 
   // DB
   // dbCoembal: 'SBO_COEMBAL_FUSION_TEST',

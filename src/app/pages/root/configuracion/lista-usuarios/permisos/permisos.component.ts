@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MenuController, NavParams, ModalController, ToastController, IonToggle } from '@ionic/angular';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MenuController, NavParams, ModalController, IonToggle } from '@ionic/angular';
 import { Auth0Service } from '../../../../../../providers/internal/auth0.service';
 import { SecurityService } from '../../../../../../providers/external/security.service';
 import { ToolService } from '../../../../../../providers/external/tools.service';
@@ -21,9 +21,16 @@ export class PermisosComponent implements OnInit, AfterViewInit {
   @ViewChild('inv02') tglInv02: IonToggle;
   @ViewChild('inv03') tglInv03: IonToggle;
   @ViewChild('inv04') tglInv04: IonToggle;
+  @ViewChild('inv05') tglInv05: IonToggle;
+  @ViewChild('inv06') tglInv06: IonToggle;
+  @ViewChild('inv07') tglInv07: IonToggle;
   // Inventario
   @ViewChild('etr01') tglEtr01: IonToggle;
   @ViewChild('etr02') tglEtr02: IonToggle;
+  @ViewChild('etr03') tglEtr03: IonToggle;
+  @ViewChild('etr04') tglEtr04: IonToggle;
+  @ViewChild('etr05') tglEtr05: IonToggle;
+  @ViewChild('etr06') tglEtr06: IonToggle;
   // Registro Paradas
   @ViewChild('rgp01') tglRgp01: IonToggle;
   @ViewChild('rgp02') tglRgp02: IonToggle;
@@ -165,6 +172,7 @@ export class PermisosComponent implements OnInit, AfterViewInit {
           case 'cfg02':
             this.tglCfg02.checked  = data.enabled;
             break;
+
           // Materias Primas
           case 'mpr01':
             this.tglMpr01.checked  = data.enabled;
@@ -172,6 +180,7 @@ export class PermisosComponent implements OnInit, AfterViewInit {
           case 'mpr02':
             this.tglMpr02.checked  = data.enabled;
             break;
+
           // Inventario
           case 'inv01':
             this.tglInv01.checked  = data.enabled;
@@ -185,6 +194,16 @@ export class PermisosComponent implements OnInit, AfterViewInit {
           case 'inv04':
             this.tglInv04.checked  = data.enabled;
             break;
+          case 'inv05':
+            this.tglInv05.checked  = data.enabled;
+            break;
+          case 'inv06':
+            this.tglInv06.checked  = data.enabled;
+            break;
+          case 'inv07':
+            this.tglInv07.checked  = data.enabled;
+            break;
+
           // Entrada Mercancia
           case 'etr01':
             this.tglEtr01.checked = data.enabled;
@@ -192,6 +211,19 @@ export class PermisosComponent implements OnInit, AfterViewInit {
           case 'etr02':
             this.tglEtr02.checked = data.enabled;
             break;
+          case 'etr03':
+            this.tglEtr03.checked = data.enabled;
+            break;
+          case 'etr04':
+            this.tglEtr04.checked = data.enabled;
+            break;
+          case 'etr05':
+            this.tglEtr05.checked = data.enabled;
+            break;
+          case 'etr06':
+            this.tglEtr06.checked = data.enabled;
+            break;
+
           // Registro Paradas
           case 'rgp01':
             this.tglRgp01.checked  = data.enabled;

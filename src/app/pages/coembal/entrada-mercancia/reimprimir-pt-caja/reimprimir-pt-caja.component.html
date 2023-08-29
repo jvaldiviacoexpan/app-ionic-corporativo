@@ -20,7 +20,7 @@
     <ion-row class="ion-align-items-center ion-header-row">
       <ion-col size="10">
         <ion-item>
-          <ion-label position="floating">Código de Barra o QR</ion-label>
+          <ion-label position="floating">QR/Orden</ion-label>
           <ion-input type="text" #txtCodigo (keyup.enter)="obtenerInformacionCaja(txtCodigo.value.toString())">
           </ion-input>
         </ion-item>
@@ -33,25 +33,38 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid fixed *ngIf="dtoDatosResponse">
+  <ion-grid fixed *ngIf="etRows.length > 0">
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="12" *ngFor="let row of etRows" >
         <ion-card>
           <ion-card-header>
-            <ion-card-subtitle>Cliente: <strong>{{cliente}}</strong></ion-card-subtitle>
+            <ion-card-subtitle>Cliente: <strong>{{row['CLIENTE']}}</strong></ion-card-subtitle>
             <ion-card-subtitle>
               <ion-grid fixed class="ion-no-padding">
                 <ion-row>
-                  <ion-col style="padding-bottom: 8px;" size="12">OF: <strong>{{ordenFab}}</strong></ion-col>
+                  <ion-col style="padding-bottom: 8px;" size="12">OF: <strong>{{row['LOTE']}}</strong></ion-col>
                 </ion-row>
               </ion-grid>
             </ion-card-subtitle>
-              <ion-row>
-                <ion-col class="ion-no-padding" size="9"><strong>{{producto}}</strong></ion-col>
-              </ion-row>
             <ion-card-subtitle>
-
+              <ion-grid fixed class="ion-no-padding">
+                <ion-row>
+                  <ion-col style="padding-bottom: 8px;" size="12">Correlativo: <strong>{{row['CORRELATIVO']}}</strong></ion-col>
+                </ion-row>
+              </ion-grid>
             </ion-card-subtitle>
+            <ion-row>
+              <ion-col class="ion-no-padding" size="12"><strong>{{row['CODIGO_QR']}}</strong></ion-col>
+            </ion-row>
+            <ion-grid fixed>
+              <ion-row class="ion-justify-content-center">
+                <ion-col size="10">
+                  <ion-button expand="block" color="success" (click)="alertaConfirmarEtiqueta(row)">
+                    Seleccionar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-card-header>
         </ion-card>
       </ion-col>
@@ -84,7 +97,7 @@
 
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
     <ion-title class="ion-no-padding-x">
       <ion-grid fixed>
@@ -104,4 +117,4 @@
       </ion-grid>
     </ion-title>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

@@ -128,6 +128,12 @@ export class ParamArea {
   area: number;
 }
 
+export class imprimirEtiquetaModel<T> {
+  ipAddress: string;
+  modelData: T;
+  zplData: string;
+}
+
 
 
 

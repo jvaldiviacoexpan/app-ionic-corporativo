@@ -6,11 +6,11 @@ export const environment = {
   production: false,
 
   // API LOCAL
-  // urlBase: 'http://localhost:8100',
+  urlBase: 'http://localhost:8100',
   // urlAuth0: 'https://localhost:44360/api',
   // urlMateriasPrimas: 'https://localhost:44356/api',
   // urlInventario: 'https://localhost:44362/api',
-  // urlEntradaMercancia: 'https://localhost:44303/api',
+  urlEntradaMercancia: 'https://localhost:44303/api',
 
   // API DESARROLLO
   // urlBase: 'https://test.coexpan.cl/app-corporativo',
@@ -20,11 +20,10 @@ export const environment = {
   // urlEntradaMercancia: 'https://test.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
 
   // API PRODUCCION
-  urlBase: 'https://movil.coexpan.cl/app-corporativo',
+  // urlBase: 'https://movil.coexpan.cl/app-corporativo',
   urlAuth0: 'https://api.coexpan.cl/api/v1/integracion/auth0',
   urlMateriasPrimas: 'https://api.coexpan.cl/api/v1/bodega/materias-primas',
   urlInventario: 'https://api.coexpan.cl/api/v1/logistica/inventario',
-  urlEntradaMercancia: 'https://api.coexpan.cl/cat-services/extrusion/wscxp-extrusion/api',
   // urlEntradaMercancia: 'https://api.coexpan.cl/api/v1/extrusion/api-entrada-mercancia',
 
   // constantes

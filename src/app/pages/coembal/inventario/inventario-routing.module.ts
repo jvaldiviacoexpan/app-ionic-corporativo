@@ -7,6 +7,11 @@ import { InventarioComponent } from './inventario.component';
 import { MenuInventarioComponent } from './menu-inventario/menu-inventario.component';
 import { CmbInventarioCorreaComponent } from './cmb-inventario-correa/cmb-inventario-correa.component';
 import { CxpInventarioCorreaComponent } from './cxp-inventario-correa/cxp-inventario-correa.component';
+import { TransferenciaStockComponent } from './transferencia-stock/transferencia-stock.component';
+import { TransferenciaStockMasivoComponent } from './transferencia-stock-masivo/transferencia-stock-masivo.component';
+import { TransferenciaStockMasivoModalComponent }
+  from './transferencia-stock-masivo/transferencia-stock-masivo-modal/transferencia-stock-masivo-modal.component';
+import { MolerExtrusionComponent } from './moler-extrusion/moler-extrusion.component';
 
 
 const routes: Routes = [{
@@ -38,6 +43,21 @@ const routes: Routes = [{
       component: CxpInventarioCorreaComponent,
       canActivate: [AuthGuard],
     },
+    {
+      path: 'transferencia-stock',
+      component: TransferenciaStockComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'transferencia-stock-masivo',
+      component: TransferenciaStockMasivoComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'moler-extrusion',
+      component: MolerExtrusionComponent,
+      canActivate: [AuthGuard],
+    },
   ]
 }];
 
@@ -53,5 +73,9 @@ export const inventarioRouterComponents = [
   CmbInventarioComponent,
   CxpInventarioComponent,
   CmbInventarioCorreaComponent,
-  CxpInventarioCorreaComponent
+  CxpInventarioCorreaComponent,
+  TransferenciaStockComponent,
+  TransferenciaStockMasivoComponent,
+  TransferenciaStockMasivoModalComponent,
+  MolerExtrusionComponent,
 ];
